@@ -1,0 +1,113 @@
+<!-- Main Container Starts -->
+<div id="main-container" class="container">
+    <!-- Nested Row Starts -->
+    <div class="row">
+      <!-- Sidebar Starts -->
+      <div class="col-md-3">
+        <!-- Shopping Options Starts -->
+        <h3 class="side-heading">Shopping Options</h3>
+        <div class="list-group">
+          <div class="list-group-item">
+            Brands
+          </div>
+          <div class="list-group-item">
+            <div class="filter-group">
+              <label class="checkbox">
+                <input name="filter1" type="checkbox" value="br1" checked="checked" /> Brand Name 1
+              </label>
+              <label class="checkbox">
+                <input name="filter2" type="checkbox" value="br2" /> Brand Name 2
+              </label>
+              <label class="checkbox">
+                <input name="filter2" type="checkbox" value="br2" /> Brand Name 3
+              </label>
+            </div>
+          </div>
+          <div class="list-group-item">
+            Manufacturer
+          </div>
+          <div class="list-group-item">
+            <div class="filter-group">
+              <label class="radio">
+                <input name="filter-manuf" type="radio" value="mr1" checked="checked" /> Manufacturer Name 1
+              </label>
+              <label class="radio">
+                <input name="filter-manuf" type="radio" value="mr2" /> Manufacturer Name 2
+              </label>
+              <label class="radio">
+                <input name="filter-manuf" type="radio" value="mr3" /> Manufacturer Name 3
+              </label>
+            </div>
+          </div>
+          <div class="list-group-item">
+            <button type="button" class="btn btn-main">Filter</button>
+          </div>
+        </div>
+        <!-- Shopping Options Ends -->
+      </div>
+      <!-- Sidebar Ends -->
+      <!-- Primary Content Starts -->
+      <div class="col-md-9">
+        <!-- Main Heading Starts -->
+        <h2 class="main-heading2 page-title">
+          {{totalResults}} Results for: {{searchTerm}}
+        </h2>
+        <!-- Main Heading Ends -->
+        <!-- Product Filter Starts -->
+        <!-- Product List Display Starts -->
+        <!-- Product #1 Starts -->
+        <div *ngFor="let product of results" class="row">
+          <div class="col-xs-12">
+            <div class="product-col list clearfix">
+              <div class="image">
+                <img src="{{product.MediumImageUrl}}" alt="product" class="img-responsive center-block" />
+              </div>
+              <div class="caption">
+                <h4>
+                  <a routerLink="/utilitarian/detail/{{product.Id}}">{{product.Title}}</a>
+                </h4>
+                <div class="price">
+                  <span class="price-new">{{product.LowestNewPriceFormatted}}</span>
+                  <span *ngIf="product.ListPriceFormatted" class="price-old">{{product.ListPriceFormatted}}</span>
+                </div>
+                <div class="cart-button button-group">
+                  <app-ut-add-cart-button [product]="product"></app-ut-add-cart-button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Product #1 Ends -->
+        <!-- Product List Display Ends -->
+        <!-- Pagination & Results Starts -->
+        <div class="row">
+          <!-- Pagination Starts -->
+          <!--
+          <div class="col-sm-6 pagination-block">
+            <ul class="pagination">
+              <li>
+                <a routerLink="/results" [queryParams]="{ index: number*pageSize-pageSize, size: pageSize, q: searchTerm}">&laquo;</a>
+              </li>
+              <li *ngFor="let number of pageIndices">
+                <a routerLink="/results" [queryParams]="{ index: number*pageSize, size: pageSize, q: searchTerm}">{{number + 1}}</a>
+              </li>
+              <li>
+                <a routerLink="/results" [queryParams]="{ index: number*pageSize+pageSize, size: pageSize, q: searchTerm}">&raquo;</a>
+              </li>
+            </ul>
+          </div>
+        -->
+          <!-- Pagination Ends -->
+          <!-- Results Starts -->
+          <div class="col-sm-6 results">
+            Showing {{from}} to {{to}} of {{totalResults}} ({{totalPages}} Pages)
+          </div>
+          <!-- Results Ends -->
+        </div>
+        <!-- Pagination & Results Ends -->
+      </div>
+      <!-- Primary Content Ends -->
+    </div>
+    <!-- Nested Row Ends -->
+  </div>
+  <!-- Main Container Ends -->

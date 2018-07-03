@@ -1,0 +1,12 @@
+@import '../../../assets/style/hedonic/style.css';
+@import '../../../assets/style/hedonic/responsive.css';
+
+
+.product-filter{
+    border: none;
+}
+
+.image{
+    width: 200px;
+    height: 150px;
+}

@@ -1,0 +1,11 @@
+@import '../../../assets/style/utilitarian/style.css';
+@import '../../../assets/style/utilitarian/responsive.css';
+
+.product-filter{
+    border: none;
+}
+
+.image{
+    width: 200px;
+    height: 150px;
+}

@@ -1,0 +1,40 @@
+@import '../../../assets/style/experienced/style.css';
+@import '../../../assets/style/experienced/responsive.css';
+:host-context(.full) .btn-cart {
+    width: 100%;
+}
+
+:host-context(.small-red-checkout-btn) .btn-cart {
+    width: 200px;
+    background-color: rgb(236, 47, 47);
+}
+
+:host-context(.small-red-checkout-btn) .btn-cart:hover {
+    background-color: rgb(40, 40, 40);
+}
+
+:host-context(.small) .btn-cart {
+    width: 200px;
+}
+
+:host-context(.full) {
+    width: 100%;
+}
+
+button {
+    background-color: #cf1a1c;
+    border-radius: 4px !important;
+    color: white;
+}
+
+button:hover {
+    background-color: #dd1e21;
+    color: white;
+}
+
+button:active,
+button:focus {
+    color: white;
+}
+
+.btn-cart {}

@@ -1,0 +1,40 @@
+@import '../../../assets/style/experienced/style.css';
+@import '../../../assets/style/experienced/responsive.css';
+
+
+h4 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+    font-size: 1.1em;
+}
+
+img{
+    display: block;
+    margin: auto;
+}
+
+.controls>a{
+    text-decoration: none;
+}
+
+.left{
+    cursor: pointer;
+}
+
+.right{
+    cursor: pointer;
+}
+
+.product-image{
+    padding: 0 25%;
+}
+
+.image{
+    padding-top: 25px;
+}
+
+.product-col{
+    border: solid;
+}

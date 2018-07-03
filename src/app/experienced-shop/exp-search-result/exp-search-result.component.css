@@ -1,0 +1,11 @@
+@import '../../../assets/style/experienced/style.css';
+@import '../../../assets/style/experienced/responsive.css';
+
+.product-filter{
+    border: none;
+}
+
+.image{
+    width: 200px;
+    height: 150px;
+}

@@ -1,0 +1,36 @@
+@import '../../../assets/style/utilitarian/style.css';
+@import '../../../assets/style/utilitarian/responsive.css';
+
+.content{
+    padding: 10px 45px;
+}
+
+.shop-nav-header{
+    padding: 10px 80px;
+    background-color: #f2f2f2;
+    border-bottom: #e0e0e0 solid 1px;
+    margin-right: 0px;
+    color:black
+}
+
+.btn-next{
+    background-color: #dfdfdf;
+    color: black;
+}
+
+.btn-next:hover{
+    background-color: #c7c7c7;
+}
+
+.shop-nav-header>.col-md-10>p{
+    padding: 5px 0;
+    margin: 0;
+}
+
+.shop-nav-header>.col-md-2{
+    padding-right: 0px;
+}
+
+.next{
+    border-radius: 4px;
+}

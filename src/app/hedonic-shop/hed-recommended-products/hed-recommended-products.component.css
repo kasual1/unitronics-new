@@ -1,0 +1,26 @@
+h4 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+    font-size: 1.1em;
+}
+
+
+img{
+    display: block;
+    margin: auto;
+}
+
+.controls>a{
+    text-decoration: none;
+}
+
+
+.left{
+    cursor: pointer;
+}
+
+.right{
+    cursor: pointer;
+}

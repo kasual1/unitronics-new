@@ -1,0 +1,37 @@
+<!-- Slider Starts -->
+<div id="main-carousel" class="carousel slide center-block" data-ride="carousel">
+    <!-- Wrapper For Slides Starts -->
+    <div class="carousel-inner">
+
+        <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig">
+            <div ngxSlickItem>
+                <a [routerLink]="['/detail/707']">
+                    <img src="../../../assets/images/slider-imgs/slide1-img.jpg" alt="Slider" class="image img-responsive" />
+                </a>
+            </div>
+            <div ngxSlickItem>
+                <a [routerLink]="['/detail/612']">
+                    <img src="../../../assets/images/slider-imgs/slide2-img.jpg" alt="Slider" class="image img-responsive" />
+                </a>
+            </div>
+            <div ngxSlickItem>
+                <a [routerLink]="['/detail/549']">
+                    <img src="../../../assets/images/slider-imgs/slide3-img.jpg" alt="Slider" class="image img-responsive" />
+                </a>
+            </div>
+
+        </ngx-slick>
+        <!-- Wrapper For Slides Ends -->
+        <!-- Controls Starts -->
+        <!--
+        <a class="left carousel-control" role="button" (click)="previous()">
+            <i class="fa fa-chevron-left"></i>
+        </a>
+        <a class="right carousel-control" role="button"(click)="next()">
+            <i class="fa fa-chevron-right"></i>
+        </a>
+        -->
+        <!-- Controls Ends -->
+    </div>
+    <!-- Slider Ends -->
+</div>

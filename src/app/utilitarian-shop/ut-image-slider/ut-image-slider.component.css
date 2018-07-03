@@ -1,0 +1,10 @@
+@import '../../../assets/style/utilitarian/style.css';
+@import '../../../assets/style/utilitarian/responsive.css';
+
+
+.image {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: auto;
+}

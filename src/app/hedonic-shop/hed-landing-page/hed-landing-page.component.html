@@ -1,0 +1,418 @@
+<div class="row shop-nav-header">
+  <div class="col-md-10">
+    <p>If you are done shopping in this shop, click on next!</p>
+  </div>
+  <div class="col-md-2">
+    <button type="button" class="btn btn-next pull-right next" (click)="onNextClicked()">
+      Next Shop
+    </button>
+  </div>
+</div>
+<div class="shop-info-banner">
+  <h2>Hedonic Goods Online Shop</h2>
+</div>
+<!-- Header Section Starts -->
+<header class="header-area">
+  <!-- Header Top Starts -->
+  <div class="header-wrapper">
+    <div id="main-header">
+      <div id="cart-header" class="header-top text-uppercase">
+        <!-- Nested Container Starts -->
+        <div class="container">
+          <!-- Nested Row Starts -->
+          <div class="row">
+            <!-- Header Links Ends -->
+            <app-hed-cart></app-hed-cart>
+          </div>
+          <!-- Nested Row Ends -->
+        </div>
+        <!-- Nested Container Ends -->
+      </div>
+      <!-- Header Top Ends -->
+      <!-- Main Header Starts -->
+      <div id="search-bar" class="main-header">
+        <!-- Nested Container Starts -->
+        <div class="container">
+          <!-- Nested Row Starts -->
+          <div class="row">
+            <!-- Logo Starts -->
+            <div class="col-md-3 col-sm-3 col-xs-12">
+              <div id="logo">
+                <a routerLink="">
+                  <img src="../../../assets/images/uni-shop-logo.png" title="Electronics Shoppe" alt="Electronics Shoppe" class="img-responsive img-center">
+                </a>
+              </div>
+            </div>
+            <!-- Logo Ends -->
+            <app-hed-search></app-hed-search>
+          </div>
+          <!-- Nested Row Ends -->
+        </div>
+        <!-- Nested Container Ends -->
+      </div>
+    </div>
+    <!-- Main Header Ends -->
+    <!-- Main Menu Starts -->
+    <!-- Main Menu Ends -->
+  </div>
+</header>
+<!-- Header Section Ends -->
+<div class="content">
+  <div class="wrapper">
+    <nav id="main-menu" class="navbar" role="navigation">
+      <!-- Nested Container Starts -->
+      <div class="container">
+        <!-- Nav Header Starts -->
+        <div class="navbar-header">
+          <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-cat-collapse">
+            <span class="sr-only">Toggle Navigation</span>
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
+        <!-- Nav Header Ends -->
+        <!-- Navbar Cat collapse Starts -->
+        <div class="collapse navbar-collapse navbar-cat-collapse">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="category-list.html">Accessories</a>
+            </li>
+            <li class="dropdown">
+              <a href="category-list.html" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="10">Audio</a>
+              <div class="dropdown-menu">
+                <div class="dropdown-inner">
+                  <ul class="list-unstyled">
+                    <li class="dropdown-header">Sound Systems</li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Bose'}">Bose</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Teufel'}">Teufel</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Logitech'}">Logitech</a>
+                    </li>
+                  </ul>
+                  <ul class="list-unstyled">
+                    <li class="dropdown-header">Portable</li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Ultimate Ears'}">Ultimate Ears</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Anker'}">Anker</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'JBL'}">JBL</a>
+                    </li>
+                  </ul>
+                  <ul class="list-unstyled">
+                    <li class="dropdown-header">Smart Assistant</li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Echo'}">Echo</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Sonos'}">Sonos</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Harman-Kardon'}">Harman-Kardon</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li class="dropdown">
+              <a href="category-list.html" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="10">Computers</a>
+              <div class="dropdown-menu">
+                <div class="dropdown-inner">
+                  <ul class="list-unstyled">
+                    <li class="dropdown-header">Desktop PC's</li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Dell'}">Dell</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'HP'}">HP</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'ASUS'}">ASUS</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Lenovo'}">Lenovo</a>
+                    </li>
+                  </ul>
+                  <ul class="list-unstyled">
+                    <li class="dropdown-header">Gaming PC's</li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Acer'}">Acer</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'MSI'}">MSI</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'ASUS'}">ASUS</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'One'}">One</a>
+                    </li>
+                  </ul>
+                  <ul class="list-unstyled">
+                    <li class="dropdown-header">Components</li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'CPU'}">CPUs</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'GPU'}">GPUs</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'SSD'}">SSDs</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'RAM'}">RAM</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li class="dropdown">
+              <a href="category-list.html" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="10">Laptops</a>
+              <div class="dropdown-menu">
+                <div class="dropdown-inner">
+                  <ul class="list-unstyled">
+                    <li class="dropdown-header">Laptops</li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Dell'}">Dell</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'HP'}">HP</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'ASUS'}">ASUS</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Sony Vaio'}">Sony Vaio</a>
+                    </li>
+                  </ul>
+                  <ul class="list-unstyled">
+                    <li class="dropdown-header">Ultrabooks</li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Samsung'}">Samsung</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Apple'}">Apple</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'ASUS'}">ASUS</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'HP'}">HP</a>
+                    </li>
+                  </ul>
+                  <ul class="list-unstyled">
+                    <li class="dropdown-header">Convertibles</li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Surface Pro'}">Surface Pro</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Huawei'}">Huawei</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Samsung'}">Samsung</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Lenovo'}">Lenovo</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li class="dropdown">
+              <a href="category-list.html" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="10">Cameras</a>
+              <div class="dropdown-menu">
+                <div class="dropdown-inner">
+                  <ul class="list-unstyled">
+                    <li class="dropdown-header">Digital Cameras</li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Sony'}">Sony</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Canon'}">Canon</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Nikon'}">Nikon</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Samsung'}">Samsung</a>
+                    </li>
+                  </ul>
+                  <ul class="list-unstyled">
+                    <li class="dropdown-header">DSLR Cameras</li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Canon'}">Canon</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Nikon'}">Nikon</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Sony'}">Sony</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Olympus'}">Olympus</a>
+                    </li>
+                  </ul>
+                  <ul class="list-unstyled">
+                    <li class="dropdown-header">Equipment</li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Backpacks'}">Backpacks</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Tripods'}">Tripods</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Lens'}">Lenses</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Filter'}">Filters</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li class="dropdown">
+              <a href="category-list.html" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="10">Smartphones</a>
+              <div class="dropdown-menu">
+                <div class="dropdown-inner">
+                  <ul class="list-unstyled">
+                    <li class="dropdown-header">Android</li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Android'}">Samsung</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Android'}">Huawei</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Android'}">Honor</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Android'}">Sony</a>
+                    </li>
+                  </ul>
+                  <ul class="list-unstyled">
+                    <li class="dropdown-header">iOS</li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'iPhone SE'}">iPhone SE</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'iPhone 6'}">iPhone 6</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'iPhone 7'}">iPhone 7</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'iPhone 8'}">iPhone 8</a>
+                    </li>
+                  </ul>
+                  <ul class="list-unstyled">
+                    <li class="dropdown-header">Windows Phone</li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Microsoft Lumia'}">Microsoft Lumia</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Windows Phone'}">Samsung</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Windows Phone'}">HTC</a>
+                    </li>
+                    <li>
+                      <a tabindex="-1" [routerLink]="['/results']" [queryParams]="{index: 0, size:10, q: 'Windows Phone'}">Acer</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- Navbar Cat collapse Ends -->
+      </div>
+      <!-- Nested Container Starts -->
+    </nav>
+  </div>
+  <!-- MAIN CONTENT -->
+  <router-outlet></router-outlet>
+  <!--<app-hed-recommended-products></app-hed-recommended-products>-->
+</div>
+<!-- Footer Section Starts -->
+<footer id="footer-area">
+  <!-- Footer Links Starts -->
+  <div class="footer-links">
+    <!-- Container Starts -->
+    <div class="container">
+      <!-- Nested Row Starts -->
+      <div class="row">
+        <!-- Foot Col#1 Starts -->
+        <div class="col-md-4 col-xs-12">
+          <h5>Stay Connected</h5>
+          <ul class="list-unstyled list-inline foot-sm-links">
+            <li>
+              <a href="#">
+                <i class="fa fa-facebook"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-google-plus"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-pinterest"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-linkedin"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- Foot Col#1 Ends -->
+        <!-- Contact Us Starts -->
+        <div class="col-md-4 col-sm-4 col-xs-12 last">
+          <h5>Contact Us</h5>
+          <ul>
+            <li>Universität zu Köln</li>
+            <li>
+              Albertus-Magnus-Platz
+            </li>
+            <li>
+              50923 Köln
+            </li>
+            <li>
+              Email:
+              <a href="#">info@uni-koeln.de</a>
+            </li>
+          </ul>
+        </div>
+        <!-- Contact Us Ends -->
+      </div>
+      <!-- Nested Row Ends -->
+    </div>
+    <!-- Container Ends -->
+  </div>
+  <!-- Footer Links Ends -->
+  <!-- Copyright Area Starts -->
+  <div class="copyright">
+    <!-- Container Starts -->
+    <div class="container">
+      <!-- Starts -->
+      <p class="pull-left">
+        &copy; 2018 Online-Shop Uni Köln
+      </p>
+      <!-- Ends -->
+    </div>
+    <!-- Container Ends -->
+  </div>
+  <!-- Copyright Area Ends -->
+</footer>

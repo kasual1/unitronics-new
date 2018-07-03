@@ -1,0 +1,26 @@
+@import '../../../assets/style/utilitarian/style.css';
+@import '../../../assets/style/utilitarian/responsive.css';
+
+:host-context(.full) .btn-cart {
+    width: 100%;
+ }
+
+ :host-context(.small-red-checkout-btn) .btn-cart{
+    width: 200px;
+    background-color:rgb(236, 47, 47); 
+ }
+
+ :host-context(.small-red-checkout-btn) .btn-cart:hover{
+    background-color:rgb(40, 40, 40);
+ }
+ 
+ :host-context(.small) .btn-cart {
+    width: 200px;
+ }
+
+ :host-context(.full){
+     width: 100%;
+ }
+
+ .btn-cart {
+ }

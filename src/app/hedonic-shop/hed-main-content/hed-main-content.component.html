@@ -1,0 +1,24 @@
+<app-hed-image-slider></app-hed-image-slider>
+<div style="padding:10px 45px;">
+  <h2 class="product-head text-uppercase">Top
+    <strong>Products</strong>
+    <div class="controls pull-right hidden-xs">
+    </div>
+  </h2>
+  <div style="padding:0px 10px;">
+    <app-hed-regular-products [category]="cat1"></app-hed-regular-products>
+    <app-hed-ad-banner></app-hed-ad-banner>
+    <app-hed-regular-products [category]="cat2"></app-hed-regular-products>
+  </div>
+  <div style="padding: 0px 10px;">
+    <app-hed-testimonials></app-hed-testimonials>
+  </div>
+  <h2 class="product-head text-uppercase">Recommended for
+    <strong>You</strong>
+    <div class="controls pull-right hidden-xs">
+    </div>
+  </h2>
+  <div style="padding:0px 10px">
+    <app-hed-regular-products [category]="cat1"></app-hed-regular-products>
+  </div>
+</div>

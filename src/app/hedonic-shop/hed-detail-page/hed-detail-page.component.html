@@ -1,0 +1,155 @@
+<div id="main-container" class="container">
+	<!-- Product Info Starts -->
+	<div *ngIf="product" class="row product-info full">
+		<!-- Left Starts -->
+		<div class="col-sm-4 images-block">
+			<img src="{{previewImageUrl}}" alt="Image" class="img-responsive thumbnail large" />
+			<ul class="list-unstyled list-inline">
+				<li *ngFor="let image of product.images">
+					<img src="{{image.SmallImageUrl}}" (click)="onImageClick($event, image)" alt="Image" class="img-responsive thumbnail" />
+				</li>
+			</ul>
+		</div>
+		<!-- Left Ends -->
+		<!-- Right Starts -->
+		<div class="col-sm-8 product-details">
+			<div class="panel-smart">
+				<!-- Product Name Starts -->
+				<h2>{{product.Title}}</h2>
+				<!-- Product Name Ends -->
+				<hr />
+				<!-- Manufacturer Starts -->
+				<ul class="list-unstyled manufacturer">
+					<li>
+						<span>Brand:</span> {{product.Brand}}
+					</li>
+					<li>
+						<span>ASIN:</span> {{product.Asin}}</li>
+					<li>
+						<span>Availability:</span>
+						<strong *ngIf="product.Availability" class="label label-success">Available</strong>
+						<strong *ngIf="!product.Availability" class="label label-danger">Not in stock</strong>
+					</li>
+				</ul>
+				<!-- Manufacturer Ends -->
+				<hr />
+				<!-- Price Starts -->
+				<div class="price">
+					<span class="price-head">Price :</span>
+					<span class="price-new">{{product.LowestNewPriceFormatted}}</span>
+					<span class="price-old">{{product.ListPriceFormatted}}</span>
+				</div>
+				<!-- Price Ends -->
+				<hr />
+				<!-- Available Options Starts -->
+				<div class="options">
+					<div class="slidecontainer">
+						<p>How likely would you buy this product?</p>
+						<p style="float: left;">0%</p>
+						<input type="range" min="1" max="100" value="0" class="slider" id="myRange" style="float: left;" (change)="onSliderChange()">
+						<p style="float: left;">100%</p>
+					</div>
+					<div class="slidecontainer">
+						<p>How attractive is the product? (1 = not attractive, 7 = very attractive)</p>
+						<div>
+							<label class="radio-inline">
+								<input type="radio" name="optradio">1</label>
+							<label class="radio-inline">
+								<input type="radio" name="optradio">2</label>
+							<label class="radio-inline">
+								<input type="radio" name="optradio">3</label>
+							<label class="radio-inline">
+								<input type="radio" name="optradio">4</label>
+							<label class="radio-inline">
+								<input type="radio" name="optradio">5</label>
+							<label class="radio-inline">
+								<input type="radio" name="optradio">6</label>
+							<label class="radio-inline">
+								<input type="radio" name="optradio">7</label>
+						</div>
+					</div>
+
+					<div class="slidecontainer">
+						<p>How do you like the product? (1 = not at all, 7 = very much)</p>
+						<div>
+							<label class="radio-inline">
+								<input type="radio" name="optradio">1</label>
+							<label class="radio-inline">
+								<input type="radio" name="optradio">2</label>
+							<label class="radio-inline">
+								<input type="radio" name="optradio">3</label>
+							<label class="radio-inline">
+								<input type="radio" name="optradio">4</label>
+							<label class="radio-inline">
+								<input type="radio" name="optradio">5</label>
+							<label class="radio-inline">
+								<input type="radio" name="optradio">6</label>
+							<label class="radio-inline">
+								<input type="radio" name="optradio">7</label>
+						</div>
+          </div>
+          <app-hed-add-cart-button [product]="product" [class]="small-red-checkout-btn"></app-hed-add-cart-button>
+				</div>
+				<!-- Available Options Ends -->
+			</div>
+		</div>
+		<!-- Right Ends -->
+	</div>
+	<!-- Product Info Ends -->
+	<!-- Tabs Starts -->
+	<div class="tabs-panel panel-smart">
+		<!-- Nav Tabs Starts -->
+		<ul *ngIf="product" class="nav nav-tabs">
+			<li id="descriptionTab" class="active">
+				<a (click)="showDescription()">Description</a>
+			</li>
+			<li id="reviewsTab" *ngIf="product.showReviews == 1">
+				<a (click)="showReviews()">Reviews</a>
+			</li>
+		</ul>
+		<!-- Nav Tabs Ends -->
+		<!-- Tab Content Starts -->
+		<div *ngIf="product" class="tab-content clearfix">
+			<!-- Description Starts -->
+			<div *ngIf="product.Description" class="tab-pane active" id="descriptionContent">
+				<p>
+					{{product.Description}}
+				</p>
+			</div>
+			<!-- Description Ends -->
+		</div>
+		<!-- Tab Content Ends -->
+	</div>
+	<!-- Tabs Ends -->
+	<!-- Related Products Starts -->
+	<div *ngIf="relatedProducts.length > 0" class="product-info-box">
+		<h4 class="heading">Related Products</h4>
+		<!-- Products Row Starts -->
+		<div class="row">
+			<!-- Product #1 Starts -->
+			<div *ngFor="let relatedProduct of relatedProducts" class="col-md-3 col-sm-6">
+				<div class="product-col">
+					<div class="image">
+						<img src="{{relatedProduct.MediumImageUrl}}" alt="product" class="img-responsive center-block" />
+					</div>
+					<div class="caption">
+						<div class="price">
+							<span class="price-new">{{relatedProduct.LowestNewPriceFormatted}}</span>
+							<span class="price-old">$249.50</span>
+						</div>
+						<h4 class="product-heading">
+							<a routerLink="/hedonic/detail/{{relatedProduct.Id}}">{{relatedProduct.Title}} </a>
+						</h4>
+						<div class="cart-button button-group">
+                <app-hed-add-cart-button [product]="relatedProduct" [class]="full"></app-hed-add-cart-button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Product #1 Ends -->
+		</div>
+		<!-- Products Row Ends -->
+	</div>
+	<!-- Related Products Ends -->
+</div>
+<!-- Main Container Ends -->

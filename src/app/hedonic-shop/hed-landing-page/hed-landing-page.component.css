@@ -1,0 +1,110 @@
+@import '../../../assets/style/hedonic/style.css';
+@import '../../../assets/style/hedonic/responsive.css';
+.product-filter {
+    border: none;
+}
+
+.image {
+    width: 200px;
+    height: 150px;
+}
+
+.spinner {
+    margin: 0 auto 0;
+    width: 70px;
+    text-align: center;
+}
+
+.spinner>div {
+    width: 18px;
+    height: 18px;
+    background-color: #ec2f2f;
+    border-radius: 100%;
+    display: inline-block;
+    -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+}
+
+.shop-info-banner {
+    text-align: center;
+    background-color: red;
+    margin: 0;
+}
+
+.shop-info-banner>h2 {
+    margin: 0;
+}
+
+.ad-banner-red {
+    background-color: red;
+    color: white;
+    border-radius: 4px;
+    padding: 50px 0;
+    text-align: center;
+}
+
+
+.shop-nav-header{
+    padding: 10px 80px;
+    background-color: #f2f2f2;
+    border-bottom: #e0e0e0 solid 1px;
+    margin-right: 0px;
+    color:black
+}
+
+.btn-next{
+    background-color: #dfdfdf;
+    color: black;
+}
+
+.btn-next:hover{
+    background-color: #c7c7c7;
+}
+
+.shop-nav-header>.col-md-10>p{
+    padding: 5px 0;
+    margin: 0;
+}
+
+.shop-nav-header>.col-md-2{
+    padding-right: 0px;
+}
+
+.next{
+    border-radius: 4px;
+}
+
+
+@-webkit-keyframes sk-bouncedelay {
+    0%,
+    80%,
+    100% {
+        -webkit-transform: scale(0)
+    }
+    40% {
+        -webkit-transform: scale(1.0)
+    }
+}
+
+@keyframes sk-bouncedelay {
+    0%,
+    80%,
+    100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    40% {
+        -webkit-transform: scale(1.0);
+        transform: scale(1.0);
+    }
+}

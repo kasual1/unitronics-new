@@ -1,0 +1,10 @@
+@import '../../../assets/style/experienced/style.css';
+@import '../../../assets/style/experienced/responsive.css';
+
+.image {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
