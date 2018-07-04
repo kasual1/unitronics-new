@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HedDataService } from '../hed-data.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -9,7 +9,7 @@ import { AuthService } from '../../auth.service';
   templateUrl: './hed-detail-page.component.html',
   styleUrls: ['./hed-detail-page.component.css']
 })
-export class HedDetailPageComponent implements OnInit {
+export class HedDetailPageComponent implements OnInit, OnDestroy {
 
   id: number;
   product: any;
@@ -23,10 +23,16 @@ export class HedDetailPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log(this.authService.getUser() + ' entered product detail page');
+
     this.id = +this.route.snapshot.paramMap.get('id');
     this.getProduct();
     this.getRelatedProducts();
     window.scrollTo(0, 0);
+  }
+
+  ngOnDestroy(){
+    console.log(this.authService.getUser() + ' left product detail page');
   }
 
   getProduct() {

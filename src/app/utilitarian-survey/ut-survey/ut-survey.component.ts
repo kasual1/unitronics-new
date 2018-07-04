@@ -57,13 +57,19 @@ export class UtSurveyComponent implements OnInit {
     console.log(product);
   };
 
+ 
   onSubmitClick() {
-    this.authService.submitUtSurvey();
-    let userId = uuid();
-    this.cookieService.set('user', userId);
+    let userId = null;
+    if (this.authService.getUser() == null) {
+      userId = uuid();
+      this.authService.setUser(userId);
+    } else {
+      userId = this.authService.getUser();
+    }
+    console.log(userId, this.ratedProducts);
     this.dataService.submitUserRatings(userId, this.ratedProducts).subscribe(
       data => {
-        console.log(data);
+        this.authService.submitUtSurvey();
         this.router.navigateByUrl('/utilitarian');
       });
   }

@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://www.localhost:8004'
+  apiUrl: 'http://www.localhost:8004',
+  kibanaUrl: 'https://localhost:9200'
 };

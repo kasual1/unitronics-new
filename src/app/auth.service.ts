@@ -51,11 +51,15 @@ export class AuthService {
     }
   }
 
-  getUser(){
+  setUser(userValue: string) {
+    this.cookieService.set(global.USER, userValue);
+  }
+
+  getUser() {
     let user = this.cookieService.get(global.USER);
-    if(user != null && user != ''){
+    if (user != null && user != '') {
       return user;
-    }else{
+    } else {
       return null;
     }
   }
