@@ -51,6 +51,7 @@ export class HedSurveyComponent implements OnInit {
     this.authService.submitHedSurvey();
     let userId = uuid();
     this.cookieService.set('user', userId);
+    console.log(this.ratedProducts);
     this.dataService.submitUserRatings(userId, this.ratedProducts).subscribe(
       data => {
         console.log(data);

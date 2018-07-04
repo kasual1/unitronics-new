@@ -1,6 +1,3 @@
-@import '../../../assets/style/utilitarian/style.css';
-@import '../../../assets/style/utilitarian/responsive.css';
-
 :host-context(.full) .btn-cart {
     width: 100%;
  }

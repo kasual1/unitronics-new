@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HedDataService } from '../hed-data.service';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-hed-detail-page',
@@ -18,7 +19,7 @@ export class HedDetailPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private dataService: HedDataService,
-    private cookieService: CookieService,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -34,6 +35,17 @@ export class HedDetailPageComponent implements OnInit {
         this.product = data;
         this.previewImageUrl = data.images[0].LargeImageUrl;
         this.product.images = this.product.images.slice(0, 6);
+        this.product.Score = 4;
+        console.log(this.product);
+        let ratedProducts = [];
+        ratedProducts.push(this.product);
+        let user = this.authService.getUser();
+        if(user != null){
+          this.dataService.submitUserRatings(user, ratedProducts).subscribe(
+            data => {
+              console.log(data);
+            });
+        }
       });
   }
 

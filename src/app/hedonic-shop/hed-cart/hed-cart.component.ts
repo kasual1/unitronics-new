@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HedDataService } from '../hed-data.service';
 import { HedCartService } from '../hed-cart.service';
-import { CookieService } from 'ngx-cookie-service';
-import { global } from '../../../variables/global';
-
 
 @Component({
   selector: 'app-hed-cart',

@@ -1,15 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SlickComponent } from 'ngx-slick';
-import { HedDataService } from '../hed-data.service';
+import { UtDataService } from '../ut-data.service';
 import { AuthService } from '../../auth.service';
+import { SlickComponent } from 'ngx-slick';
 
 @Component({
-  selector: 'app-hed-recommended-products',
-  templateUrl: './hed-recommended-products.component.html',
-  styleUrls: ['./hed-recommended-products.component.css']
+  selector: 'app-ut-recommended-products',
+  templateUrl: './ut-recommended-products.component.html',
+  styleUrls: ['./ut-recommended-products.component.css']
 })
-export class HedRecommendedProductsComponent implements OnInit {
-
+export class UtRecommendedProductsComponent implements OnInit {
+  
   @ViewChild(SlickComponent) slickComponent: SlickComponent;
   userId: string;
   cartId: string;
@@ -22,7 +22,7 @@ export class HedRecommendedProductsComponent implements OnInit {
 
 
   constructor(
-    private dataService: HedDataService,
+    private dataService: UtDataService,
     private authService: AuthService
   ) { }
 
@@ -45,6 +45,5 @@ export class HedRecommendedProductsComponent implements OnInit {
   previous() {
     this.slickComponent.slickPrev();
   }
-
 
 }

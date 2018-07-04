@@ -1,9 +1,32 @@
-@import '../../../assets/style/utilitarian/style.css';
-@import '../../../assets/style/utilitarian/responsive.css';
-
-.content{
-    padding: 10px 45px;
+@import '../../../assets/style/hedonic/style.css';
+@import '../../../assets/style/hedonic/responsive.css';
+.product-filter {
+    border: none;
 }
+
+.image {
+    width: 200px;
+    height: 150px;
+}
+
+.shop-info-banner {
+    text-align: center;
+    background-color: red;
+    margin: 0;
+}
+
+.shop-info-banner>h2 {
+    margin: 0;
+}
+
+.ad-banner-red {
+    background-color: red;
+    color: white;
+    border-radius: 4px;
+    padding: 50px 0;
+    text-align: center;
+}
+
 
 .shop-nav-header{
     padding: 10px 80px;
@@ -34,3 +57,4 @@
 .next{
     border-radius: 4px;
 }
+

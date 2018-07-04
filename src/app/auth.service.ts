@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { global } from '../variables/global';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,15 @@ export class AuthService {
       return true;
     } else {
       return false;
+    }
+  }
+
+  getUser(){
+    let user = this.cookieService.get(global.USER);
+    if(user != null && user != ''){
+      return user;
+    }else{
+      return null;
     }
   }
 

@@ -13,6 +13,9 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { UtRegularProductsComponent } from './ut-regular-products/ut-regular-products.component';
 import { UtMainContentComponent } from './ut-main-content/ut-main-content.component';
 import { RatingModule } from 'ngx-bootstrap';
+import { UtAdBannerComponent } from './ut-ad-banner/ut-ad-banner.component';
+import { UtRecommendedProductsComponent } from './ut-recommended-products/ut-recommended-products.component';
+import { UtTestimonialsComponent } from './ut-testimonials/ut-testimonials.component';
 
 @NgModule({
   imports: [
@@ -31,6 +34,9 @@ import { RatingModule } from 'ngx-bootstrap';
     UtDetailPageComponent,
     UtImageSliderComponent,
     UtRegularProductsComponent,
-    UtMainContentComponent]
+    UtMainContentComponent,
+    UtAdBannerComponent,
+    UtRecommendedProductsComponent,
+    UtTestimonialsComponent]
 })
 export class UtModule { }

@@ -1,11 +1,12 @@
-
+@import '../../../assets/style/hedonic/style.css';
+@import '../../../assets/style/hedonic/responsive.css';
 img.large {
     width: 80%;
     height: 80%;
 }
 
 .active {
-    border-color: #6aaf07;
+    border-color: #EC2F2F;
 }
 
 img:hover {
@@ -79,24 +80,13 @@ slider:active {
     appearance: none;
     width: 10px;
     height: 25px;
-    background: #6aaf07;
+    background: #ec2f2f;
     cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
     width: 10px;
     height: 25px;
-    background: #6aaf07;
+    background: #ec2f2f;
     cursor: pointer;
 }
-
-#descriptionTab>a{
-    background-color: #6aaf07;
-}
-
-
-.nav-tabs{
-    border-bottom: #6aaf07 solid 4px !important;
-}
-
-

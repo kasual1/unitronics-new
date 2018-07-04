@@ -26,7 +26,7 @@ export class ExpDataService {
 
   private urlPostRatings =  environment.apiUrl + "/user/rating";
 
-  private urlGetRecommendations = environment.apiUrl + "/user/recommendation?user=";
+  private urlGetRecommendations = environment.apiUrl + "/user/recommendation?shop=experienced&user=";
 
 
   constructor(private http: HttpClient) { }

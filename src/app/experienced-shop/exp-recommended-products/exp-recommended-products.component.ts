@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SlickComponent } from 'ngx-slick';
-import { HedDataService } from '../hed-data.service';
+import { ExpDataService } from '../exp-data.service';
 import { AuthService } from '../../auth.service';
+import { SlickComponent } from 'ngx-slick';
 
 @Component({
-  selector: 'app-hed-recommended-products',
-  templateUrl: './hed-recommended-products.component.html',
-  styleUrls: ['./hed-recommended-products.component.css']
+  selector: 'app-exp-recommended-products',
+  templateUrl: './exp-recommended-products.component.html',
+  styleUrls: ['./exp-recommended-products.component.css']
 })
-export class HedRecommendedProductsComponent implements OnInit {
+export class ExpRecommendedProductsComponent implements OnInit {
 
   @ViewChild(SlickComponent) slickComponent: SlickComponent;
   userId: string;
@@ -22,7 +22,7 @@ export class HedRecommendedProductsComponent implements OnInit {
 
 
   constructor(
-    private dataService: HedDataService,
+    private dataService: ExpDataService,
     private authService: AuthService
   ) { }
 

@@ -26,7 +26,7 @@ export class HedDataService {
 
   private urlPostRatings =  environment.apiUrl + "/user/rating";
 
-  private urlGetRecommendations = environment.apiUrl + "/user/recommendation?user=";
+  private urlGetRecommendations = environment.apiUrl + "/user/recommendation?shop=hedonic&user=";
 
 
   constructor(private http: HttpClient) { }

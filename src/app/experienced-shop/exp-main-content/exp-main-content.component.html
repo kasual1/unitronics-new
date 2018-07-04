@@ -1,22 +1,26 @@
 <app-exp-image-slider></app-exp-image-slider>
-<div>
+<div style="padding:10px 45px;">
   <h2 class="product-head text-uppercase">Top
     <strong>Products</strong>
     <div class="controls pull-right hidden-xs">
     </div>
   </h2>
-  <div style="padding:0px 10px;">
-    <app-exp-regular-products [category]="cat1"></app-exp-regular-products>
+  <app-exp-regular-products [category]="cat1"></app-exp-regular-products>
+  <div style="margin:15px 0;">
+    <app-exp-ad-banner></app-exp-ad-banner>
   </div>
-  <div style="padding: 0px 10px;">
-    <!--<app-hed-testimonials></app-hed-testimonials>-->
-  </div>
-  <h2 class="product-head text-uppercase">Recommended for
-    <strong>You</strong>
+  <h2 class="product-head text-uppercase" style="margin-top: 30px;">On
+    <strong>Sale</strong>
     <div class="controls pull-right hidden-xs">
     </div>
   </h2>
-  <div style="padding:0px 10px">
-    <app-exp-regular-products [category]="cat1"></app-exp-regular-products>
+  <app-exp-regular-products [category]="cat2"></app-exp-regular-products>
+  <div>
+      <app-exp-testimonials></app-exp-testimonials>
+    </div>
+  <div>
+    <app-exp-recommended-products></app-exp-recommended-products>
   </div>
+
+
 </div>

@@ -1,23 +1,20 @@
 @import '../../../assets/style/hedonic/style.css';
 @import '../../../assets/style/hedonic/responsive.css';
-
 img.large {
     width: 80%;
     height: 80%;
 }
-
 
 .active {
     border-color: #EC2F2F;
 }
 
 img:hover {
-    border-color: #EC2F2F;
+    border-color: black;
 }
 
 .thumbnail {
     cursor: pointer;
-    border-radius: 4px !important;
 }
 
 .product-heading {
@@ -83,38 +80,13 @@ slider:active {
     appearance: none;
     width: 10px;
     height: 25px;
-    background: #cf1a1c;
+    background: #ec2f2f;
     cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
     width: 10px;
     height: 25px;
-    background: #cf1a1c;
+    background: #ec2f2f;
     cursor: pointer;
-}
-
-.panel-smart{
-    background-color: #292929;
-    color: white;
-    border: none;
-    border-radius: 4px;
-}
-
-span{
-    color: white !important;
-}
-
-h2{
-    color: white;
-}
-
-#descriptionTab>a{
-    background-color: #cf1a1c !important;
-    border-top-left-radius: 4px !important;
-}
-
-
-.nav-tabs{
-    border-bottom: #cf1a1c solid 4px !important;
 }

@@ -1,22 +1,24 @@
 <app-ut-image-slider></app-ut-image-slider>
-  <div>
-    <h3 class="product-head text-uppercase">Top
-      <strong>Products</strong>
-      <div class="controls pull-right hidden-xs">
-      </div>
-    </h3>
-    <div style="padding:0px 10px;">
-      <app-ut-regular-products [category]="cat1"></app-ut-regular-products>
+<div style="padding:10px 45px;">
+  <h2 class="product-head text-uppercase">Top
+    <strong>Products</strong>
+    <div class="controls pull-right hidden-xs">
     </div>
-    <div style="padding: 0px 10px;">
-      <!--<app-hed-testimonials></app-hed-testimonials>-->
-    </div>
-    <h3 class="product-head text-uppercase">Recommended for
-      <strong>You</strong>
-      <div class="controls pull-right hidden-xs">
-      </div>
-    </h3>
-    <div style="padding:0px 10px">
-      <app-ut-regular-products [category]="cat1"></app-ut-regular-products>
-    </div>
+  </h2>
+  <app-ut-regular-products [category]="cat1"></app-ut-regular-products>
+  <div style="margin:15px 0;">
+    <app-ut-ad-banner></app-ut-ad-banner>
   </div>
+  <h2 class="product-head text-uppercase" style="margin-top: 30px;">On
+    <strong>Sale</strong>
+    <div class="controls pull-right hidden-xs">
+    </div>
+  </h2>
+  <app-ut-regular-products [category]="cat2"></app-ut-regular-products>
+  <div>
+    <app-ut-testimonials></app-ut-testimonials>
+  </div>
+  <div>
+    <app-ut-recommended-products></app-ut-recommended-products>
+  </div>
+</div>

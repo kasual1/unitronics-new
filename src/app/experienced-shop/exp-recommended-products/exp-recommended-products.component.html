@@ -1,12 +1,12 @@
 <h2 class="product-head text-uppercase">Recommended for
-  <strong>You</strong>
-  <!--
-  <div class="controls pull-right hidden-xs">
-    <a class="left glyphicon glyphicon-chevron-left" (click)="previous()"></a>
-    <a class="right glyphicon glyphicon-chevron-right" (click)="next()"></a>
-  </div>
-  -->
-</h2>
+    <strong>You</strong>
+    <!--
+    <div class="controls pull-right hidden-xs">
+      <a class="left glyphicon glyphicon-chevron-left" (click)="previous()"></a>
+      <a class="right glyphicon glyphicon-chevron-right" (click)="next()"></a>
+    </div>
+    -->
+  </h2>
 <div *ngIf="loading" class="spinner">
   <div class="bounce1"></div>
   <div class="bounce2"></div>
@@ -29,7 +29,7 @@
               <a routerLink="detail/{{product.Id}}">{{product.Title}}</a>
             </h4>
             <div class="cart-button button-group">
-              <app-hed-add-cart-button [product]="product" [class]="full"></app-hed-add-cart-button>
+              <app-exp-add-cart-button [product]="product" [class]="full"></app-exp-add-cart-button>
             </div>
           </div>
         </div>

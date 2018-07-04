@@ -13,6 +13,9 @@ import { ExpImageSliderComponent } from './exp-image-slider/exp-image-slider.com
 import { ExpRegularProductsComponent } from './exp-regular-products/exp-regular-products.component';
 import { ExpMainContentComponent } from './exp-main-content/exp-main-content.component';
 import { RatingModule } from 'ngx-bootstrap';
+import { ExpRecommendedProductsComponent } from './exp-recommended-products/exp-recommended-products.component';
+import { ExpTestimonialsComponent } from './exp-testimonials/exp-testimonials.component';
+import { ExpAdBannerComponent } from './exp-ad-banner/exp-ad-banner.component';
 
 @NgModule({
   imports: [
@@ -31,7 +34,10 @@ import { RatingModule } from 'ngx-bootstrap';
     ExpDetailPageComponent,
     ExpImageSliderComponent,
     ExpRegularProductsComponent,
-    ExpMainContentComponent
+    ExpMainContentComponent,
+    ExpRecommendedProductsComponent,
+    ExpTestimonialsComponent,
+    ExpAdBannerComponent
   ]
 })
 export class ExpModule { }

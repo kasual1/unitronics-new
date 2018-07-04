@@ -25,7 +25,7 @@ export class UtDataService {
 
   private urlPostRatings =  environment.apiUrl + "/user/rating";
 
-  private urlGetRecommendations = environment.apiUrl + "/user/recommendation?user=";
+  private urlGetRecommendations = environment.apiUrl + "/user/recommendation?shop=utilitarian&user=";
 
 
   constructor(private http: HttpClient) { }

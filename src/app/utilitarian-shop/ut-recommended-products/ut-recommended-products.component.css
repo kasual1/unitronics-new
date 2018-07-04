@@ -6,6 +6,7 @@ h4 {
     font-size: 1.1em;
 }
 
+
 img{
     display: block;
     margin: auto;
@@ -15,14 +16,11 @@ img{
     text-decoration: none;
 }
 
+
 .left{
     cursor: pointer;
 }
 
 .right{
     cursor: pointer;
-}
-
-.product-image{
-    padding: 0 25%;
 }
