@@ -9,7 +9,6 @@ export class ExpMainContentComponent implements OnInit {
 
   cat1: string = 'Popular Product';
 
-
   constructor() { }
 
   ngOnInit() {
