@@ -1,22 +1,25 @@
-
-.survey-panel{
+.survey-panel {
     margin-top: 20px;
 }
 
-hr{
+hr {
     border-color: #dddddd;
     margin: 35px 0;
 }
 
-p{
+p {
     font-size: 18px;
 }
 
-.panel-content{
+.panel-content {
     margin: 35px 0;
 }
 
-.image{
+.image {
     height: 150px;
     width: 200px;
+}
+
+span{
+    outline: none;
 }

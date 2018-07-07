@@ -13,12 +13,12 @@ import { v4 as uuid } from 'uuid';
 export class HedSurveyComponent implements OnInit {
 
 
-  counter: number = 5;
+  max: number = 5;
   ratedProducts = [];
+  randomProducts = [];
 
   constructor(
     private dataService: HedDataService,
-    private cookieService: CookieService,
     private authService: AuthService,
     private router: Router
   ) { }
@@ -26,12 +26,12 @@ export class HedSurveyComponent implements OnInit {
   ngOnInit() {
     this.dataService.getRandomProducts().subscribe(
       data => {
-        this.ratedProducts = data;
-        this.ratedProducts.forEach(element => {
+        this.randomProducts = data;
+        this.randomProducts.forEach(element => {
           element.Score = 0;
         });
-      });
-
+      }
+    );
   }
 
   /*
@@ -78,8 +78,9 @@ export class HedSurveyComponent implements OnInit {
   }
 
   onRatingClicked(product: any) {
-    if (this.counter > 0) {
-      this.counter--;
+    if(!this.ratedProducts.includes(product)){
+      this.ratedProducts.push(product);
     }
+    console.log(this.ratedProducts);
   }
 }

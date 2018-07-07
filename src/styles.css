@@ -47,6 +47,10 @@ html,body
     animation-delay: -0.16s;
 }
 
+span[role=slider]{
+    outline: none;
+}
+
 @-webkit-keyframes sk-bouncedelay {
     0%,
     80%,
