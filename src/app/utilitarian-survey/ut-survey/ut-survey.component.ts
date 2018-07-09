@@ -12,14 +12,12 @@ import { v4 as uuid } from 'uuid';
   styleUrls: ['./ut-survey.component.css']
 })
 export class UtSurveyComponent implements OnInit {
-
-  
-  counter: number = 5;
+  max: number = 5;
   ratedProducts = [];
+  randomProducts = [];
 
   constructor(
     private dataService: UtDataService,
-    private cookieService: CookieService,
     private authService: AuthService,
     private router: Router
   ) { }
@@ -27,37 +25,14 @@ export class UtSurveyComponent implements OnInit {
   ngOnInit() {
     this.dataService.getRandomProducts().subscribe(
       data => {
-        this.ratedProducts = data;
-        this.ratedProducts.forEach(element => {
+        this.randomProducts = data;
+        this.randomProducts.forEach(element => {
           element.Score = 0;
         });
-      });
-
+      }
+    );
   }
 
-  /*
-  submitSurvey() {
-    console.log(this.ratedProducts);
-    let uniqid = require('uniqid');
-    let userId = uniqid();
-    this.cookieService.set('uuid', userId);
-    this.databaseService.submitUserRatings(userId, this.ratedProducts).subscribe(
-      data => {
-        console.log(data);
-      });
-  }
-  */
-
-  onRatingChange = ($event: any, product: any) => {
-    console.log('onRatingUpdated $event: ', $event, product.name);
-    product.Score = $event.rating;
-    if (this.counter > 0) {
-      this.counter--;
-    }
-    console.log(product);
-  };
-
- 
   onSubmitClick() {
     let userId = null;
     if (this.authService.getUser() == null) {
@@ -89,9 +64,10 @@ export class UtSurveyComponent implements OnInit {
   }
 
   onRatingClicked(product: any) {
-    if (this.counter > 0) {
-      this.counter--;
+    if(!this.ratedProducts.includes(product)){
+      this.ratedProducts.push(product);
     }
+    console.log(this.ratedProducts);
   }
 
 }

@@ -19,19 +19,22 @@ export class HedDetailPageComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private dataService: HedDataService,
-    private authService: AuthService
-  ) { }
-
-  ngOnInit() {
-    console.log(this.authService.getUser() + ' entered product detail page');
-
-    this.id = +this.route.snapshot.paramMap.get('id');
-    this.getProduct();
-    this.getRelatedProducts();
-    window.scrollTo(0, 0);
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.router.events.subscribe(val => {
+      console.log(this.authService.getUser() + ' entered product detail page');
+      this.id = +this.route.snapshot.paramMap.get('id');
+      this.getProduct();
+      this.getRelatedProducts();
+      window.scrollTo(0, 0);
+    });
   }
 
-  ngOnDestroy(){
+  ngOnInit() {
+  }
+
+  ngOnDestroy() {
     console.log(this.authService.getUser() + ' left product detail page');
   }
 
@@ -46,7 +49,7 @@ export class HedDetailPageComponent implements OnInit, OnDestroy {
         let ratedProducts = [];
         ratedProducts.push(this.product);
         let user = this.authService.getUser();
-        if(user != null){
+        if (user != null) {
           this.dataService.submitUserRatings(user, ratedProducts).subscribe(
             data => {
               console.log(data);

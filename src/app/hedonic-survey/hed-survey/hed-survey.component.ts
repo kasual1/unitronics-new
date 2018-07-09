@@ -12,7 +12,6 @@ import { v4 as uuid } from 'uuid';
 })
 export class HedSurveyComponent implements OnInit {
 
-
   max: number = 5;
   ratedProducts = [];
   randomProducts = [];
@@ -33,19 +32,6 @@ export class HedSurveyComponent implements OnInit {
       }
     );
   }
-
-  /*
-  submitSurvey() {
-    console.log(this.ratedProducts);
-    let uniqid = require('uniqid');
-    let userId = uniqid();
-    this.cookieService.set('uuid', userId);
-    this.databaseService.submitUserRatings(userId, this.ratedProducts).subscribe(
-      data => {
-        console.log(data);
-      });
-  }
-  */
 
   onSubmitClick() {
     let userId = null;
