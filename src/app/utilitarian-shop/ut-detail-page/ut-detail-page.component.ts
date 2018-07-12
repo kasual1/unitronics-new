@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UtDataService } from '../ut-data.service';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -18,14 +18,17 @@ export class UtDetailPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private dataService: UtDataService,
-    private cookieService: CookieService,
-  ) { }
+    private router: Router
+  ) {
+    this.router.events.subscribe(val => {
+      this.id = +this.route.snapshot.paramMap.get('id');
+      this.getProduct();
+      this.getRelatedProducts();
+      window.scrollTo(0, 0);
+    });
+  }
 
   ngOnInit() {
-    this.id = +this.route.snapshot.paramMap.get('id');
-    this.getProduct();
-    this.getRelatedProducts();
-    window.scrollTo(0, 0);
   }
 
   getProduct() {

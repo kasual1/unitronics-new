@@ -26,7 +26,7 @@
                 <span class="price-old">{{product.ListPriceFormatted}}</span>
               </div>
               <h4>
-                <a routerLink="detail/{{product.Id}}">{{product.Title}}</a>
+                <a routerLink="/utilitarian/detail/{{product.Id}}">{{product.Title}}</a>
               </h4>
               <div class="cart-button button-group">
                 <app-ut-add-cart-button [product]="product" [class]="full"></app-ut-add-cart-button>
