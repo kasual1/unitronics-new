@@ -49,6 +49,8 @@ export class HedSearchResultComponent implements OnInit {
         for (let i = 0; i < this.totalPages; i++) {
           this.pageIndices.push(i);
         }
+
+        console.log(this.pageIndices);
       });
   }
 }

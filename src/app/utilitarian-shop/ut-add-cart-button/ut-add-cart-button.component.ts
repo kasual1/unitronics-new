@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef } from '@angular/core';
 import { UtDataService } from '../ut-data.service';
 import { UtCartService } from '../ut-cart.service';
 import { CookieService } from 'ngx-cookie-service';
 import { global } from '../../../variables/global';
+import { BsModalService } from 'ngx-bootstrap';
 
 
 @Component({
@@ -17,11 +18,13 @@ export class UtAddCartButtonComponent implements OnInit {
   latestProducts: any[];
   @Input() product: any;
   @Input() btnSize: string = 'btn btn-cart small';
+  modalRef: any;
 
   constructor(
     private dataService: UtDataService,
     private cartService: UtCartService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private modalService: BsModalService
   ) {}
 
   ngOnInit() {
@@ -47,7 +50,7 @@ export class UtAddCartButtonComponent implements OnInit {
         });
   }
 
-  onAddToCartClicked() {
+  onAddToCartClicked(template: TemplateRef<any>) {
     this.cartId = this.cartService.getCartId();
     if ( this.cartId != '') {
       console.log("Add to existing cart")
@@ -56,6 +59,16 @@ export class UtAddCartButtonComponent implements OnInit {
       console.log("Create new cart");
       this.createCart(this.product);
     }
+    this.modalRef = this.modalService.show(template);
   }
+
+  confirm(): void {
+    this.modalRef.hide();
+  }
+ 
+  decline(): void {
+    this.modalRef.hide();
+  }
+
 
 }

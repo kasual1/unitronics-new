@@ -46,8 +46,9 @@
           <div class="slidecontainer">
             <p>How likely would you buy this product?</p>
             <p style="float: left;">0%</p>
-            <input type="range" min="1" max="100" value="0" class="slider" id="myRange" style="float: left;" (change)="onSliderChange()">
+            <input #slider type="range" min="1" max="100" value="0" class="slider" id="myRange" style="float: left;" (change)="onSliderChange(slider.value)">
             <p style="float: left;">100%</p>
+            <p class="likelihood">{{likelihood}}%</p>
           </div>
           <div class="slidecontainer">
             <p>How attractive is the product? (1 = not attractive, 7 = very attractive)</p>

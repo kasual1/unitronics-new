@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UtDataService } from '../ut-data.service';
 import { CookieService } from 'ngx-cookie-service';
+import { BsModalService } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-ut-detail-page',
@@ -13,18 +14,20 @@ export class UtDetailPageComponent implements OnInit {
   id: number;
   product: any;
   previewImageUrl: string;
-  relatedProducts: any[] = [];
+  modalRef: any;
+  likelihood: number;
 
   constructor(
     private route: ActivatedRoute,
     private dataService: UtDataService,
-    private router: Router
+    private router: Router,
+    private modalService: BsModalService
   ) {
     this.router.events.subscribe(val => {
+      this.likelihood = 0;
+      this.previewImageUrl = null;
       this.id = +this.route.snapshot.paramMap.get('id');
       this.getProduct();
-      this.getRelatedProducts();
-      window.scrollTo(0, 0);
     });
   }
 
@@ -37,13 +40,7 @@ export class UtDetailPageComponent implements OnInit {
         this.product = data;
         this.previewImageUrl = data.images[0].LargeImageUrl;
         this.product.images = this.product.images.slice(0, 6);
-      });
-  }
-
-  getRelatedProducts() {
-    this.dataService.readRelatedProducts(this.id)
-      .subscribe(data => {
-        this.relatedProducts = data;
+        document.getElementsByTagName("router-outlet")[0].scrollIntoView();
       });
   }
 
@@ -56,5 +53,14 @@ export class UtDetailPageComponent implements OnInit {
     document.getElementById("reviewsContent").classList.remove('active');
     document.getElementById("descriptionTab").classList.add('active');
     document.getElementById("descriptionContent").classList.add('active');
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+
+  onSliderChange(value: number) {
+    console.log(value);
+    this.likelihood = value;
   }
 }

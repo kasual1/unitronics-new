@@ -90,3 +90,10 @@ slider:active {
     background: #ec2f2f;
     cursor: pointer;
 }
+
+.likelihood{
+    width: 50px;
+    margin: 0 20px;
+    float: left;
+    font-weight: bold;
+}

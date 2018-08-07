@@ -15,12 +15,17 @@ import { HedRegularProductsComponent } from './hed-regular-products/hed-regular-
 import { HedAdBannerComponent } from './hed-ad-banner/hed-ad-banner.component';
 import { HedTestimonialsComponent } from './hed-testimonials/hed-testimonials.component';
 import { HedMainContentComponent } from './hed-main-content/hed-main-content.component';
+import { HedProductSurveyComponent } from './hed-product-survey/hed-product-survey.component';
 import { RatingModule } from 'ngx-bootstrap';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ModalModule } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [
     CommonModule,
     HedRoutingModule,
+    ReactiveFormsModule,
+    ModalModule,
     RatingModule.forRoot(),
     SlickModule.forRoot(),
     BsDropdownModule.forRoot()
@@ -38,7 +43,9 @@ import { RatingModule } from 'ngx-bootstrap';
     HedRegularProductsComponent,
     HedAdBannerComponent,
     HedTestimonialsComponent,
-    HedMainContentComponent
-  ]
+    HedMainContentComponent,
+    HedProductSurveyComponent
+  ],
+  bootstrap: [HedProductSurveyComponent]
 })
 export class HedModule { }

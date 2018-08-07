@@ -16,6 +16,7 @@ import { RatingModule } from 'ngx-bootstrap';
 import { UtAdBannerComponent } from './ut-ad-banner/ut-ad-banner.component';
 import { UtRecommendedProductsComponent } from './ut-recommended-products/ut-recommended-products.component';
 import { UtTestimonialsComponent } from './ut-testimonials/ut-testimonials.component';
+import { ModalModule } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { UtTestimonialsComponent } from './ut-testimonials/ut-testimonials.compo
     UtRoutingModule,
     RatingModule.forRoot(),
     SlickModule.forRoot(),
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    ModalModule.forRoot()
   ],
   declarations: [
     UtLandingPageComponent,

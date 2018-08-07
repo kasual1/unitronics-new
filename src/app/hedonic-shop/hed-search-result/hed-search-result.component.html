@@ -5,37 +5,31 @@
     <!-- Sidebar Starts -->
     <div class="col-md-3">
       <!-- Shopping Options Starts -->
-      <h3 class="side-heading">Shopping Options</h3>
+      <h3 class="side-heading">Filter Options</h3>
       <div class="list-group">
         <div class="list-group-item">
-          Brands
+          Name
         </div>
         <div class="list-group-item">
           <div class="filter-group">
-            <label class="checkbox">
-              <input name="filter1" type="checkbox" value="br1" checked="checked" /> Brand Name 1
+            <label class="radio">
+              <input name="filter-manuf" type="radio" value="n1" checked="checked" /> Ascending (A-Z)
             </label>
-            <label class="checkbox">
-              <input name="filter2" type="checkbox" value="br2" /> Brand Name 2
-            </label>
-            <label class="checkbox">
-              <input name="filter2" type="checkbox" value="br2" /> Brand Name 3
+            <label class="radio">
+              <input name="filter-manuf" type="radio" value="n2" /> Descending (Z-A)
             </label>
           </div>
         </div>
         <div class="list-group-item">
-          Manufacturer
+          Price
         </div>
         <div class="list-group-item">
           <div class="filter-group">
             <label class="radio">
-              <input name="filter-manuf" type="radio" value="mr1" checked="checked" /> Manufacturer Name 1
+              <input name="filter-manuf" type="radio" value="mr1" checked="checked" /> lowest first
             </label>
             <label class="radio">
-              <input name="filter-manuf" type="radio" value="mr2" /> Manufacturer Name 2
-            </label>
-            <label class="radio">
-              <input name="filter-manuf" type="radio" value="mr3" /> Manufacturer Name 3
+              <input name="filter-manuf" type="radio" value="mr2" /> highest first
             </label>
           </div>
         </div>
@@ -82,21 +76,19 @@
       <!-- Pagination & Results Starts -->
       <div class="row">
         <!-- Pagination Starts -->
-        <!--
-				<div class="col-sm-6 pagination-block">
-					<ul class="pagination">
-						<li>
-							<a routerLink="/results" [queryParams]="{ index: number*pageSize-pageSize, size: pageSize, q: searchTerm}">&laquo;</a>
-						</li>
-						<li *ngFor="let number of pageIndices">
-							<a routerLink="/results" [queryParams]="{ index: number*pageSize, size: pageSize, q: searchTerm}">{{number + 1}}</a>
-						</li>
-						<li>
-							<a routerLink="/results" [queryParams]="{ index: number*pageSize+pageSize, size: pageSize, q: searchTerm}">&raquo;</a>
-						</li>
-					</ul>
-				</div>
-			-->
+        <div class="col-sm-6 pagination-block">
+          <ul class="pagination">
+            <li>
+              <a [routerLink]="['/hedonic/results']" [queryParams]="{ index: number*pageSize-pageSize, size: pageSize, q: searchTerm }">&laquo;</a>
+            </li>
+            <li *ngFor="let number of pageIndices">
+              <a [routerLink]="['/hedonic/results']" [queryParams]="{ index: number*pageSize, size: pageSize, q: searchTerm }">{{number + 1}}</a>
+            </li>
+            <li>
+              <a [routerLink]="['/hedonic/results']" [queryParams]="{ index: number*pageSize+pageSize, size: pageSize, q: searchTerm }">&raquo;</a>
+            </li>
+          </ul>
+        </div>
         <!-- Pagination Ends -->
         <!-- Results Starts -->
         <div class="col-sm-6 results">
