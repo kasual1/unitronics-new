@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,8 @@ import { Router, NavigationEnd } from '@angular/router';
 export class AppComponent implements OnInit {
 
   constructor(
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -18,6 +19,7 @@ export class AppComponent implements OnInit {
         (<any>window).ga('send', 'pageview');
       }
     });
+
   }
 
   ngOnInit(): void {

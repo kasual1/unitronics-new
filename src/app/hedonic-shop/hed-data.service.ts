@@ -12,7 +12,7 @@ export class HedDataService {
 
   private urlGetRandomProducts = environment.apiUrl + "/product/random?shop=hedonic&page=0&size=20&category=Rating";
 
-  private urlGetProduct =  environment.apiUrl + "/product?shop=hedonic&id=";
+  private urlGetProduct = environment.apiUrl + "/product?shop=hedonic&id=";
 
   private urlCreateCart = environment.apiUrl + "/cart";
 
@@ -24,7 +24,7 @@ export class HedDataService {
 
   private urlGetRelatedProducts = environment.apiUrl + "/product/related?id=";
 
-  private urlPostRatings =  environment.apiUrl + "/user/rating";
+  private urlPostRatings = environment.apiUrl + "/user/rating";
 
   private urlGetRecommendations = environment.apiUrl + "/user/recommendation?shop=hedonic&user=";
 
@@ -52,13 +52,19 @@ export class HedDataService {
     return this.http.get(url, { responseType: 'json' });
   }
 
-  searchProducts(index, pageSize, searchTerm): Observable<any> {
+  searchProducts(index, pageSize, searchTerm, order?): Observable<any> {
     let url;
     if (searchTerm == null) {
       url = this.urlGetProducts + 'page=' + index + '&size=' + pageSize;
     } else {
-      url = this.urlGetProducts + 'page=' + index + '&size=' + pageSize
-        + '&searchTerm=' + searchTerm;
+      if (order) {
+        console.log('order is set: ' + order);
+        url = this.urlGetProducts + 'page=' + index + '&size=' + pageSize
+          + '&searchTerm=' + searchTerm + '&order=' + order;
+      } else {
+        url = this.urlGetProducts + 'page=' + index + '&size=' + pageSize
+          + '&searchTerm=' + searchTerm;
+      }
     }
     console.log(url);
     return this.http.get(url, { responseType: 'json' });
@@ -77,7 +83,7 @@ export class HedDataService {
           'Content-Type': 'application/json'
         }, responseType: 'json'
       });
-  } 
+  }
 
   createCart(product: any, quantity: number): Observable<any> {
     let url = this.urlCreateCart;

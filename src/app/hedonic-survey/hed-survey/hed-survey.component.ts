@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
-import { CookieService } from 'ngx-cookie-service';
 import { HedDataService } from '../../hedonic-shop/hed-data.service';
 import { v4 as uuid } from 'uuid';
 

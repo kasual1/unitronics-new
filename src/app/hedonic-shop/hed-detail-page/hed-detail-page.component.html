@@ -19,6 +19,8 @@
 				<!-- Product Name Ends -->
 				<hr />
 				<!-- Manufacturer Starts -->
+				<!--Star Rating -->
+				<rating *ngIf="product.ShowReviews" [(ngModel)]="product.StarRating" class="center-block" [max]="5" [readonly]="true" (onHover)="hoveringOver($event)" (onLeave)="resetStar()" (click)="onRatingClicked(product)" [customTemplate]="t" style="color: #ffce31;font-size: 30px; margin-bottom: 10px;"></rating>
 				<ul class="list-unstyled manufacturer">
 					<li>
 						<span>Brand:</span> {{product.Brand}}

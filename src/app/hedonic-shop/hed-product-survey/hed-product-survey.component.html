@@ -6,11 +6,11 @@
     </button>
   </div>
   <div class="modal-body">
-    <p>Please answer the questions below to add this product to your cart.</p>
+    <p id="instruction">Please answer the questions below to add this product to your cart.</p>
     <!-- Available Options Starts -->
     <div class="options">
       <div class="slidecontainer">
-        <p>How likely would you buy this product?</p>
+        <p>1. How likely would you buy this product?</p>
         <p style="float: left;">0%</p>
         <input type="range" min="0" max="100" class="slider" id="likelihood" style="float: left;" formControlName="likelihood" required>
         <p style="float: left;">100%</p>
@@ -18,7 +18,7 @@
       </div>
 
       <div class="slidecontainer">
-        <p>How attractive is the product? (1 = not attractive, 7 = very attractive)</p>
+        <p>2. How attractive is the product? (1 = not attractive, 7 = very attractive)</p>
         <div>
           <label class="radio-inline">
             <input type="radio" formControlName="attractive" [value]=1 required>1</label>
@@ -39,7 +39,7 @@
 
       <div class="slidecontainer">
         <div class="form-group">
-          <p>How do you like the product? (1 = not at all, 7 = very much)</p>
+          <p>3. How do you like the product? (1 = not at all, 7 = very much)</p>
           <div>
             <label class="radio-inline">
               <input type="radio" formControlName="like" [value]=1 required>1</label>

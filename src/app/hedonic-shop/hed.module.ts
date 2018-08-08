@@ -17,7 +17,7 @@ import { HedTestimonialsComponent } from './hed-testimonials/hed-testimonials.co
 import { HedMainContentComponent } from './hed-main-content/hed-main-content.component';
 import { HedProductSurveyComponent } from './hed-product-survey/hed-product-survey.component';
 import { RatingModule } from 'ngx-bootstrap';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap';
 
 @NgModule({
@@ -28,8 +28,8 @@ import { ModalModule } from 'ngx-bootstrap';
     ModalModule,
     RatingModule.forRoot(),
     SlickModule.forRoot(),
-    BsDropdownModule.forRoot()
-
+    BsDropdownModule.forRoot(),
+    FormsModule
   ],
   declarations: [
     HedLandingPageComponent,

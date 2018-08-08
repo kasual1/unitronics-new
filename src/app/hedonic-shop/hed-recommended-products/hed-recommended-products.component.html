@@ -16,11 +16,14 @@
   <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig">
     <div ngxSlickItem *ngFor="let product of recommendedProducts" style="margin: 0 10px;">
       <div class="col-item">
-        <div class="product-col alt" style="height: 325px;">
+        <div class="product-col alt" style="height: 360px;">
           <div class="image" style="height: 150px;">
             <img src="{{product.MediumImageUrl}}" alt="product-item" class="img-responsive center-block">
           </div>
           <div class="caption">
+              <div class="starRating">
+                  <rating *ngIf="product.ShowReviews" [(ngModel)]="product.StarRating" class="center-block" [max]="5" [readonly]="true" (onHover)="hoveringOver($event)" (onLeave)="resetStar()" (click)="onRatingClicked(product)" [customTemplate]="t" style="color: #ffce31;font-size: 30px; margin-top: 15px; margin-bottom: 5px;"></rating>
+              </div>
             <div class="price">
               <span class="price-new">{{product.LowestNewPriceFormatted}}</span>
               <span class="price-old">{{product.ListPriceFormatted}}</span>
