@@ -24,7 +24,7 @@ export class HedAddCartButtonComponent implements OnInit {
 
   onAddToCartClicked() {
     this.openModalWithComponent();
-   
+    (<any>window).ga('send', 'event', 'Button', 'addToCart', 'unconfirmed', this.product.Id);
   }
 
   openModalWithComponent() {

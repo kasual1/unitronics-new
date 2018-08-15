@@ -26,6 +26,7 @@
     "ngx-bootstrap": "^3.0.1",
     "ngx-cookie-service": "^1.0.10",
     "ngx-slick": "^0.1.3",
+    "planout": "^4.0.0",
     "rxjs": "^6.2.1",
     "zone.js": "^0.8.19"
   },

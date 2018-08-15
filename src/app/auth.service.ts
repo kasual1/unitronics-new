@@ -1,16 +1,22 @@
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { global } from '../variables/global';
+import { v4 as uuid } from 'uuid';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+
   constructor
-    (
-    private cookieService: CookieService
-    ) { }
+    (private cookieService: CookieService) {
+    let user = this.cookieService.get(global.USER);
+    if (user == null || user == '') {
+      this.cookieService.set(global.USER, uuid());
+    } 
+  }
 
   submitHedSurvey() {
     this.cookieService.set('subHed', 'true');
@@ -56,12 +62,7 @@ export class AuthService {
   }
 
   getUser() {
-    let user = this.cookieService.get(global.USER);
-    if (user != null && user != '') {
-      return user;
-    } else {
-      return null;
-    }
+    return this.cookieService.get(global.USER);
   }
 
 }

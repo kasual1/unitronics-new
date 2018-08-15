@@ -1,20 +1,10 @@
 <app-hed-image-slider></app-hed-image-slider>
 <div style="padding:10px 45px;">
-  <h2 class="product-head text-uppercase">Top
-    <strong>Products</strong>
-    <div class="controls pull-right hidden-xs">
-    </div>
-  </h2>
-  <app-hed-regular-products [category]="cat1"></app-hed-regular-products>
+  <app-hed-regular-products [category]="cat1" [titleFirst]="'Top'" [titleBold]="'Products'"></app-hed-regular-products>
   <div style="margin:15px 0;">
     <app-hed-ad-banner></app-hed-ad-banner>
   </div>
-  <h2 class="product-head text-uppercase" style="margin-top: 30px;">On
-    <strong>Sale</strong>
-    <div class="controls pull-right hidden-xs">
-    </div>
-  </h2>
-  <app-hed-regular-products [category]="cat2"></app-hed-regular-products>
+  <app-hed-regular-products [category]="cat2" [titleFirst]="'On'" [titleBold]="'Sale'"></app-hed-regular-products>
   <div>
     <app-hed-testimonials></app-hed-testimonials>
   </div>

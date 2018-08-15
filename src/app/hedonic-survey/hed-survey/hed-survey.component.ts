@@ -40,7 +40,6 @@ export class HedSurveyComponent implements OnInit {
     } else {
       userId = this.authService.getUser();
     }
-    console.log(userId, this.ratedProducts);
     this.dataService.submitUserRatings(userId, this.ratedProducts).subscribe(
       data => {
         this.authService.submitHedSurvey();

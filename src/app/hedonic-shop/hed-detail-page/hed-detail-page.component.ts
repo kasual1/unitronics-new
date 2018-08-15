@@ -22,14 +22,12 @@ export class HedDetailPageComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private dataService: HedDataService,
     private authService: AuthService,
-    private cartService: HedCartService,
     private router: Router,
   ) {
     this.router.events.subscribe(val => {
       console.log(this.authService.getUser() + ' entered product detail page');
       this.id = +this.route.snapshot.paramMap.get('id');
       this.getProduct();
-      this.getRelatedProducts();
       window.scrollTo(0, 0);
     });
   }
@@ -47,13 +45,6 @@ export class HedDetailPageComponent implements OnInit, OnDestroy {
         this.product = data;
         this.previewImageUrl = data.images[0].LargeImageUrl;
         this.product.images = this.product.images.slice(0, 6);
-      });
-  }
-
-  getRelatedProducts() {
-    this.dataService.readRelatedProducts(this.id)
-      .subscribe(data => {
-        this.relatedProducts = data;
       });
   }
 

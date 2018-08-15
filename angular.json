@@ -23,7 +23,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/planout/dist/planout.js"
+            ]
           },
           "configurations": {
             "production": {

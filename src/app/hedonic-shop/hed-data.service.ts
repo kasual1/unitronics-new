@@ -29,6 +29,9 @@ export class HedDataService {
   private urlGetRecommendations = environment.apiUrl + "/user/recommendation?shop=hedonic&user=";
 
 
+
+
+
   constructor(private http: HttpClient) { }
 
   readProducts(index, pageSize, category): Observable<any> {
@@ -101,10 +104,13 @@ export class HedDataService {
     return this.http.get(url, { responseType: 'json' });
   }
 
-  getRecommendedProducts(userId: string) {
-    let url = this.urlGetRecommendations + userId;
+  // Recommendation Type: (random, salesRank, ColabFilter)
+  getRecommendedProducts(userId: string, recommendationType: string) {
+    let url = this.urlGetRecommendations + userId + '&recType=' + recommendationType;
+    console.log(url);
     return this.http.get(url, { responseType: 'json' });
   }
+
 
   addToCart(cartId, product: any, quantity: number): Observable<any> {
     let url = this.urlAddToCart;

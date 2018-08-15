@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HedMainContentComponent implements OnInit {
 
-  cat1: string = 'Popular Product';
-  cat2: string = 'Music';
+  cat1: string = 'Top Product';
+  cat2: string = 'On Sale';
 
   constructor() { }
 
