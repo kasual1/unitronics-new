@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { HedProductSurveyComponent } from '../hed-product-survey/hed-product-survey.component';
+import { GoogleAnalyticsService } from '../../google-analytics.service';
 
 
 @Component({
@@ -15,8 +16,9 @@ export class HedAddCartButtonComponent implements OnInit {
   bsModalRef: BsModalRef;
 
   constructor(
-    private modalService: BsModalService
-  ) {}
+    private modalService: BsModalService,
+    private googleAnalyticsService: GoogleAnalyticsService
+  ) { }
 
   ngOnInit() {
   }
@@ -24,14 +26,14 @@ export class HedAddCartButtonComponent implements OnInit {
 
   onAddToCartClicked() {
     this.openModalWithComponent();
-    (<any>window).ga('send', 'event', 'Button', 'addToCart', 'unconfirmed', this.product.Id);
+    this.googleAnalyticsService.sendAddToCartButtonUnconfirmedEvent(this.product.Id);
   }
 
   openModalWithComponent() {
     const initialState = {
       product: this.product
     };
-    this.bsModalRef = this.modalService.show(HedProductSurveyComponent, {initialState});
+    this.bsModalRef = this.modalService.show(HedProductSurveyComponent, { initialState });
     this.bsModalRef.content.closeBtnName = 'Close';
   }
 }

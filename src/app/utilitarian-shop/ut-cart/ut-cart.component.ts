@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UtDataService } from '../ut-data.service';
 import { UtCartService } from '../ut-cart.service';
 import { CookieService } from 'ngx-cookie-service';
+import { GoogleAnalyticsService } from '../../google-analytics.service';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class UtCartComponent implements OnInit {
   constructor(
     private databaseService: UtDataService,
     private cartService: UtCartService,
+    private googleAnalyticsService: GoogleAnalyticsService
   ) { }
 
   ngOnInit(): void {
@@ -51,6 +53,7 @@ export class UtCartComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.cart = data;
+        this.googleAnalyticsService.sendRemoveFromCartEvent(cartItem.Product.Id);
         this.totalAmount = "EUR " + this.calculateTotalAmount();
       });
   }

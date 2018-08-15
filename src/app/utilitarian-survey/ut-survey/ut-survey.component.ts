@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { UtDataService } from '../../utilitarian-shop/ut-data.service';
-import { CookieService } from 'ngx-cookie-service';
 import { v4 as uuid } from 'uuid';
+import { GoogleAnalyticsService } from '../../google-analytics.service';
 
 
 @Component({
@@ -19,7 +19,8 @@ export class UtSurveyComponent implements OnInit {
   constructor(
     private dataService: UtDataService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private googleAnalyticsService: GoogleAnalyticsService
   ) { }
 
   ngOnInit() {
@@ -41,11 +42,11 @@ export class UtSurveyComponent implements OnInit {
     } else {
       userId = this.authService.getUser();
     }
-    console.log(userId, this.ratedProducts);
     this.dataService.submitUserRatings(userId, this.ratedProducts).subscribe(
       data => {
-        this.authService.submitUtSurvey();
-        this.router.navigateByUrl('/utilitarian');
+        this.authService.submitHedSurvey();
+        this.router.navigateByUrl('/hedonic');
+        this.googleAnalyticsService.sendInitialSurveyCompleted();
       });
   }
 
@@ -67,7 +68,6 @@ export class UtSurveyComponent implements OnInit {
     if(!this.ratedProducts.includes(product)){
       this.ratedProducts.push(product);
     }
-    console.log(this.ratedProducts);
   }
 
 }

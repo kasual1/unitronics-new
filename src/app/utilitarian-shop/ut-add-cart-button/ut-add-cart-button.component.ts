@@ -1,9 +1,7 @@
-import { Component, OnInit, Input, TemplateRef } from '@angular/core';
-import { UtDataService } from '../ut-data.service';
-import { UtCartService } from '../ut-cart.service';
-import { CookieService } from 'ngx-cookie-service';
-import { global } from '../../../variables/global';
-import { BsModalService } from 'ngx-bootstrap';
+import { Component, OnInit, Input } from '@angular/core';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { UtProductSurveyComponent } from '../ut-product-survey/ut-product-survey.component';
+import { GoogleAnalyticsService } from '../../google-analytics.service';
 
 
 @Component({
@@ -12,63 +10,28 @@ import { BsModalService } from 'ngx-bootstrap';
   styleUrls: ['./ut-add-cart-button.component.css']
 })
 export class UtAddCartButtonComponent implements OnInit {
-
-  
-  cartId: string;
-  latestProducts: any[];
   @Input() product: any;
   @Input() btnSize: string = 'btn btn-cart small';
-  modalRef: any;
+  bsModalRef: BsModalRef;
 
   constructor(
-    private dataService: UtDataService,
-    private cartService: UtCartService,
-    private cookieService: CookieService,
-    private modalService: BsModalService
-  ) {}
+    private modalService: BsModalService,
+    private googleAnalyticsService: GoogleAnalyticsService
+  ) { }
 
   ngOnInit() {
-    this.cartId = this.cartService.getCartId();
   }
 
-  private createCart(product: any) {
-    this.dataService.createCart(product, 1)
-      .subscribe(
-        data => {
-          console.log(data);
-          this.cookieService.set(global.UT_CART_ID, data.Id)
-          this.cartService.updateCart(data);
-        });
+  onAddToCartClicked() {
+    this.openModalWithComponent();
+    this.googleAnalyticsService.sendAddToCartButtonUnconfirmedEvent(this.product.Id);
   }
 
-  private addToCart(cartId, product: any) {
-    console.log(cartId);
-    this.dataService.addToCart(cartId, product, 1)
-      .subscribe(
-        data => {
-          this.cartService.updateCart(data);
-        });
+  openModalWithComponent() {
+    const initialState = {
+      product: this.product
+    };
+    this.bsModalRef = this.modalService.show(UtProductSurveyComponent, { initialState });
+    this.bsModalRef.content.closeBtnName = 'Close';
   }
-
-  onAddToCartClicked(template: TemplateRef<any>) {
-    this.cartId = this.cartService.getCartId();
-    if ( this.cartId != '') {
-      console.log("Add to existing cart")
-      this.addToCart(this.cartId, this.product);
-    } else {
-      console.log("Create new cart");
-      this.createCart(this.product);
-    }
-    this.modalRef = this.modalService.show(template);
-  }
-
-  confirm(): void {
-    this.modalRef.hide();
-  }
- 
-  decline(): void {
-    this.modalRef.hide();
-  }
-
-
 }

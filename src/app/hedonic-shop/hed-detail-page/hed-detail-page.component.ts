@@ -11,7 +11,7 @@ import { HedCartService } from '../hed-cart.service';
   templateUrl: './hed-detail-page.component.html',
   styleUrls: ['./hed-detail-page.component.css']
 })
-export class HedDetailPageComponent implements OnInit, OnDestroy {
+export class HedDetailPageComponent implements OnInit {
 
   id: number;
   product: any;
@@ -21,11 +21,9 @@ export class HedDetailPageComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private dataService: HedDataService,
-    private authService: AuthService,
     private router: Router,
   ) {
     this.router.events.subscribe(val => {
-      console.log(this.authService.getUser() + ' entered product detail page');
       this.id = +this.route.snapshot.paramMap.get('id');
       this.getProduct();
       window.scrollTo(0, 0);
@@ -33,10 +31,6 @@ export class HedDetailPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-  }
-
-  ngOnDestroy() {
-    console.log(this.authService.getUser() + ' left product detail page');
   }
 
   getProduct() {

@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExpMainContentComponent implements OnInit {
 
-  cat1: string = 'Popular Product';
+  cat1: string = 'Top Product';
+  cat2: string = 'On Sale';
 
   constructor() { }
 

@@ -17,6 +17,8 @@ import { UtAdBannerComponent } from './ut-ad-banner/ut-ad-banner.component';
 import { UtRecommendedProductsComponent } from './ut-recommended-products/ut-recommended-products.component';
 import { UtTestimonialsComponent } from './ut-testimonials/ut-testimonials.component';
 import { ModalModule } from 'ngx-bootstrap';
+import { UtProductSurveyComponent } from './ut-product-survey/ut-product-survey.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -25,7 +27,9 @@ import { ModalModule } from 'ngx-bootstrap';
     RatingModule.forRoot(),
     SlickModule.forRoot(),
     BsDropdownModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    ReactiveFormsModule,
+    FormsModule
   ],
   declarations: [
     UtLandingPageComponent,
@@ -39,6 +43,9 @@ import { ModalModule } from 'ngx-bootstrap';
     UtMainContentComponent,
     UtAdBannerComponent,
     UtRecommendedProductsComponent,
-    UtTestimonialsComponent]
+    UtTestimonialsComponent,
+    UtProductSurveyComponent
+  ],
+  bootstrap: [UtProductSurveyComponent]
 })
 export class UtModule { }

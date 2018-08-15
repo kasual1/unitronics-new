@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { ExpDataService } from '../../experienced-shop/exp-data.service';
-import { CookieService } from 'ngx-cookie-service';
 import { v4 as uuid } from 'uuid';
+import { GoogleAnalyticsService } from '../../google-analytics.service';
 
 
 @Component({
@@ -13,7 +13,6 @@ import { v4 as uuid } from 'uuid';
 })
 export class ExpSurveyComponent implements OnInit {
  
-
   max: number = 5;
   ratedProducts = [];
   randomProducts = [];
@@ -21,7 +20,8 @@ export class ExpSurveyComponent implements OnInit {
   constructor(
     private dataService: ExpDataService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private googleAnalyticsService: GoogleAnalyticsService
   ) { }
 
   ngOnInit() {
@@ -43,11 +43,11 @@ export class ExpSurveyComponent implements OnInit {
     } else {
       userId = this.authService.getUser();
     }
-    console.log(userId, this.ratedProducts);
     this.dataService.submitUserRatings(userId, this.ratedProducts).subscribe(
       data => {
-        this.authService.submitExpSurvey();
-        this.router.navigateByUrl('/experienced');
+        this.authService.submitHedSurvey();
+        this.router.navigateByUrl('/hedonic');
+        this.googleAnalyticsService.sendInitialSurveyCompleted();
       });
   }
 
@@ -69,7 +69,6 @@ export class ExpSurveyComponent implements OnInit {
     if(!this.ratedProducts.includes(product)){
       this.ratedProducts.push(product);
     }
-    console.log(this.ratedProducts);
   }
 
 }

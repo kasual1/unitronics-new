@@ -12,6 +12,8 @@ export class UtRegularProductsComponent implements OnInit {
   products;
   public loading: boolean = true; 
   @Input() category: string;
+  @Input() titleFirst: string;
+  @Input() titleBold: string;
 
   @ViewChild(SlickComponent) slickComponent: SlickComponent;
   

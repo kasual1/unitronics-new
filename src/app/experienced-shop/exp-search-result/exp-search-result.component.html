@@ -1,47 +1,40 @@
 <!-- Main Container Starts -->
 <div id="main-container" class="container">
+  <ol class="breadcrumb">
+    <li>
+      <a routerLink="/experienced">Home</a>
+    </li>
+    <span>&#187;</span>
+    <li class="active">Search Results</li>
+  </ol>
   <!-- Nested Row Starts -->
   <div class="row">
     <!-- Sidebar Starts -->
     <div class="col-md-3">
       <!-- Shopping Options Starts -->
-      <h3 class="side-heading">Shopping Options</h3>
+      <h3 class="side-heading">Filter Options</h3>
       <div class="list-group">
-        <div class="list-group-item">
-          Brands
-        </div>
-        <div class="list-group-item">
-          <div class="filter-group">
-            <label class="checkbox">
-              <input name="filter1" type="checkbox" value="br1" checked="checked" /> Brand Name 1
-            </label>
-            <label class="checkbox">
-              <input name="filter2" type="checkbox" value="br2" /> Brand Name 2
-            </label>
-            <label class="checkbox">
-              <input name="filter2" type="checkbox" value="br2" /> Brand Name 3
-            </label>
+        <form [formGroup]="filter" (ngSubmit)="onSubmit()">
+          <div class="list-group-item">
+            Price
           </div>
-        </div>
-        <div class="list-group-item">
-          Manufacturer
-        </div>
-        <div class="list-group-item">
-          <div class="filter-group">
-            <label class="radio">
-              <input name="filter-manuf" type="radio" value="mr1" checked="checked" /> Manufacturer Name 1
-            </label>
-            <label class="radio">
-              <input name="filter-manuf" type="radio" value="mr2" /> Manufacturer Name 2
-            </label>
-            <label class="radio">
-              <input name="filter-manuf" type="radio" value="mr3" /> Manufacturer Name 3
-            </label>
+          <div class="list-group-item">
+            <div class="filter-group">
+              <label class="radio">
+                <input formControlName="priceOrder" [value]=1 type="radio" /> none
+              </label>
+              <label class="radio">
+                <input formControlName="priceOrder" [value]=2 type="radio" /> lowest first
+              </label>
+              <label class="radio">
+                <input formControlName="priceOrder" [value]=3 type="radio" /> highest first
+              </label>
+            </div>
           </div>
-        </div>
-        <div class="list-group-item">
-          <button type="button" class="btn btn-main">Filter</button>
-        </div>
+          <div class="list-group-item">
+            <button type="submit" class="btn btn-main">Filter</button>
+          </div>
+        </form>
       </div>
       <!-- Shopping Options Ends -->
     </div>
@@ -66,6 +59,10 @@
               <h4>
                 <a routerLink="/experienced/detail/{{product.Id}}">{{product.Title}}</a>
               </h4>
+              <div>
+                <rating *ngIf="product.ShowReviews" [(ngModel)]="product.StarRating" class="center-block" [max]="5" [readonly]="true" [customTemplate]="t"
+                  style="color: #ffce31;font-size: 30px; margin-top: 15px; margin-bottom: 5px;"></rating>
+              </div>
               <div class="price">
                 <span class="price-new">{{product.LowestNewPriceFormatted}}</span>
                 <span *ngIf="product.ListPriceFormatted" class="price-old">{{product.ListPriceFormatted}}</span>
@@ -82,21 +79,19 @@
       <!-- Pagination & Results Starts -->
       <div class="row">
         <!-- Pagination Starts -->
-        <!--
-          <div class="col-sm-6 pagination-block">
-            <ul class="pagination">
-              <li>
-                <a routerLink="/results" [queryParams]="{ index: number*pageSize-pageSize, size: pageSize, q: searchTerm}">&laquo;</a>
-              </li>
-              <li *ngFor="let number of pageIndices">
-                <a routerLink="/results" [queryParams]="{ index: number*pageSize, size: pageSize, q: searchTerm}">{{number + 1}}</a>
-              </li>
-              <li>
-                <a routerLink="/results" [queryParams]="{ index: number*pageSize+pageSize, size: pageSize, q: searchTerm}">&raquo;</a>
-              </li>
-            </ul>
-          </div>
-        -->
+        <div class="col-sm-6 pagination-block">
+          <ul class="pagination">
+            <li>
+              <a [routerLink]="['/experienced/results']" [queryParams]="{ index: number*pageSize-pageSize, size: pageSize, q: searchTerm }">&laquo;</a>
+            </li>
+            <li *ngFor="let number of pageIndices">
+              <a [routerLink]="['/experienced/results']" [queryParams]="{ index: number*pageSize, size: pageSize, q: searchTerm }">{{number + 1}}</a>
+            </li>
+            <li>
+              <a [routerLink]="['/experienced/results']" [queryParams]="{ index: number*pageSize+pageSize, size: pageSize, q: searchTerm }">&raquo;</a>
+            </li>
+          </ul>
+        </div>
         <!-- Pagination Ends -->
         <!-- Results Starts -->
         <div class="col-sm-6 results">

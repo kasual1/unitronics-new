@@ -1,3 +1,6 @@
+@import '../../../assets/style/hedonic/style.css';
+@import '../../../assets/style/hedonic/responsive.css';
+
 h4 {
     white-space: nowrap;
     overflow: hidden;
@@ -25,8 +28,4 @@ img{
 
 .product-image{
     padding: 0 25%;
-}
-
-.image{
-    padding-top: 25px;
 }

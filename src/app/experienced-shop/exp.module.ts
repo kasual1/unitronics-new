@@ -12,10 +12,12 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ExpImageSliderComponent } from './exp-image-slider/exp-image-slider.component';
 import { ExpRegularProductsComponent } from './exp-regular-products/exp-regular-products.component';
 import { ExpMainContentComponent } from './exp-main-content/exp-main-content.component';
-import { RatingModule } from 'ngx-bootstrap';
+import { RatingModule, ModalModule } from 'ngx-bootstrap';
 import { ExpRecommendedProductsComponent } from './exp-recommended-products/exp-recommended-products.component';
 import { ExpTestimonialsComponent } from './exp-testimonials/exp-testimonials.component';
 import { ExpAdBannerComponent } from './exp-ad-banner/exp-ad-banner.component';
+import { ExpProductSurveyComponent } from './exp-product-survey/exp-product-survey.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -23,7 +25,10 @@ import { ExpAdBannerComponent } from './exp-ad-banner/exp-ad-banner.component';
     ExpRoutingModule,
     RatingModule.forRoot(),
     SlickModule.forRoot(),
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    ReactiveFormsModule,
+    ModalModule,
+    FormsModule
   ],
   declarations: [
     ExpLandingPageComponent,
@@ -37,7 +42,8 @@ import { ExpAdBannerComponent } from './exp-ad-banner/exp-ad-banner.component';
     ExpMainContentComponent,
     ExpRecommendedProductsComponent,
     ExpTestimonialsComponent,
-    ExpAdBannerComponent
+    ExpAdBannerComponent,
+    ExpProductSurveyComponent
   ]
 })
 export class ExpModule { }

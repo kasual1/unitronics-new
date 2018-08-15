@@ -1,19 +1,19 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { HedDataService } from '../hed-data.service';
+import { BsModalRef } from 'ngx-bootstrap';
+import { UtDataService } from '../ut-data.service';
+import { UtCartService } from '../ut-cart.service';
 import { CookieService } from 'ngx-cookie-service';
-import { HedCartService } from '../hed-cart.service';
-import { global } from '../../../variables/global';
 import { GoogleAnalyticsService } from '../../google-analytics.service';
-
+import { global } from '../../../variables/global';
 
 @Component({
-  selector: 'app-hed-product-survey',
-  templateUrl: './hed-product-survey.component.html',
-  styleUrls: ['./hed-product-survey.component.css']
+  selector: 'app-ut-product-survey',
+  templateUrl: './ut-product-survey.component.html',
+  styleUrls: ['./ut-product-survey.component.css']
 })
-export class HedProductSurveyComponent implements OnInit {
+export class UtProductSurveyComponent implements OnInit {
+
   cartId: string;
   closeBtnName: string;
   @Input() product: any;
@@ -28,8 +28,8 @@ export class HedProductSurveyComponent implements OnInit {
  
   constructor(
     public bsModalRef: BsModalRef,
-    private dataService: HedDataService,
-    private cartService: HedCartService,
+    private dataService: UtDataService,
+    private cartService: UtCartService,
     private cookieService: CookieService,
     private googleAnalyticsService: GoogleAnalyticsService
   ) {}
@@ -62,7 +62,7 @@ export class HedProductSurveyComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
-          this.cookieService.set(global.HED_CART_ID, data.Id)
+          this.cookieService.set(global.UT_CART_ID, data.Id)
           this.cartService.updateCart(data);
           this.bsModalRef.hide();
         });

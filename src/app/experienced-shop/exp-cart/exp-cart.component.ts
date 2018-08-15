@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ExpDataService } from '../exp-data.service';
 import { ExpCartService } from '../exp-cart.service';
 import { CookieService } from 'ngx-cookie-service';
+import { GoogleAnalyticsService } from '../../google-analytics.service';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class ExpCartComponent implements OnInit {
 
   constructor(
     private databaseService: ExpDataService,
-    private cartService: ExpCartService
+    private cartService: ExpCartService,
+    private googleAnalyticsService: GoogleAnalyticsService
   ) { }
 
   ngOnInit(): void {
@@ -51,6 +53,7 @@ export class ExpCartComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.cart = data;
+        this.googleAnalyticsService.sendRemoveFromCartEvent(cartItem.Product.Id);
         this.totalAmount = "EUR " + this.calculateTotalAmount();
       });
   }

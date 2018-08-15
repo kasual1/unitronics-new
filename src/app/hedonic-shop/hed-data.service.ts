@@ -28,10 +28,6 @@ export class HedDataService {
 
   private urlGetRecommendations = environment.apiUrl + "/user/recommendation?shop=hedonic&user=";
 
-
-
-
-
   constructor(private http: HttpClient) { }
 
   readProducts(index, pageSize, category): Observable<any> {

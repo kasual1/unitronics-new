@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ExpDataService } from '../exp-data.service';
-import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-exp-detail-page',
@@ -14,16 +13,15 @@ export class ExpDetailPageComponent implements OnInit {
   product: any;
   previewImageUrl: string;
   relatedProducts: any[] = [];
-
+  
   constructor(
     private route: ActivatedRoute,
     private dataService: ExpDataService,
-    private router: Router
-  ) { 
+    private router: Router,
+  ) {
     this.router.events.subscribe(val => {
       this.id = +this.route.snapshot.paramMap.get('id');
       this.getProduct();
-      this.getRelatedProducts();
       window.scrollTo(0, 0);
     });
   }
@@ -37,13 +35,6 @@ export class ExpDetailPageComponent implements OnInit {
         this.product = data;
         this.previewImageUrl = data.images[0].LargeImageUrl;
         this.product.images = this.product.images.slice(0, 6);
-      });
-  }
-
-  getRelatedProducts() {
-    this.dataService.readRelatedProducts(this.id)
-      .subscribe(data => {
-        this.relatedProducts = data;
       });
   }
 

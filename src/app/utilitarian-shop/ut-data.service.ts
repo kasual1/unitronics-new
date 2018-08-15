@@ -11,7 +11,7 @@ export class UtDataService {
 
   private urlGetRandomProducts = environment.apiUrl + "/product/random?shop=utilitarian&page=0&size=20&category=Rating";
 
-  private urlGetProduct =  environment.apiUrl + "/product?shop=utilitarian&id=";
+  private urlGetProduct = environment.apiUrl + "/product?shop=utilitarian&id=";
 
   private urlCreateCart = environment.apiUrl + "/cart";
 
@@ -23,10 +23,9 @@ export class UtDataService {
 
   private urlGetRelatedProducts = environment.apiUrl + "/product/related?id=";
 
-  private urlPostRatings =  environment.apiUrl + "/user/rating";
+  private urlPostRatings = environment.apiUrl + "/user/rating";
 
   private urlGetRecommendations = environment.apiUrl + "/user/recommendation?shop=utilitarian&user=";
-
 
   constructor(private http: HttpClient) { }
 
@@ -51,13 +50,19 @@ export class UtDataService {
     return this.http.get(url, { responseType: 'json' });
   }
 
-  searchProducts(index, pageSize, searchTerm): Observable<any> {
+  searchProducts(index, pageSize, searchTerm, order?): Observable<any> {
     let url;
     if (searchTerm == null) {
       url = this.urlGetProducts + 'page=' + index + '&size=' + pageSize;
     } else {
-      url = this.urlGetProducts + 'page=' + index + '&size=' + pageSize
-        + '&searchTerm=' + searchTerm;
+      if (order) {
+        console.log('order is set: ' + order);
+        url = this.urlGetProducts + 'page=' + index + '&size=' + pageSize
+          + '&searchTerm=' + searchTerm + '&order=' + order;
+      } else {
+        url = this.urlGetProducts + 'page=' + index + '&size=' + pageSize
+          + '&searchTerm=' + searchTerm;
+      }
     }
     console.log(url);
     return this.http.get(url, { responseType: 'json' });
@@ -76,7 +81,7 @@ export class UtDataService {
           'Content-Type': 'application/json'
         }, responseType: 'json'
       });
-  } 
+  }
 
   createCart(product: any, quantity: number): Observable<any> {
     let url = this.urlCreateCart;
@@ -94,10 +99,13 @@ export class UtDataService {
     return this.http.get(url, { responseType: 'json' });
   }
 
-  getRecommendedProducts(userId: string) {
-    let url = this.urlGetRecommendations + userId;
+  // Recommendation Type: (random, salesRank, ColabFilter)
+  getRecommendedProducts(userId: string, recommendationType: string) {
+    let url = this.urlGetRecommendations + userId + '&recType=' + recommendationType;
+    console.log(url);
     return this.http.get(url, { responseType: 'json' });
   }
+
 
   addToCart(cartId, product: any, quantity: number): Observable<any> {
     let url = this.urlAddToCart;
