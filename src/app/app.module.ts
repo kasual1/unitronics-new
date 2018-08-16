@@ -13,21 +13,27 @@ import { HedSurveyModule } from './hedonic-survey/hed-survey.module';
 import { ExpSurveyModule } from './experienced-survey/exp-survey.module';
 import { UtSurveyModule } from './utilitarian-survey/ut-survey.module';
 import { FormsModule } from '@angular/forms';
+import { CredModule } from './credence-shop/cred.module';
+import { CredSurveyModule } from './credence-survey/cred-survey.module';
+import { FinalSurveyModule } from './app-final-survey/final-survey.module';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule,
     ExpModule,
+    ExpSurveyModule,
     HedModule,
+    HedSurveyModule,
     UtModule,
+    UtSurveyModule,
+    CredModule,
+    CredSurveyModule,
+    FinalSurveyModule,
     AppRoutingModule,
     HttpClientModule,
-    HedSurveyModule,
-    ExpSurveyModule,
-    UtSurveyModule,
+    BrowserModule,
     FormsModule
   ],
   providers: [CookieService],

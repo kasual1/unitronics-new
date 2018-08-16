@@ -30,6 +30,10 @@ export class AuthService {
     this.cookieService.set('subUt', 'true');
   }
 
+  submitCredSurvey() {
+    this.cookieService.set('subCred', 'true');
+  }
+
   getSubmitHedSurvey() {
     if (this.cookieService.get('subHed') != null
       && this.cookieService.get('subHed') != '') {
@@ -51,6 +55,24 @@ export class AuthService {
   getSubmitUtSurvey() {
     if (this.cookieService.get('subUt') != null
       && this.cookieService.get('subUt') != '') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  getSubmitCredSurvey() {
+    if (this.cookieService.get('subCred') != null
+      && this.cookieService.get('subCred') != '') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  getSubmitFinalSurvey() {
+    if (this.cookieService.get('subFinal') != null
+      && this.cookieService.get('subFinal') != '') {
       return true;
     } else {
       return false;

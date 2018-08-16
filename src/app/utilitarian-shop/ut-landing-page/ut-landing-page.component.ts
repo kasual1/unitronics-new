@@ -17,7 +17,7 @@ export class UtLandingPageComponent implements OnInit {
   }
 
   onNextClicked() {
-    this.router.navigateByUrl('/utilitarian');
+    this.router.navigateByUrl('/cred-survey');
   }
 
 
