@@ -45,8 +45,8 @@ export class ExpSurveyComponent implements OnInit {
     }
     this.dataService.submitUserRatings(userId, this.ratedProducts).subscribe(
       data => {
-        this.authService.submitHedSurvey();
-        this.router.navigateByUrl('/hedonic');
+        this.authService.submitExpSurvey();
+        this.router.navigateByUrl('/experienced');
         this.googleAnalyticsService.sendInitialSurveyCompleted();
       });
   }

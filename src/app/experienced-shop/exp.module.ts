@@ -44,6 +44,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ExpTestimonialsComponent,
     ExpAdBannerComponent,
     ExpProductSurveyComponent
+  ],
+  bootstrap:[
+    ExpProductSurveyComponent
   ]
 })
 export class ExpModule { }

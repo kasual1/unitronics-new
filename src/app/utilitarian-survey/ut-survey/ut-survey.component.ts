@@ -44,8 +44,8 @@ export class UtSurveyComponent implements OnInit {
     }
     this.dataService.submitUserRatings(userId, this.ratedProducts).subscribe(
       data => {
-        this.authService.submitHedSurvey();
-        this.router.navigateByUrl('/hedonic');
+        this.authService.submitUtSurvey();
+        this.router.navigateByUrl('/utilitarian');
         this.googleAnalyticsService.sendInitialSurveyCompleted();
       });
   }
