@@ -1,0 +1,43 @@
+@import '../../../assets/style/hedonic/style.css';
+@import '../../../assets/style/hedonic/responsive.css';
+
+
+.product-filter{
+    border: none;
+}
+
+.image{
+    width: 200px;
+    height: 150px;
+}
+
+h4 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    font-size: 1.1em;
+}
+
+.btn-main:focus{
+    outline: none;
+}
+
+
+.breadcrumb{
+    background-color: white;
+    border: solid #e0e0e0 1px;
+}
+
+.breadcrumb>li{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.breadcrumb>li>a{
+    color: black;
+}
+
+.breadcrumb>.active{
+    color: #ec2f2f;
+}

@@ -1,8 +1,167 @@
-<div class="col-sm-8 col-sm-offset-2 survey-panel">
+<div *ngIf="!isSurveySubmitted" class="col-sm-8 col-sm-offset-2 survey-panel">
+  <form [formGroup]="finalSurvey" (ngSubmit)="onSubmit()">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h3>Final Survey</h3>
+        <p>Please answer the following questions to complete the experiment.</p>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <p>1. How satisfied are you with the overall shopping experience? (1 = not satisfied, 7 = very satisfied)</p>
+                <div class="radio-group">
+                  <label class="radio-inline">
+                    <input type="radio" formControlName="satisfaction" [value]=1 required>1</label>
+                  <label class="radio-inline">
+                    <input type="radio" formControlName="satisfaction" [value]=2 required>2</label>
+                  <label class="radio-inline">
+                    <input type="radio" formControlName="satisfaction" [value]=3 required>3</label>
+                  <label class="radio-inline">
+                    <input type="radio" formControlName="satisfaction" [value]=4 required>4</label>
+                  <label class="radio-inline">
+                    <input type="radio" formControlName="satisfaction" [value]=5 required>5</label>
+                  <label class="radio-inline">
+                    <input type="radio" formControlName="satisfaction" [value]=6 required>6</label>
+                  <label class="radio-inline">
+                    <input type="radio" formControlName="satisfaction" [value]=7 required>7</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <p>2. How likely would you come back to one of the online shops? (1 = never, 7 = very likely)</p>
+                <div class="sub-p">
+                  <p>2.1 Happy Wrist (online shop for watches)</p>
+                  <div class="radio-group">
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackHedonic" [value]=1 required>1</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackHedonic" [value]=2 required>2</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackHedonic" [value]=3 required>3</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackHedonic" [value]=4 required>4</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackHedonic" [value]=5 required>5</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackHedonic" [value]=6 required>6</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackHedonic" [value]=7 required>7</label>
+                  </div>
+                  <p>2.2 Ex Libris (online shop for books)</p>
+                  <div class="radio-group">
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackExperienced" [value]=1 required>1</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackExperienced" [value]=2 required>2</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackExperienced" [value]=3 required>3</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackExperienced" [value]=4 required>4</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackExperienced" [value]=5 required>5</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackExperienced" [value]=6 required>6</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackExperienced" [value]=7 required>7</label>
+                  </div>
+                  <p>2.3 Uni Shop (online shop for university equipment)</p>
+                  <div class="radio-group">
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackUtilitarian" [value]=1 required>1</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackUtilitarian" [value]=2 required>2</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackUtilitarian" [value]=3 required>3</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackUtilitarian" [value]=4 required>4</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackUtilitarian" [value]=5 required>5</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackUtilitarian" [value]=6 required>6</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackUtilitarian" [value]=7 required>7</label>
+                  </div>
+                  <p>2.4 XYZ (online shop for supplements)</p>
+                  <div class="radio-group">
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackCredence" [value]=1 required>1</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackCredence" [value]=2 required>2</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackCredence" [value]=3 required>3</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackCredence" [value]=4 required>4</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackCredence" [value]=5 required>5</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackCredence" [value]=6 required>6</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="comeBackCredence" [value]=7 required>7</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                3. How much prior experience do you have with online shopping? (1 = none, 7 = regular online shopper)
+                <div class="radio-group">
+                  <label class="radio-inline">
+                    <input type="radio" formControlName="priorExp" [value]=1 required>1</label>
+                  <label class="radio-inline">
+                    <input type="radio" formControlName="priorExp" [value]=2 required>2</label>
+                  <label class="radio-inline">
+                    <input type="radio" formControlName="priorExp" [value]=3 required>3</label>
+                  <label class="radio-inline">
+                    <input type="radio" formControlName="priorExp" [value]=4 required>4</label>
+                  <label class="radio-inline">
+                    <input type="radio" formControlName="priorExp" [value]=5 required>5</label>
+                  <label class="radio-inline">
+                    <input type="radio" formControlName="priorExp" [value]=6 required>6</label>
+                  <label class="radio-inline">
+                    <input type="radio" formControlName="priorExp" [value]=7 required>7</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <p>4. Basic information</p>
+                <div class="radio-group">
+                  <label class="radio-inline">
+                    <input type="radio" formControlName="gender" [value]=1 required>Male</label>
+                  <label class="radio-inline">
+                    <input type="radio" formControlName="gender" [value]=2 required>Female</label>
+                  <label class="radio-inline">
+                    <input type="radio" formControlName="gender" [value]=3 required>None</label>
+                </div>
+                <hr>
+                <p class="danger">To complete the survey the email address is not required. But if you want to take part in the lottery we
+                  need your email address to contact you! </p>
+                <div class="form-group">
+                  <input type="email" class="form-control" formControlName="email" placeholder="Email">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary pull-right" [disabled]="!finalSurvey.valid">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="isSurveySubmitted" class="col-sm-8 col-sm-offset-2 survey-panel">
   <div class="panel panel-default">
-    <div class="panel-body">
-      <h3>Final Survey</h3>
-      <p>Please help us understand your preferences by rating the following 5 products.</p>
+    <div class="panel-body success">
+      <h3>Thanks for participating in the experiment!</h3>
+      <h1><span role="button" class="emoji emoji1f609" data-c="😉">😉</span></h1>
+      <h3 *ngIf="finalSurvey.value.email!=''" >We will send an email to <b>{{finalSurvey.value.email}}</b> if you win the lottery!</h3>
     </div>
   </div>
 </div>

@@ -1,0 +1,19 @@
+.sub-p{
+    padding-left: 25px;
+}
+
+.radio-group{
+    padding-bottom: 10px;
+}
+
+.danger{
+    color: red;
+}
+
+.survey-panel{
+    padding: 30px 0;
+}
+
+.success{
+    text-align: center;
+}

@@ -1,0 +1,46 @@
+h4 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+    font-size: 1.1em;
+}
+
+
+img{
+    display: block;
+    margin: auto;
+}
+
+.controls>a{
+    text-decoration: none;
+}
+
+
+.left{
+    cursor: pointer;
+}
+
+.right{
+    cursor: pointer;
+}
+
+.random{
+    background-color: aquamarine;
+    padding: 10px;
+    font-size: 1.4em;
+}
+
+.colabFilter{
+    background-color:blueviolet;
+    padding: 10px;
+    font-size: 1.4em;
+    color: white;
+}
+
+.salesRank{
+    background-color: violet;
+    padding: 10px;
+    font-size: 1.4em;
+}
+

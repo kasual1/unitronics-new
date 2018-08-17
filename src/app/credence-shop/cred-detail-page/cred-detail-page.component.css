@@ -1,0 +1,64 @@
+@import '../../../assets/style/hedonic/style.css';
+@import '../../../assets/style/hedonic/responsive.css';
+img.large {
+    width: 80%;
+    height: 80%;
+}
+
+.active {
+    border-color: #EC2F2F;
+}
+
+img:hover {
+    border-color: black;
+}
+
+.thumbnail {
+    cursor: pointer;
+}
+
+.product-heading {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+    font-size: 1.1em;
+}
+
+.nav-tabs>li>a {
+    cursor: pointer;
+}
+
+iframe {
+    width: 100%;
+    height: 860px;
+    border: none;
+}
+
+.image {
+    height: 150px;
+    width: 200px;
+}
+
+.product-col {
+    height: 320px;
+}
+
+.breadcrumb{
+    background-color: white;
+    border: solid #e0e0e0 1px;
+}
+
+.breadcrumb>li{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.breadcrumb>li>a{
+    color: black;
+}
+
+.breadcrumb>.active{
+    color: #ec2f2f;
+}
+
