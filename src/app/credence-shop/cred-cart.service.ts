@@ -15,7 +15,7 @@ export class CredCartService {
   ) { }
 
   getCartId() {
-    return this.cookieService.get(global.HED_CART_ID);
+    return this.cookieService.get(global.CRED_CART_ID);
   }
 
   updateCart(cart: any) {
