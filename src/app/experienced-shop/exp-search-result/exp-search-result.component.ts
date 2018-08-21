@@ -10,7 +10,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class ExpSearchResultComponent implements OnInit {
 
-  public searchTerm: string;
+  public searchTerm: string = null;
+  public category: string;
   public results: any[];
   public totalResults: number;
   public totalPages: number;
@@ -35,17 +36,18 @@ export class ExpSearchResultComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.searchTerm = params['q'];
+      this.category = params['c'];
       this.pageIndex = +params['index'];
       this.pageSize = +params['size'];
-      this.searchProducts(this.pageIndex, this.pageSize, this.searchTerm);
+      this.searchProducts(this.pageIndex, this.pageSize, this.searchTerm, null, this.category);
     });
 
   }
 
-  searchProducts(pageIndex, pageSize, searchTerm, priceOrder?) {
+  searchProducts(pageIndex, pageSize, searchTerm?, priceOrder?, category?) {
     this.results = [];
-    this.dataService.searchProducts(pageIndex, pageSize, searchTerm, priceOrder)
-      .subscribe(data => {
+    this.dataService.searchProducts(pageIndex, pageSize, searchTerm, priceOrder, category)
+      .subscribe((data: any) => {
         window.scrollTo(0, 0);
         this.results = data.products;
         this.totalResults = data.totalResults;
@@ -64,13 +66,13 @@ export class ExpSearchResultComponent implements OnInit {
   onSubmit() {
     switch (this.filter.value['priceOrder']) {
       case 1:
-        this.searchProducts(0,10,this.searchTerm, null);
+        this.searchProducts(0, 10, this.searchTerm, null, this.category);
         break;
       case 2:
-        this.searchProducts(0,10,this.searchTerm, 'asc');
+        this.searchProducts(0, 10, this.searchTerm, 'asc', this.category);
         break;
       case 3:
-        this.searchProducts(0,10,this.searchTerm, 'desc');
+        this.searchProducts(0, 10, this.searchTerm, 'desc', this.category);
         break;
     }
   }
