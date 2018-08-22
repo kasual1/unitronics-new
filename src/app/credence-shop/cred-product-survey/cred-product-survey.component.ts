@@ -6,6 +6,7 @@ import { CredDataService } from '../cred-data.service';
 import { CredCartService } from '../cred-cart.service';
 import { CookieService } from 'ngx-cookie-service';
 import { GoogleAnalyticsService } from '../../google-analytics.service';
+import { AuthService } from '../../auth.service';
 
 
 @Component({
@@ -32,7 +33,8 @@ export class CredProductSurveyComponent implements OnInit {
     private dataService: CredDataService,
     private cartService: CredCartService,
     private cookieService: CookieService,
-    private googleAnalyticsService: GoogleAnalyticsService
+    private googleAnalyticsService: GoogleAnalyticsService,
+    private authService: AuthService
   ) {}
  
   ngOnInit() {
@@ -59,14 +61,17 @@ export class CredProductSurveyComponent implements OnInit {
   }
 
   private createCart(product: any) {
-    this.dataService.createCart(product, 1)
-      .subscribe(
-        data => {
-          console.log(data);
-          this.cookieService.set(global.CRED_CART_ID, data.Id)
-          this.cartService.updateCart(data);
-          this.bsModalRef.hide();
-        });
+    let userId = this.authService.getUser();
+    if (userId != null) {
+      this.dataService.createCart(product, 1, userId)
+        .subscribe(
+          data => {
+            console.log(data);
+            this.cookieService.set(global.CRED_CART_ID, data.Id)
+            this.cartService.updateCart(data);
+            this.bsModalRef.hide();
+          });
+    }
   }
 
   private addToCart(cartId, product: any) {

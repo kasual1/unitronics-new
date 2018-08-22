@@ -6,6 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { HedCartService } from '../hed-cart.service';
 import { global } from '../../../variables/global';
 import { GoogleAnalyticsService } from '../../google-analytics.service';
+import { AuthService } from '../../auth.service';
 
 
 @Component({
@@ -25,15 +26,16 @@ export class HedProductSurveyComponent implements OnInit {
       like: new FormControl('', Validators.required)
     }
   )
- 
+
   constructor(
     public bsModalRef: BsModalRef,
     private dataService: HedDataService,
     private cartService: HedCartService,
     private cookieService: CookieService,
-    private googleAnalyticsService: GoogleAnalyticsService
-  ) {}
- 
+    private googleAnalyticsService: GoogleAnalyticsService,
+    private authService: AuthService
+  ) { }
+
   ngOnInit() {
     console.log(this.product);
     this.cartId = this.cartService.getCartId();
@@ -41,7 +43,7 @@ export class HedProductSurveyComponent implements OnInit {
 
   onSubmit() {
     this.cartId = this.cartService.getCartId();
-    if ( this.cartId != '') {
+    if (this.cartId != '') {
       console.log("Add to existing cart")
       this.addToCart(this.cartId, this.product);
     } else {
@@ -58,14 +60,17 @@ export class HedProductSurveyComponent implements OnInit {
   }
 
   private createCart(product: any) {
-    this.dataService.createCart(product, 1)
-      .subscribe(
-        data => {
-          console.log(data);
-          this.cookieService.set(global.HED_CART_ID, data.Id)
-          this.cartService.updateCart(data);
-          this.bsModalRef.hide();
-        });
+    let userId = this.authService.getUser();
+    if (userId != null) {
+      this.dataService.createCart(product, 1, userId)
+        .subscribe(
+          data => {
+            console.log(data);
+            this.cookieService.set(global.HED_CART_ID, data.Id)
+            this.cartService.updateCart(data);
+            this.bsModalRef.hide();
+          });
+    }
   }
 
   private addToCart(cartId, product: any) {

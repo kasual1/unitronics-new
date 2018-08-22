@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FinalSurveyDataService } from '../final-survey-data.service';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-final-survey',
@@ -25,13 +27,23 @@ export class FinalSurveyComponent implements OnInit {
     }
   );
 
-  constructor() { }
+  constructor(
+    private dataService: FinalSurveyDataService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
   }
 
-  onSubmit(){
+  onSubmit() {
     console.log(this.finalSurvey);
+    let email = this.finalSurvey.value.email
+    let user = this.authService.getUser();
+    if (email != null && user != null) {
+      this.dataService.updateUser(email, user).subscribe((data: any) => {
+      });
+    }
+
     this.isSurveySubmitted = true;
   }
 
