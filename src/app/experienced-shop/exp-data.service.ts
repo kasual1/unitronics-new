@@ -28,7 +28,7 @@ export class ExpDataService {
 
   private urlGetRecommendations = environment.apiUrl + "/user/recommendation?shop=experienced&user=";
 
-  private defaultIndex: string = '0';
+  private defaultIndex: string = '1';
 
   private defaultSize: string = '10';
 

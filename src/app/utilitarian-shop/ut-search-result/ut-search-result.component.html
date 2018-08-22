@@ -82,21 +82,21 @@
         <div class="col-sm-6 pagination-block">
           <ul class="pagination">
             <li>
-              <a [routerLink]="['/utilitarian/results']" [queryParams]="{ index: number*pageSize-pageSize, size: pageSize, q: searchTerm }">&laquo;</a>
+              <a class="clickable" (click)="onLastPageClicked()">&laquo;</a>
             </li>
-            <li *ngFor="let number of pageIndices">
-              <a [routerLink]="['/utilitarian/results']" [queryParams]="{ index: number*pageSize, size: pageSize, q: searchTerm }">{{number + 1}}</a>
+            <li *ngFor="let i of pageIndices">
+              <a class="clickable" (click)="onPageIndexClicked(i)">{{i + 1}}</a>
             </li>
             <li>
-              <a [routerLink]="['/utilitarian/results']" [queryParams]="{ index: number*pageSize+pageSize, size: pageSize, q: searchTerm }">&raquo;</a>
+              <a class="clickable" (click)="onNextPageClicked()">&raquo;</a>
             </li>
           </ul>
         </div>
         <!-- Pagination Ends -->
         <!-- Results Starts -->
         <div class="col-sm-6 results">
-          Showing {{from}} to {{to}} of {{totalResults}} ({{totalPages}} Pages)
-        </div>
+          Total of {{totalPages}} Page(s)
+         </div>
         <!-- Results Ends -->
       </div>
       <!-- Pagination & Results Ends -->
