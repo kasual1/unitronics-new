@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ExpDataService } from '../exp-data.service';
 import { FormGroup, FormControl } from '@angular/forms';
 
@@ -12,10 +12,11 @@ export class ExpSearchResultComponent implements OnInit {
 
   public searchTerm: string = null;
   public category: string;
+  public order: string = null;
   public results: any[];
   public totalResults: number;
   public totalPages: number;
-  public pageIndex: number = 0;
+  public pageIndex: number = 1;
   public pageSize: number = 10;
   public pageIndices: number[] = [];
   public from: number;
@@ -31,6 +32,7 @@ export class ExpSearchResultComponent implements OnInit {
   constructor(
     private dataService: ExpDataService,
     private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -39,7 +41,10 @@ export class ExpSearchResultComponent implements OnInit {
       this.category = params['c'];
       this.pageIndex = +params['index'];
       this.pageSize = +params['size'];
-      this.searchProducts(this.pageIndex, this.pageSize, this.searchTerm, null, this.category);
+      if (this.category != null) {
+        this.searchTerm = null;
+      }
+      this.searchProducts(this.pageIndex, this.pageSize, this.searchTerm, this.order, this.category);
     });
 
   }
@@ -63,18 +68,82 @@ export class ExpSearchResultComponent implements OnInit {
       );
   }
 
+  onNextPageClicked() {
+    this.pageIndex++;
+    let queryParams =
+    {
+      queryParams:
+      {
+        index: this.pageIndex,
+        size: this.pageSize,
+        q: this.searchTerm,
+        c: this.category
+      }
+    }
+    this.router.navigate(['/experienced/results'], queryParams);
+  }
+
+  onLastPageClicked() {
+    if (this.pageIndex > 1) {
+      this.pageIndex--;
+      let queryParams =
+      {
+        queryParams:
+        {
+          index: this.pageIndex,
+          size: this.pageSize,
+          q: this.searchTerm,
+          c: this.category
+        }
+      }
+      this.router.navigate(['/experienced/results'], queryParams);
+    }
+  }
+
+  onPageIndexClicked(index: number) {
+    let queryParams =
+      {
+        queryParams:
+        {
+          index: index + 1,
+          size: this.pageSize,
+          q: this.searchTerm,
+          c: this.category
+        }
+      }
+      this.router.navigate(['/experienced/results'], queryParams);
+  }
+
   onSubmit() {
+    this.pageIndex = 1;
+    this.pageSize = 10;
     switch (this.filter.value['priceOrder']) {
       case 1:
-        this.searchProducts(0, 10, this.searchTerm, null, this.category);
+        this.order = null;
+        this.searchProducts(this.pageIndex, this.pageSize, this.searchTerm, this.order, this.category);
         break;
       case 2:
-        this.searchProducts(0, 10, this.searchTerm, 'asc', this.category);
+        this.order = 'asc';
+        this.searchProducts(this.pageIndex, this.pageSize, this.searchTerm, this.order, this.category);
         break;
       case 3:
-        this.searchProducts(0, 10, this.searchTerm, 'desc', this.category);
+        this.order = 'desc';
+        this.searchProducts(this.pageIndex, this.pageSize, this.searchTerm, this.order, this.category);
         break;
     }
+
+    let queryParams =
+      {
+        queryParams:
+        {
+          index: this.pageIndex,
+          size: this.pageSize,
+          q: this.searchTerm,
+          c: this.category
+        }
+      }
+
+    this.router.navigate(['/experienced/results'], queryParams);
   }
 
 }

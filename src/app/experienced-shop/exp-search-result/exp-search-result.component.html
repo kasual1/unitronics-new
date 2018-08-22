@@ -42,8 +42,11 @@
     <!-- Primary Content Starts -->
     <div class="col-md-9">
       <!-- Main Heading Starts -->
-      <h2 class="main-heading2 page-title">
+      <h2 *ngIf="searchTerm && !category" class="main-heading2 page-title">
         {{totalResults}} Results for: {{searchTerm}}
+      </h2>
+      <h2 *ngIf="category" class="main-heading2 page-title">
+        {{totalResults}} Results for: {{category}}
       </h2>
       <!-- Main Heading Ends -->
       <!-- Product Filter Starts -->
@@ -82,20 +85,20 @@
         <div class="col-sm-6 pagination-block">
           <ul class="pagination">
             <li>
-              <a [routerLink]="['/experienced/results']" [queryParams]="{ index: number*pageSize-pageSize, size: pageSize, q: searchTerm }">&laquo;</a>
+              <a class="clickable" (click)="onLastPageClicked()">&laquo;</a>
             </li>
-            <li *ngFor="let number of pageIndices">
-              <a [routerLink]="['/experienced/results']" [queryParams]="{ index: number*pageSize, size: pageSize, q: searchTerm }">{{number + 1}}</a>
+            <li *ngFor="let i of pageIndices">
+              <a class="clickable" (click)="onPageIndexClicked(i)">{{i + 1}}</a>
             </li>
             <li>
-              <a [routerLink]="['/experienced/results']" [queryParams]="{ index: number*pageSize+pageSize, size: pageSize, q: searchTerm }">&raquo;</a>
+              <a class="clickable" (click)="onNextPageClicked()">&raquo;</a>
             </li>
           </ul>
         </div>
         <!-- Pagination Ends -->
         <!-- Results Starts -->
         <div class="col-sm-6 results">
-          Showing {{from}} to {{to}} of {{totalResults}} ({{totalPages}} Pages)
+         Total of {{totalPages}} Page(s)
         </div>
         <!-- Results Ends -->
       </div>

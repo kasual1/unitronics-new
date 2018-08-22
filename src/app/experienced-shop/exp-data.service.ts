@@ -34,8 +34,6 @@ export class ExpDataService {
 
   private shopType: string = 'experienced';
 
-
-
   constructor(private http: HttpClient) { }
 
   readProducts(index, pageSize, category): Observable<any> {

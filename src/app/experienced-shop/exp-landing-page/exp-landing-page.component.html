@@ -77,14 +77,14 @@
               <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Thriller</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 0, size:10, q: 'King'}">Stephen
+                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 1, size:10, c: 'Stephen King'}">Stephen
                     King</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 0, size:10, q: 'Fitzek'}">Fitzek</a>
+                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 1, size:10, c: 'Fitzek'}">Fitzek</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 0, size:10, q: 'Larsson'}">Stieg
+                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 1, size:10, c: 'Stieg Larsson'}">Stieg
                     Larsson</a>
                 </li>
               </ul>
@@ -93,11 +93,11 @@
               <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Fantasy</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 0, size:10, q: 'Herr der Ringe'}">
+                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 1, size:10, c: 'Herr der Ringe'}">
                     Herr der Ringe</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 0, size:10, q: 'Harry Potter'}">
+                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 1, size:10, c: 'Harry Potter'}">
                     Harry Potter</a>
                 </li>
               </ul>
@@ -106,12 +106,12 @@
               <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Liebe</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 0, size:10, c: 'Nicholas Sparks'}">
+                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 1, size:10, c: 'Nicholas Sparks'}">
                     Nicholas Sparks
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 0, size:10, q: 'Sport'}">
+                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 1, size:10, q: 'Sport'}">
                     Others
                   </a>
                 </li>
@@ -121,22 +121,22 @@
               <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Historisch</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 0, size:10, q: 'Ken Follet'}">
+                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 1, size:10, q: 'Ken Follet'}">
                     Ken Follet
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 0, size:10, q: 'Others'}">
+                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 1, size:10, q: 'Others'}">
                     Casio
                   </a>
                 </li>
               </ul>
             </li>
             <li dropdown>
-              <a [routerLink]="['/experienced/results']" [queryParams]="{index: 0, size:10, c: 'Bestseller'}">Bestseller</a>
+              <a [routerLink]="['/experienced/results']" [queryParams]="{index: 1, size:10, c: 'Bestseller'}">Bestseller</a>
             </li>
             <li dropdown>
-              <a [routerLink]="['/experienced/results']" [queryParams]="{index: 0, size:10, c: 'Bestseller'}">Neu</a>
+              <a [routerLink]="['/experienced/results']" [queryParams]="{index: 1, size:10, c: 'New'}">Neu</a>
             </li>
           </ul>
         </div>

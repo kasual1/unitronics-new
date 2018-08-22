@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class HedDataService {
 
-  private urlGetProducts = environment.apiUrl + "/product?shop=hedonic&";
+  private urlGetProducts = environment.apiUrl + "/product";
 
   private urlGetRandomProducts = environment.apiUrl + "/product/random?shop=hedonic&page=0&size=20&category=Rating";
 
@@ -28,17 +28,30 @@ export class HedDataService {
 
   private urlGetRecommendations = environment.apiUrl + "/user/recommendation?shop=hedonic&user=";
 
+  private defaultIndex: string = '1';
+
+  private defaultSize: string = '10';
+
+  private shopType: string = 'hedonic';
+
   constructor(private http: HttpClient) { }
 
   readProducts(index, pageSize, category): Observable<any> {
-    let url;
-    if (category == null) {
-      url = this.urlGetProducts + 'page=' + index + '&size=' + pageSize;
-    } else {
-      url = this.urlGetProducts + 'page=' + index + '&size=' + pageSize
-        + '&category=' + category;
+    let params = new HttpParams();
+    let options = null;
+
+    params = params.append('shop', this.shopType);
+    params = index ? params.append('page', index) : params.append('page', this.defaultIndex);
+    params = pageSize ? params.append('size', pageSize) : params.append('size', this.defaultSize);
+    params = category ? params.append('category', category) : params;
+
+    options = 
+    {
+      params: params,
+      responseType: 'json'
     }
-    return this.http.get(url, { responseType: 'json' });
+
+    return this.http.get(this.urlGetProducts, options);
   }
 
   readProduct(id): Observable<any> {
@@ -51,19 +64,39 @@ export class HedDataService {
     return this.http.get(url, { responseType: 'json' });
   }
 
-  searchProducts(index, pageSize, searchTerm, order?): Observable<any> {
+  searchProducts(index, pageSize, searchTerm?, order?, category?): Observable<any> {
+   
+    searchTerm = searchTerm ? searchTerm.trim(): null;
+
+    let params = new HttpParams();
+    let options = null;
+
+    params = params.append('shop', this.shopType);
+    params = index ? params.append('page', index) : params.append('page', this.defaultIndex);
+    params = pageSize ? params.append('size', pageSize) : params.append('size', this.defaultSize);
+    params = searchTerm ? params.append('searchTerm', searchTerm) : params;
+    params = order ? params.append('order', order) : params;
+    params = category ? params.append('category', category) : params;
+
+    options = 
+    {
+      params: params,
+      responseType: 'json'
+    }
+
+    console.log(options);
+    return this.http.get(this.urlGetProducts, options);
+  }
+
+  searchProductsByCategory(index, pageSize, category, order?) {
     let url;
-    if (searchTerm == null) {
-      url = this.urlGetProducts + 'page=' + index + '&size=' + pageSize;
+    if (order) {
+      console.log('order is set: ' + order);
+      url = this.urlGetProducts + 'page=' + index + '&size=' + pageSize
+        + '&category=' + category + '&order=' + order;
     } else {
-      if (order) {
-        console.log('order is set: ' + order);
-        url = this.urlGetProducts + 'page=' + index + '&size=' + pageSize
-          + '&searchTerm=' + searchTerm + '&order=' + order;
-      } else {
-        url = this.urlGetProducts + 'page=' + index + '&size=' + pageSize
-          + '&searchTerm=' + searchTerm;
-      }
+      url = this.urlGetProducts + 'page=' + index + '&size=' + pageSize
+        + '&category=' + category;
     }
     console.log(url);
     return this.http.get(url, { responseType: 'json' });

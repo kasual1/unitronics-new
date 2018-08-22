@@ -18,7 +18,7 @@ export class HedSearchComponent implements OnInit {
   }
 
   search(searchTerm: string){
-    this.route.navigate(['hedonic/results'], { queryParams: { index: 0, size: 10, q: searchTerm } });
+    this.route.navigate(['hedonic/results'], { queryParams: { index: 1, size: 10, q: searchTerm } });
   }
 
 }

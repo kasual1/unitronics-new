@@ -55,6 +55,10 @@ span[role=slider]{
     border-bottom: #e0e0e0 solid 1px !important;
 }
 
+.clickable{
+    cursor: pointer;
+}
+
 
 @-webkit-keyframes sk-bouncedelay {
     0%,
