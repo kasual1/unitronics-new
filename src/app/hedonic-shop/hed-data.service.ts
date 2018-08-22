@@ -26,7 +26,7 @@ export class HedDataService {
 
   private urlPostRatings = environment.apiUrl + "/user/rating";
 
-  private urlGetRecommendations = environment.apiUrl + "/user/recommendation?shop=hedonic&user=";
+  private urlGetRecommendations = environment.apiUrl + "/user/recommendation";
 
   private defaultIndex: string = '1';
 
@@ -135,9 +135,20 @@ export class HedDataService {
 
   // Recommendation Type: (random, salesRank, ColabFilter)
   getRecommendedProducts(userId: string, recommendationType: string) {
-    let url = this.urlGetRecommendations + userId + '&recType=' + recommendationType;
-    console.log(url);
-    return this.http.get(url, { responseType: 'json' });
+    let params = new HttpParams();
+    let options = null;
+
+    params = params.append('shop', this.shopType);
+    params = userId ? params.append('user', userId) : params;
+    params = recommendationType ? params.append('recType', recommendationType) : params;
+
+    options = 
+    {
+      params: params,
+      responseType: 'json'
+    }
+
+    return this.http.get(this.urlGetRecommendations, options);
   }
 
 
