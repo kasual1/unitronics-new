@@ -19,8 +19,6 @@ export class UtSearchResultComponent implements OnInit {
   public pageIndex: number = 1;
   public pageSize: number = 10;
   public pageIndices: number[] = [];
-  public from: number;
-  public to: number;
 
   filter = new FormGroup(
     {
@@ -54,14 +52,17 @@ export class UtSearchResultComponent implements OnInit {
     this.dataService.searchProducts(pageIndex, pageSize, searchTerm, priceOrder, category)
       .subscribe((data: any) => {
         window.scrollTo(0, 0);
+        console.log(data);
         this.results = data.products;
         this.totalResults = data.totalResults;
-        this.totalPages = Math.floor(this.totalResults / this.pageSize) + 1;
+        this.totalPages = (this.totalResults % 10 > 0) 
+        ? Math.floor(this.totalResults / this.pageSize) + 1
+        : Math.floor(this.totalResults / this.pageSize);
         this.pageIndices = [];
-        this.from = this.pageIndex + 1;
-        this.to = (this.pageSize + this.pageIndex) - ((Math.floor((this.pageSize + this.pageIndex) / this.totalResults) * (this.pageSize + this.pageIndex) % this.totalResults));
 
-        for (let i = 1; i < this.totalPages; i++) {
+        console.log(this.totalResults % 10);
+
+        for (let i = 1; i <= this.totalPages; i++) {
           this.pageIndices.push(i);
         }
       }
@@ -102,16 +103,16 @@ export class UtSearchResultComponent implements OnInit {
 
   onPageIndexClicked(index: number) {
     let queryParams =
+    {
+      queryParams:
       {
-        queryParams:
-        {
-          index: index,
-          size: this.pageSize,
-          q: this.searchTerm,
-          c: this.category
-        }
+        index: index,
+        size: this.pageSize,
+        q: this.searchTerm,
+        c: this.category
       }
-      this.router.navigate(['/utilitarian/results'], queryParams);
+    }
+    this.router.navigate(['/utilitarian/results'], queryParams);
   }
 
   onSubmit() {
@@ -133,15 +134,15 @@ export class UtSearchResultComponent implements OnInit {
     }
 
     let queryParams =
+    {
+      queryParams:
       {
-        queryParams:
-        {
-          index: this.pageIndex,
-          size: this.pageSize,
-          q: this.searchTerm,
-          c: this.category
-        }
+        index: this.pageIndex,
+        size: this.pageSize,
+        q: this.searchTerm,
+        c: this.category
       }
+    }
 
     this.router.navigate(['/utilitarian/results'], queryParams);
   }

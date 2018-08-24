@@ -56,12 +56,14 @@ export class ExpSearchResultComponent implements OnInit {
         window.scrollTo(0, 0);
         this.results = data.products;
         this.totalResults = data.totalResults;
-        this.totalPages = Math.floor(this.totalResults / this.pageSize) + 1;
+        this.totalPages = (this.totalResults % 10 > 0) 
+        ? Math.floor(this.totalResults / this.pageSize) + 1
+        : Math.floor(this.totalResults / this.pageSize);
         this.pageIndices = [];
         this.from = this.pageIndex + 1;
         this.to = (this.pageSize + this.pageIndex) - ((Math.floor((this.pageSize + this.pageIndex) / this.totalResults) * (this.pageSize + this.pageIndex) % this.totalResults));
 
-        for (let i = 1; i < this.totalPages; i++) {
+        for (let i = 1; i <= this.totalPages; i++) {
           this.pageIndices.push(i);
         }
       }
