@@ -87,20 +87,6 @@ export class UtDataService {
     return this.http.get(this.urlGetProducts, options);
   }
 
-  searchProductsByCategory(index, pageSize, category, order?) {
-    let url;
-    if (order) {
-      console.log('order is set: ' + order);
-      url = this.urlGetProducts + 'page=' + index + '&size=' + pageSize
-        + '&category=' + category + '&order=' + order;
-    } else {
-      url = this.urlGetProducts + 'page=' + index + '&size=' + pageSize
-        + '&category=' + category;
-    }
-    console.log(url);
-    return this.http.get(url, { responseType: 'json' });
-  }
-
   getRandomProducts(): Observable<any> {
     return this.http.get(this.urlGetRandomProducts, { responseType: 'json' });
   }

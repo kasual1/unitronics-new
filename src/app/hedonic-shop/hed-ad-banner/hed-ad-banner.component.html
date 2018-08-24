@@ -1,14 +1,14 @@
 <div class="row" style="margin-bottom: 20px;">
   <div class="container col-md-6">
     <img src="assets/images/watch-brand1.jpg" alt="Avatar" class="image" style="width:100%; border-radius: 5px;">
-    <div class="middle">
+    <div class="middle" [routerLink]="['/hedonic/results']" [queryParams]="{index: 1, size:10, c: 'Swatch'}">
       <div class="text">Mehr</div>
     </div>
   </div>
 
   <div class="container col-md-6">
     <img src="assets/images/watch-brand2.jpg" alt="Avatar" height="184px" width="569px" class="image" style="width:100%; border-radius: 5px;">
-    <div class="middle">
+    <div class="middle" [routerLink]="['/hedonic/results']" [queryParams]="{index: 1, size:10, c: 'Casio'}">
       <div class="text">Mehr</div>
     </div>
   </div>

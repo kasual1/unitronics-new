@@ -10,7 +10,6 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class UtSearchResultComponent implements OnInit {
 
- 
   public searchTerm: string = null;
   public category: string;
   public order: string = null;
@@ -62,7 +61,7 @@ export class UtSearchResultComponent implements OnInit {
         this.from = this.pageIndex + 1;
         this.to = (this.pageSize + this.pageIndex) - ((Math.floor((this.pageSize + this.pageIndex) / this.totalResults) * (this.pageSize + this.pageIndex) % this.totalResults));
 
-        for (let i = 0; i < this.totalPages; i++) {
+        for (let i = 1; i < this.totalPages; i++) {
           this.pageIndices.push(i);
         }
       }
@@ -106,7 +105,7 @@ export class UtSearchResultComponent implements OnInit {
       {
         queryParams:
         {
-          index: index + 1,
+          index: index,
           size: this.pageSize,
           q: this.searchTerm,
           c: this.category
