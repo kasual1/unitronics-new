@@ -13,10 +13,13 @@ export class CredAuthGuardService {
   ) { }
 
   canActivate() {
-    if (this.authService.getSubmitCredSurvey()) {
+    if (this.authService.getSubmitCredSurvey() && !this.authService.getFinCredShop()) {
       return true;
-    } else {
+    } else if(!this.authService.getSubmitCredSurvey()){
       this.router.navigate(['/cred-survey']);
+      return false;
+    } else if(this.authService.getFinCredShop()){
+      this.router.navigate(['/final-survey']);
       return false;
     }
   }

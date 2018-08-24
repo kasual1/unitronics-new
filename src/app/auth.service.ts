@@ -15,7 +15,7 @@ export class AuthService {
     let user = this.cookieService.get(global.USER);
     if (user == null || user == '') {
       this.cookieService.set(global.USER, uuid());
-    } 
+    }
   }
 
   submitHedSurvey() {
@@ -73,6 +73,67 @@ export class AuthService {
   getSubmitFinalSurvey() {
     if (this.cookieService.get('subFinal') != null
       && this.cookieService.get('subFinal') != '') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  finishedHedShop() {
+    this.cookieService.set('finHed', 'true');
+  }
+
+  finishedExpShop() {
+    this.cookieService.set('finExp', 'true');
+  }
+
+  finishedUtShop() {
+    this.cookieService.set('finUt', 'true');
+  }
+
+  finishedCredShop() {
+    this.cookieService.set('finCred', 'true');
+  }
+
+  getFinHedShop() {
+    if (this.cookieService.get('finHed') != null
+      && this.cookieService.get('finHed') != '') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  getFinExpShop() {
+    if (this.cookieService.get('finExp') != null
+      && this.cookieService.get('finExp') != '') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  getFinUtShop() {
+    if (this.cookieService.get('finUt') != null
+      && this.cookieService.get('finUt') != '') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  getFinCredShop() {
+    if (this.cookieService.get('finCred') != null
+      && this.cookieService.get('finCred') != '') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  getFinFinalSurvey() {
+    if (this.cookieService.get('finFinal') != null
+      && this.cookieService.get('finFinal') != '') {
       return true;
     } else {
       return false;

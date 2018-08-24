@@ -13,10 +13,13 @@ export class UtAuthGuardService {
   ) { }
 
   canActivate() {
-    if (this.authService.getSubmitUtSurvey()) {
+    if (this.authService.getSubmitUtSurvey() && !this.authService.getFinUtShop()) {
       return true;
-    } else {
+    } else if(!this.authService.getSubmitUtSurvey()){
       this.router.navigate(['/ut-survey']);
+      return false;
+    } else if(this.authService.getFinUtShop()){
+      this.router.navigate(['/cred-survey']);
       return false;
     }
   }

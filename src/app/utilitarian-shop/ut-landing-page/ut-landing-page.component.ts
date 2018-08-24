@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-ut-landing-page',
@@ -8,17 +10,24 @@ import { Router } from '@angular/router';
 })
 export class UtLandingPageComponent implements OnInit {
 
+  modalRef: BsModalRef;
+
   constructor(
-    private router: Router
-  ) {
-  }
+    private router: Router,
+    private modalService: BsModalService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
   }
 
-  onNextClicked() {
-    this.router.navigateByUrl('/cred-survey');
+  onNextClicked(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
 
-
+  onNextConfirmed(modalRef: BsModalRef){
+    this.router.navigateByUrl('/credence');
+    this.authService.finishedUtShop();
+    modalRef.hide();
+  }
 }

@@ -13,12 +13,13 @@ export class HedAuthGuardService {
   ) { }
 
   canActivate() {
-    if (this.authService.getSubmitHedSurvey()) {
-      console.log('canActivate true');
+    if (this.authService.getSubmitHedSurvey() && !this.authService.getFinHedShop()) {
       return true;
-    } else {
+    } else if(!this.authService.getSubmitHedSurvey()) {
       this.router.navigate(['/hed-survey']);
-      console.log('canActivate false');
+      return false;
+    } else if(this.authService.getFinHedShop()) {
+      this.router.navigate(['/exp-survey']);
       return false;
     }
   }
