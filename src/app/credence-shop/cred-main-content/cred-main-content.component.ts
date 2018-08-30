@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CredMainContentComponent implements OnInit {
 
+  cat1: string = 'Top Product';
+  cat2: string = 'On Sale';
+
   constructor() { }
 
   ngOnInit() {

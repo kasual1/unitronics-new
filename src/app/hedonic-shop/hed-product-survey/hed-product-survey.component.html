@@ -1,12 +1,10 @@
-<form [formGroup]="userSurvey" (ngSubmit)="onSubmit()">
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">Survey</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <p id="instruction">Please answer the questions below to add this product to your cart.</p>
+<div *ngIf="isLoading" class="spinner">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+</div>
+<div *ngIf="!isLoading">
+  <form *ngIf="!surveyAlreadyTaken" [formGroup]="userSurvey" (ngSubmit)="onSubmitAddToCart()">
     <!-- Available Options Starts -->
     <div class="options">
       <div class="slidecontainer">
@@ -59,10 +57,15 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Cancel</button>
     <button type="submit" class="btn btn-default btn-cart" [disabled]="!userSurvey.valid">
-      <i class="fa fa-shopping-cart"></i>Add to Cart</button>
+      <i class="fa fa-shopping-cart"></i> Submit and add to cart</button>
+    <button type="button" class="btn btn-default btn-submit" [disabled]="!userSurvey.valid" (click)="onSubmitOnly()">
+      Submit </button>
+  </form>
+  <div *ngIf="surveyAlreadyTaken" class="survey-complete-msg">
+    <h3><i class="fa fa-check"></i> Survey completed!</h3>
+    <h3 *ngIf="productInCart"><i class="fa fa-check"></i> Product in cart!</h3>
+    <button *ngIf="!productInCart" type="button" class="btn btn-default btn-cart" (click)="onAddToCartOnly()">
+      <i class="fa fa-shopping-cart"></i> Add to Cart</button>
   </div>
-</form>
+</div>

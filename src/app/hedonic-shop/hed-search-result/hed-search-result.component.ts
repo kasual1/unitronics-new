@@ -45,6 +45,7 @@ export class HedSearchResultComponent implements OnInit {
       }
       this.searchProducts(this.pageIndex, this.pageSize, this.searchTerm, this.order, this.category);
     });
+
   }
 
   searchProducts(pageIndex, pageSize, searchTerm?, priceOrder?, category?) {

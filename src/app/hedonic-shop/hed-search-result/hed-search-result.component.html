@@ -49,6 +49,11 @@
       <!-- Product Filter Starts -->
       <!-- Product List Display Starts -->
       <!-- Product #1 Starts -->
+      <div *ngIf="results.length==0" class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
       <div *ngFor="let product of results" class="row">
         <div class="col-xs-12">
           <div class="product-col list clearfix">
@@ -66,9 +71,6 @@
               <div class="price">
                 <span class="price-new">{{product.LowestNewPriceFormatted}}</span>
                 <span *ngIf="product.ListPriceFormatted" class="price-old">{{product.ListPriceFormatted}}</span>
-              </div>
-              <div class="cart-button button-group">
-                <app-hed-add-cart-button [product]="product"></app-hed-add-cart-button>
               </div>
             </div>
           </div>

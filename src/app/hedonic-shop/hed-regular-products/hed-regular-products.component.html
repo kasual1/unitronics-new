@@ -14,9 +14,9 @@
   <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig">
     <div ngxSlickItem *ngFor="let product of products" style="margin: 0 10px;">
       <div class="col-item">
-        <div class="product-col alt" style="height: 360px;">
+        <div class="product-col alt" style="height: 300px;">
           <div class="image center-block" style="height: 150px;">
-            <img src="{{product.MediumImageUrl}}" alt="product-item">
+            <a routerLink="/hedonic/detail/{{product.Id}}"><img src="{{product.MediumImageUrl}}" alt="product-item"></a>
           </div>
           <div class="caption">
             <div class="starRating">
@@ -30,9 +30,6 @@
             <h4>
               <a routerLink="/hedonic/detail/{{product.Id}}">{{product.Title}}</a>
             </h4>
-            <div class="cart-button button-group">
-              <app-hed-add-cart-button [product]="product" [btnSize]="'btn btn-cart full'"></app-hed-add-cart-button>
-            </div>
           </div>
         </div>
       </div>

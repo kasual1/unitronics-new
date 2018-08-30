@@ -51,6 +51,7 @@ export class HedCartComponent implements OnInit {
       .subscribe(data => {
         this.googleAnalyticsService.sendRemoveFromCartEvent(cartItem.Product.Id);
         this.cart = data;
+        this.cartService.updateCart(data);
         this.totalAmount = "EUR " + this.calculateTotalAmount();
       });
   }
