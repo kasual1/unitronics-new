@@ -53,7 +53,7 @@
         <div class="col-xs-12">
           <div class="product-col list clearfix">
             <div class="image">
-              <img src="{{product.MediumImageUrl}}" alt="product" class="img-responsive center-block" />
+              <a routerLink="/credence/detail/{{product.Id}}"><img src="{{product.MediumImageUrl}}" alt="product" class="img-responsive center-block" /></a>
             </div>
             <div class="caption">
               <h4>
@@ -66,9 +66,6 @@
               <div class="price">
                 <span class="price-new">{{product.LowestNewPriceFormatted}}</span>
                 <span *ngIf="product.ListPriceFormatted" class="price-old">{{product.ListPriceFormatted}}</span>
-              </div>
-              <div class="cart-button button-group">
-                <app-ut-add-cart-button [product]="product"></app-ut-add-cart-button>
               </div>
             </div>
           </div>
