@@ -68,3 +68,24 @@ slider:active {
  #instruction{
      font-weight: bold;
  }
+
+
+ .btn-submit{
+    margin-left: 5px;
+}
+
+.btn-cart{
+    border-color: none !important;
+}
+
+.btn-cart:disabled{
+   border-color: none !important;
+}
+
+.survey-complete-msg>h3>i{
+   color: white;
+   background-color: #5cb85c;
+   padding: 5px;
+   border-radius: 20px;
+   
+}

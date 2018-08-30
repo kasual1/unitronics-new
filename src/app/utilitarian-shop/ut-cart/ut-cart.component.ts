@@ -53,6 +53,7 @@ export class UtCartComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.cart = data;
+        this.cartService.updateCart(data);
         this.googleAnalyticsService.sendRemoveFromCartEvent(cartItem.Product.Id);
         this.totalAmount = "EUR " + this.calculateTotalAmount();
       });

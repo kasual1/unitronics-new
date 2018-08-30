@@ -27,6 +27,8 @@ export class UtDataService {
 
   private urlGetRecommendations = environment.apiUrl + "/user/recommendation?shop=utilitarian&user=";
 
+  private urlSurveyResults = environment.apiUrl + "/user/product-survey";
+
   private defaultIndex: string = '1';
 
   private defaultSize: string = '10';
@@ -44,11 +46,11 @@ export class UtDataService {
     params = pageSize ? params.append('size', pageSize) : params.append('size', this.defaultSize);
     params = category ? params.append('category', category) : params;
 
-    options = 
-    {
-      params: params,
-      responseType: 'json'
-    }
+    options =
+      {
+        params: params,
+        responseType: 'json'
+      }
 
     return this.http.get(this.urlGetProducts, options);
   }
@@ -64,8 +66,8 @@ export class UtDataService {
   }
 
   searchProducts(index, pageSize, searchTerm?, order?, category?): Observable<any> {
-   
-    searchTerm = searchTerm ? searchTerm.trim(): null;
+
+    searchTerm = searchTerm ? searchTerm.trim() : null;
 
     let params = new HttpParams();
     let options = null;
@@ -77,14 +79,28 @@ export class UtDataService {
     params = order ? params.append('order', order) : params;
     params = category ? params.append('category', category) : params;
 
-    options = 
-    {
-      params: params,
-      responseType: 'json'
-    }
+    options =
+      {
+        params: params,
+        responseType: 'json'
+      }
 
     console.log(options);
     return this.http.get(this.urlGetProducts, options);
+  }
+
+  searchProductsByCategory(index, pageSize, category, order?) {
+    let url;
+    if (order) {
+      console.log('order is set: ' + order);
+      url = this.urlGetProducts + 'page=' + index + '&size=' + pageSize
+        + '&category=' + category + '&order=' + order;
+    } else {
+      url = this.urlGetProducts + 'page=' + index + '&size=' + pageSize
+        + '&category=' + category;
+    }
+    console.log(url);
+    return this.http.get(url, { responseType: 'json' });
   }
 
   getRandomProducts(): Observable<any> {
@@ -106,7 +122,7 @@ export class UtDataService {
     let url = this.urlCreateCart;
     console.log(url);
     return this.http.post(url,
-      { 'productId': product.Id, 'quantity': quantity , 'userId': userId}, {
+      { 'productId': product.Id, 'quantity': quantity, 'userId': userId }, {
         headers: {
           'Content-Type': 'application/json'
         }, responseType: 'json'
@@ -120,15 +136,25 @@ export class UtDataService {
 
   // Recommendation Type: (random, salesRank, ColabFilter)
   getRecommendedProducts(userId: string, recommendationType: string) {
-    let url = this.urlGetRecommendations + userId + '&recType=' + recommendationType;
-    console.log(url);
-    return this.http.get(url, { responseType: 'json' });
+    let params = new HttpParams();
+    let options = null;
+
+    params = params.append('shop', this.shopType);
+    params = userId ? params.append('user', userId) : params;
+    params = recommendationType ? params.append('recType', recommendationType) : params;
+
+    options =
+      {
+        params: params,
+        responseType: 'json'
+      }
+
+    return this.http.get(this.urlGetRecommendations, options);
   }
 
 
   addToCart(cartId, product: any, quantity: number): Observable<any> {
     let url = this.urlAddToCart;
-    console.log(url);
     return this.http.put(url,
       { 'cartId': cartId, 'productId': product.Id, 'quantity': quantity }, {
         headers: {
@@ -141,5 +167,37 @@ export class UtDataService {
     let url = this.urlDeleteCart + 'cartId=' + cartId + '&cartItemId=' + item.Id;
     console.log(url);
     return this.http.delete(url, { responseType: 'json' });
+  }
+
+  getSurveyResults(userId: string, productId: number): Observable<any> {
+    let params = new HttpParams();
+    let options = null;
+
+    params = params.append('userId', userId);
+    params = params.append('productId', productId.toString());
+
+    options =
+      {
+        params: params,
+        responseType: 'json'
+      }
+
+    return this.http.get(this.urlSurveyResults, options);
+  }
+
+  createSurveyResults(userId: string, productId: number, surveyAnswers: any): Observable<any> {
+    let body =
+    {
+      userId: userId,
+      productId: productId,
+      surveyAnswers: surveyAnswers
+    };
+
+    return this.http.post(this.urlSurveyResults,
+      body, {
+        headers: {
+          'Content-Type': 'application/json'
+        }, responseType: 'json'
+      });
   }
 }

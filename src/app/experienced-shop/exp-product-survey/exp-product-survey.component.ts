@@ -7,6 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { GoogleAnalyticsService } from '../../google-analytics.service';
 import { global } from '../../../variables/global';
 import { AuthService } from '../../auth.service';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 
 
 @Component({
@@ -15,10 +16,12 @@ import { AuthService } from '../../auth.service';
   styleUrls: ['./exp-product-survey.component.css']
 })
 export class ExpProductSurveyComponent implements OnInit {
-
   cartId: string;
   closeBtnName: string;
   @Input() product: any;
+  surveyAlreadyTaken: boolean = true;
+  productInCart: boolean = true;
+  isLoading: boolean = true;
 
   userSurvey = new FormGroup(
     {
@@ -26,25 +29,104 @@ export class ExpProductSurveyComponent implements OnInit {
       attractive: new FormControl('', Validators.required),
       like: new FormControl('', Validators.required)
     }
-  )
- 
+  );
+
   constructor(
-    public bsModalRef: BsModalRef,
     private dataService: ExpDataService,
     private cartService: ExpCartService,
     private cookieService: CookieService,
     private googleAnalyticsService: GoogleAnalyticsService,
-    private authService: AuthService
-  ) {}
- 
+    private authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
+
   ngOnInit() {
-    console.log(this.product);
     this.cartId = this.cartService.getCartId();
+    let userId = this.authService.getUser();
+    this.dataService.getCart(this.cartId).subscribe(
+      (data: any) => {
+        let cart = data;
+        this.productInCart = this.cotainsItem(cart);
+      }
+    );
+
+    this.dataService.getSurveyResults(userId, this.product.Id).subscribe(
+      (data: any) => {
+        console.log('survey Found!');
+        this.surveyAlreadyTaken = true;
+        this.isLoading = false;
+      },
+      (error: any) => {
+        if (error.status === 404) {
+          console.log('survey NOT Found!');
+          this.surveyAlreadyTaken = false;
+          this.isLoading = false;
+        }
+      }
+    );
+
+    this.router.events.subscribe(event => {
+      this.isLoading = true;
+      let user = this.authService.getUser();
+      if (event instanceof NavigationEnd) {
+        console.log('ROUTE CHANGED');
+        this.dataService.getSurveyResults(userId, this.route.snapshot.params.id).subscribe(
+          (data: any) => {
+            console.log('survey Found!');
+            this.surveyAlreadyTaken = true;
+            this.isLoading = false;
+          },
+          (error: any) => {
+            if (error.status === 404) {
+              console.log('survey NOT Found!');
+              this.surveyAlreadyTaken = false;
+              this.isLoading = false;
+
+            }
+          });
+      }
+      this.userSurvey.reset({ likelihood: 0, attractive: '', like: '' });
+      this.cartId = this.cartService.getCartId();
+      this.dataService.getCart(this.cartId).subscribe(
+        (data: any) => {
+          let cart = data;
+          this.productInCart = this.cotainsItem(cart);
+        }
+      );
+    });
+
+    this.cartService.onCartChanged.subscribe(
+      () => {
+        this.cartId = this.cartService.getCartId();
+        this.dataService.getCart(this.cartId).subscribe(
+          (data: any) => {
+            let cart = data;
+            this.productInCart = this.cotainsItem(cart);
+          }
+        );
+      }
+    );
   }
 
-  onSubmit() {
+  onSubmitAddToCart() {
+    this.surveyAlreadyTaken = true;
+    this.productInCart = true;
+    let answers =
+    {
+      likelihood: this.userSurvey.value.likelihood,
+      attractiveness: this.userSurvey.value.attractive,
+      like: this.userSurvey.value.like,
+      addedToCart: true
+    }
+    this.dataService.createSurveyResults(this.authService.getUser(), this.product.Id, answers).subscribe(
+      (data: any) => {
+        console.log('Survey answered! (added to cart)');
+        this.surveyAlreadyTaken = true;
+      }
+    );
     this.cartId = this.cartService.getCartId();
-    if ( this.cartId != '') {
+    if (this.cartId != '') {
       console.log("Add to existing cart")
       this.addToCart(this.cartId, this.product);
     } else {
@@ -60,16 +142,51 @@ export class ExpProductSurveyComponent implements OnInit {
     );
   }
 
+  onSubmitOnly() {
+    let answers =
+    {
+      likelihood: this.userSurvey.value.likelihood,
+      attractiveness: this.userSurvey.value.attractive,
+      like: this.userSurvey.value.like,
+      addedToCart: false
+    }
+    this.dataService.createSurveyResults(this.authService.getUser(), this.product.Id, answers).subscribe(
+      (data: any) => {
+        console.log('Survey answered! (added to cart)');
+        this.surveyAlreadyTaken = true;
+      }
+    );
+  }
+
+  onAddToCartOnly() {
+    this.cartId = this.cartService.getCartId();
+    if (this.cartId != '') {
+      console.log("Add to existing cart")
+      this.addToCart(this.cartId, this.product);
+    } else {
+      console.log("Create new cart");
+      this.createCart(this.product);
+    }
+    this.googleAnalyticsService.sendAddToCartButtonConfirmedEvent(this.product.Id);
+    this.googleAnalyticsService.sendProductSurveyData(
+      this.product.Id,
+      this.userSurvey.value.likelihood,
+      this.userSurvey.value.attractive,
+      this.userSurvey.value.like,
+    );
+  }
+
+
+
+
   private createCart(product: any) {
     let userId = this.authService.getUser();
     if (userId != null) {
       this.dataService.createCart(product, 1, userId)
         .subscribe(
           data => {
-            console.log(data);
             this.cookieService.set(global.EXP_CART_ID, data.Id)
             this.cartService.updateCart(data);
-            this.bsModalRef.hide();
           });
     }
   }
@@ -78,10 +195,31 @@ export class ExpProductSurveyComponent implements OnInit {
     console.log(cartId);
     this.dataService.addToCart(cartId, product, 1)
       .subscribe(
-        data => {
+        (data: any) => {
           this.cartService.updateCart(data);
-          this.bsModalRef.hide();
+        },
+        (error: any) => {
+          switch (error.status) {
+            case 409:
+              console.log('409 Item already exists');
+              break;
+            case 500:
+              console.log('500 Server error');
+              break;
+          }
         });
+  }
+
+  private cotainsItem(cart: any) {
+    let found = false;
+    let cartItems = cart != null ? cart.CartItems : [];
+    for (let i = 0; i < cartItems.length; i++) {
+      if (cartItems[i].ProductId == this.product.Id) {
+        found = true;
+        break;
+      }
+    }
+    return found;
   }
 
 }
