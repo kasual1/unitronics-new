@@ -1,68 +1,71 @@
-<form [formGroup]="userSurvey" (ngSubmit)="onSubmit()">
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">Survey</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
+<div *ngIf="isLoading" class="spinner">
+    <div class="bounce1"></div>
+    <div class="bounce2"></div>
+    <div class="bounce3"></div>
   </div>
-  <div class="modal-body">
-    <p id="instruction">Please answer the questions below to add this product to your cart.</p>
-    <!-- Available Options Starts -->
-    <div class="options">
-      <div class="slidecontainer">
-        <p>1. How likely would you buy this product?</p>
-        <p style="float: left;">0%</p>
-        <input type="range" min="0" max="100" class="slider" id="likelihood" style="float: left;" formControlName="likelihood" required>
-        <p style="float: left;">100%</p>
-        <p style="float: left; font-weight: bold; margin-left: 45px;">{{userSurvey.value['likelihood']}}%</p>
-      </div>
-
-      <div class="slidecontainer">
-        <p>2. How attractive is the product? (1 = not attractive, 7 = very attractive)</p>
-        <div>
-          <label class="radio-inline">
-            <input type="radio" formControlName="attractive" [value]=1 required>1</label>
-          <label class="radio-inline">
-            <input type="radio" formControlName="attractive" [value]=2 required>2</label>
-          <label class="radio-inline">
-            <input type="radio" formControlName="attractive" [value]=3 required>3</label>
-          <label class="radio-inline">
-            <input type="radio" formControlName="attractive" [value]=4 required>4</label>
-          <label class="radio-inline">
-            <input type="radio" formControlName="attractive" [value]=5 required>5</label>
-          <label class="radio-inline">
-            <input type="radio" formControlName="attractive" [value]=6 required>6</label>
-          <label class="radio-inline">
-            <input type="radio" formControlName="attractive" [value]=7 required>7</label>
+  <div *ngIf="!isLoading">
+    <form *ngIf="!surveyAlreadyTaken" [formGroup]="userSurvey" (ngSubmit)="onSubmitAddToCart()">
+      <!-- Available Options Starts -->
+      <div class="options">
+        <div class="slidecontainer">
+          <p>1. How likely would you buy this product?</p>
+          <p style="float: left;">0%</p>
+          <input type="range" min="0" max="100" class="slider" id="likelihood" style="float: left;" formControlName="likelihood" required>
+          <p style="float: left;">100%</p>
+          <p style="float: left; font-weight: bold; margin-left: 45px;">{{userSurvey.value['likelihood']}}%</p>
         </div>
-      </div>
-
-      <div class="slidecontainer">
-        <div class="form-group">
-          <p>3. How do you like the product? (1 = not at all, 7 = very much)</p>
+  
+        <div class="slidecontainer">
+          <p>2. How attractive is the product? (1 = not attractive, 7 = very attractive)</p>
           <div>
             <label class="radio-inline">
-              <input type="radio" formControlName="like" [value]=1 required>1</label>
+              <input type="radio" formControlName="attractive" [value]=1 required>1</label>
             <label class="radio-inline">
-              <input type="radio" formControlName="like" [value]=2 required>2</label>
+              <input type="radio" formControlName="attractive" [value]=2 required>2</label>
             <label class="radio-inline">
-              <input type="radio" formControlName="like" [value]=3 required>3</label>
+              <input type="radio" formControlName="attractive" [value]=3 required>3</label>
             <label class="radio-inline">
-              <input type="radio" formControlName="like" [value]=4 required>4</label>
+              <input type="radio" formControlName="attractive" [value]=4 required>4</label>
             <label class="radio-inline">
-              <input type="radio" formControlName="like" [value]=5 required>5</label>
+              <input type="radio" formControlName="attractive" [value]=5 required>5</label>
             <label class="radio-inline">
-              <input type="radio" formControlName="like" [value]=6 required>6</label>
+              <input type="radio" formControlName="attractive" [value]=6 required>6</label>
             <label class="radio-inline">
-              <input type="radio" formControlName="like" [value]=7 required>7</label>
+              <input type="radio" formControlName="attractive" [value]=7 required>7</label>
+          </div>
+        </div>
+  
+        <div class="slidecontainer">
+          <div class="form-group">
+            <p>3. How do you like the product? (1 = not at all, 7 = very much)</p>
+            <div>
+              <label class="radio-inline">
+                <input type="radio" formControlName="like" [value]=1 required>1</label>
+              <label class="radio-inline">
+                <input type="radio" formControlName="like" [value]=2 required>2</label>
+              <label class="radio-inline">
+                <input type="radio" formControlName="like" [value]=3 required>3</label>
+              <label class="radio-inline">
+                <input type="radio" formControlName="like" [value]=4 required>4</label>
+              <label class="radio-inline">
+                <input type="radio" formControlName="like" [value]=5 required>5</label>
+              <label class="radio-inline">
+                <input type="radio" formControlName="like" [value]=6 required>6</label>
+              <label class="radio-inline">
+                <input type="radio" formControlName="like" [value]=7 required>7</label>
+            </div>
           </div>
         </div>
       </div>
+      <button type="submit" class="btn btn-default btn-cart" [disabled]="!userSurvey.valid">
+        <i class="fa fa-shopping-cart"></i> Submit and add to cart</button>
+      <button type="button" class="btn btn-default btn-submit" [disabled]="!userSurvey.valid" (click)="onSubmitOnly()">
+        Submit </button>
+    </form>
+    <div *ngIf="surveyAlreadyTaken" class="survey-complete-msg">
+      <h3><i class="fa fa-check"></i> Survey completed!</h3>
+      <h3 *ngIf="productInCart"><i class="fa fa-check"></i> Product in cart!</h3>
+      <button *ngIf="!productInCart" type="button" class="btn btn-default btn-cart" (click)="onAddToCartOnly()">
+        <i class="fa fa-shopping-cart"></i> Add to Cart</button>
     </div>
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Cancel</button>
-    <button type="submit" class="btn btn-default btn-cart" [disabled]="!userSurvey.valid">
-      <i class="fa fa-shopping-cart"></i>Add to Cart</button>
-  </div>
-</form>
