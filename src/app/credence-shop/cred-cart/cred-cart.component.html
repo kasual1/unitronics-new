@@ -13,7 +13,6 @@
             <td class="text-left">
               <a routerLink="/credence/detail/{{item.Product.Id}}">{{item.Product.Title}}</a>
             </td>
-            <td class="text-right">x {{item.Quantity}}</td>
             <td class="text-right">{{item.Product.LowestNewPriceFormatted}}</td>
             <td class="text-center">
               <a (click)="deleteFromCart(item)">
