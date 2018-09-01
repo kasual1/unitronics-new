@@ -25,7 +25,7 @@
   </div>
 </div>
 <div class="shop-info-banner">
-  <h2>Credence Goods Online Shop</h2>
+  <h2>Search Goods Online Shop</h2>
 </div>
 <!-- Header Section Starts -->
 <header class="header-area">
@@ -55,7 +55,7 @@
             <div class="col-md-3 col-sm-3 col-xs-12">
               <div id="logo">
                 <a routerLink="/credence">
-                  <img src="assets/images/suplement-logo-full.png" title="Champ Nutrition" alt="Champ Nutrition" class="img-responsive img-center">
+                  <img src="assets/images/7k-backpacks-logo-full.png" title="Champ Nutrition" alt="Champ Nutrition" class="img-responsive img-center">
                 </a>
               </div>
             </div>
@@ -90,90 +90,84 @@
         <div class="collapse navbar-collapse navbar-cat-collapse">
           <ul class="nav navbar-nav">
             <li dropdown>
-              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Men</a>
+              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Hiking</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Protein Shakes (Men)'}">Protein
-                    Shakes</a>
+                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Osprey'}">Osprey</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Protein Bars (Men)'}">Protein
-                    Bars</a>
+                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Deuter'}">Deuter</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Pre Workout (Men)'}">Pre
-                    Workout</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Post Workout (Men)'}">Post
-                    Workout</a>
+                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Jack Wolfskin'}">Jack
+                    Wolfskin</a>
                 </li>
               </ul>
             </li>
             <li dropdown>
-              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Woman</a>
+              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Work</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Protein Shakes (Woman)'}">Protein
-                    Shakes</a>
+                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Laptop'}">Laptop
+                    Case</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Protein Bars (Woman)'}">Protein
-                    Bars</a>
+                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: '22 Liters (Work)'}">23
+                    Liters</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Pre Workout (Woman)'}">Pre
-                    Workout</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Post Workout (Woman)'}">Post
-                    Workout</a>
-                </li>
-              </ul>
-            </li>
-            <li dropdown>
-              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Cardio</a>
-              <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
-                <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Sport Gel'}">Sport
-                    Gel</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Energie'}">Energie</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Iso Drink'}">Iso
-                    Drinks</a>
-                </li>
-              </ul>
-            </li>
-            <li dropdown>
-              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Meal Replacement</a>
-              <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
-                <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Saturo'}">
-                    Saturo
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Runtime'}">
-                    Runtime
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Layenberger'}">
-                    Layenberger
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Bodylab24'}">
-                    Bodylab24
+                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: '25plus Liters (Work)'}">>
+                    25 Liters Workout
                   </a>
                 </li>
               </ul>
             </li>
             <li dropdown>
-              <a class="clickable" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Neu'}">Neu</a>
+              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Travel</a>
+              <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
+                <li>
+                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Men (Travel)'}">Men</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Woman (Travel)'}">Woman</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: '25 less Liter (Travel)'}"><
+                      25 Liters</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: '25plus Liters (Travel)'}">>
+                    25 Liters</a>
+                </li>
+              </ul>
+            </li>
+            <li dropdown>
+              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Trending</a>
+              <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
+                <li>
+                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Herschel'}">
+                    Herschel
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Eastpak'}">
+                    Eastpak
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Timbuk2'}">
+                    Timbuk2
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Fjällräven'}">
+                    Fjällräven
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li dropdown>
+              <a class="clickable" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'New'}">Neu</a>
             </li>
 
           </ul>
