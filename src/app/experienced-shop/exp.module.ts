@@ -18,6 +18,7 @@ import { ExpTestimonialsComponent } from './exp-testimonials/exp-testimonials.co
 import { ExpAdBannerComponent } from './exp-ad-banner/exp-ad-banner.component';
 import { ExpProductSurveyComponent } from './exp-product-survey/exp-product-survey.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NextShopModalComponent } from '../next-shop-modal/next-shop-modal.component';
 
 @NgModule({
   imports: [
@@ -43,10 +44,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ExpRecommendedProductsComponent,
     ExpTestimonialsComponent,
     ExpAdBannerComponent,
-    ExpProductSurveyComponent
+    ExpProductSurveyComponent,
   ],
   bootstrap:[
-    ExpProductSurveyComponent
+    ExpProductSurveyComponent,
+    NextShopModalComponent
   ]
 })
 export class ExpModule { }

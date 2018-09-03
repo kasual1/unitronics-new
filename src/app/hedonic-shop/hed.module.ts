@@ -19,6 +19,7 @@ import { HedProductSurveyComponent } from './hed-product-survey/hed-product-surv
 import { RatingModule } from 'ngx-bootstrap';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap';
+import { NextShopModalComponent } from '../next-shop-modal/next-shop-modal.component';
 
 @NgModule({
   imports: [
@@ -44,8 +45,8 @@ import { ModalModule } from 'ngx-bootstrap';
     HedAdBannerComponent,
     HedTestimonialsComponent,
     HedMainContentComponent,
-    HedProductSurveyComponent
+    HedProductSurveyComponent,
   ],
-  bootstrap: [HedProductSurveyComponent]
+  bootstrap: [HedProductSurveyComponent, NextShopModalComponent]
 })
 export class HedModule { }

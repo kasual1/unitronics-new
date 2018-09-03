@@ -7,16 +7,9 @@
   <form *ngIf="!surveyAlreadyTaken" [formGroup]="userSurvey" (ngSubmit)="onSubmitAddToCart()">
     <!-- Available Options Starts -->
     <div class="options">
-      <div class="slidecontainer">
-        <p>1. How likely would you buy this product?</p>
-        <p style="float: left;">0%</p>
-        <input type="range" min="0" max="100" class="slider" id="likelihood" style="float: left;" formControlName="likelihood" required>
-        <p style="float: left;">100%</p>
-        <p style="float: left; font-weight: bold; margin-left: 45px;">{{userSurvey.value['likelihood']}}%</p>
-      </div>
 
       <div class="slidecontainer">
-        <p>2. How attractive is the product? (1 = not attractive, 7 = very attractive)</p>
+        <p>1. How attractive is the product? (1 = not attractive, 7 = very attractive)</p>
         <div>
           <label class="radio-inline">
             <input type="radio" formControlName="attractive" [value]=1 required>1</label>
@@ -37,7 +30,7 @@
 
       <div class="slidecontainer">
         <div class="form-group">
-          <p>3. How do you like the product? (1 = not at all, 7 = very much)</p>
+          <p>2. How do you like the product? (1 = not at all, 7 = very much)</p>
           <div>
             <label class="radio-inline">
               <input type="radio" formControlName="like" [value]=1 required>1</label>
@@ -56,16 +49,31 @@
           </div>
         </div>
       </div>
+
+
+      <div class="slidecontainer">
+        <p>3. How likely would you buy this product?</p>
+        <p style="float: left;">0%</p>
+        <input type="range" min="0" max="100" class="slider" id="likelihood" style="float: left;" formControlName="likelihood" required>
+        <p style="float: left;">100%</p>
+        <p style="float: left; font-weight: bold; margin-left: 45px;">{{userSurvey.value['likelihood']}}%</p>
+      </div>
+
     </div>
     <button type="submit" class="btn btn-default btn-cart" [disabled]="!userSurvey.valid">
-      <i class="fa fa-shopping-cart"></i> Submit and add to cart</button>
+      <i class="fa fa-shopping-cart"></i> Submit and add to cart to buy</button>
     <button type="button" class="btn btn-default btn-submit" [disabled]="!userSurvey.valid" (click)="onSubmitOnly()">
-      Submit </button>
+      Submit without buying </button>
   </form>
   <div *ngIf="surveyAlreadyTaken" class="survey-complete-msg">
-    <h3><i class="fa fa-check"></i> Survey completed!</h3>
+    <h3><i class="fa fa-check"></i> Your preference about this product is submitted!</h3>
     <h3 *ngIf="productInCart"><i class="fa fa-check"></i> Product in cart!</h3>
-    <button *ngIf="!productInCart" type="button" class="btn btn-default btn-cart" (click)="onAddToCartOnly()">
+    <button *ngIf="!productInCart" type="button" class="btn btn-default btn-cart btn-add" (click)="onAddToCartOnly()">
       <i class="fa fa-shopping-cart"></i> Add to Cart</button>
+    <div class="next-shop-msg">
+      <p>You can continue shopping at this online shop or click on next to go to the next shop.</p>
+      <button type="button" class="btn btn-default btn-submit" (click)="onNextShopClicked()">
+        Go to next shop
+      </button>
+    </div>
   </div>
-</div>

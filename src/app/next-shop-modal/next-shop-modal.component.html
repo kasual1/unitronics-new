@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Important</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="onCloseClicked()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p>Are you sure you want to leave this shop? You can't come back!</p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="onCloseClicked()">Cancel</button>
+  <button type="button" class="btn btn-default" (click)="onNextShopClicked()">Go to next Shop</button>
+</div>

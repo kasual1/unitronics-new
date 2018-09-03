@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { BsModalRef } from 'ngx-bootstrap';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { ExpDataService } from '../exp-data.service';
 import { ExpCartService } from '../exp-cart.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -8,6 +8,7 @@ import { GoogleAnalyticsService } from '../../google-analytics.service';
 import { global } from '../../../variables/global';
 import { AuthService } from '../../auth.service';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { NextShopModalComponent } from '../../next-shop-modal/next-shop-modal.component';
 
 
 @Component({
@@ -22,6 +23,8 @@ export class ExpProductSurveyComponent implements OnInit {
   surveyAlreadyTaken: boolean = true;
   productInCart: boolean = true;
   isLoading: boolean = true;
+  modalRef: BsModalRef;
+
 
   userSurvey = new FormGroup(
     {
@@ -37,6 +40,7 @@ export class ExpProductSurveyComponent implements OnInit {
     private cookieService: CookieService,
     private googleAnalyticsService: GoogleAnalyticsService,
     private authService: AuthService,
+    private modalService: BsModalService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -176,6 +180,12 @@ export class ExpProductSurveyComponent implements OnInit {
     );
   }
 
+  onNextShopClicked(){
+    const initialState = {
+      navigateTo: 'utilitarian'
+    }
+    this.modalRef = this.modalService.show(NextShopModalComponent,{initialState});
+  }
 
 
 

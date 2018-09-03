@@ -17,6 +17,7 @@ import { CredImageSliderComponent } from './cred-image-slider/cred-image-slider.
 import { CredTestimonialsComponent } from './cred-testimonials/cred-testimonials.component';
 import { CredAdBannerComponent } from './cred-ad-banner/cred-ad-banner.component';
 import { CredProductSurveyComponent } from './cred-product-survey/cred-product-survey.component';
+import { NextShopModalComponent } from '../next-shop-modal/next-shop-modal.component';
 
 @NgModule({
   imports: [
@@ -42,8 +43,8 @@ import { CredProductSurveyComponent } from './cred-product-survey/cred-product-s
     CredImageSliderComponent,
     CredTestimonialsComponent,
     CredAdBannerComponent,
-    CredProductSurveyComponent
+    CredProductSurveyComponent,
   ],
-  bootstrap:[CredProductSurveyComponent]
+  bootstrap:[CredProductSurveyComponent, NextShopModalComponent]
 })
 export class CredModule { }

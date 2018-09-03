@@ -16,10 +16,12 @@ import { FormsModule } from '@angular/forms';
 import { CredModule } from './credence-shop/cred.module';
 import { CredSurveyModule } from './credence-survey/cred-survey.module';
 import { FinalSurveyModule } from './app-final-survey/final-survey.module';
+import { NextShopModalComponent } from './next-shop-modal/next-shop-modal.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NextShopModalComponent
   ],
   imports: [
     ExpModule,

@@ -1,7 +1,6 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
-import { AuthService } from '../../auth.service';
+import { NextShopModalComponent } from '../../next-shop-modal/next-shop-modal.component';
 
 @Component({
   selector: 'app-exp-landing-page',
@@ -13,22 +12,18 @@ export class ExpLandingPageComponent implements OnInit {
   modalRef: BsModalRef;
 
   constructor(
-    private router: Router,
-    private modalService: BsModalService,
-    private authService: AuthService
+    private modalService: BsModalService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(){
+
   }
 
-  onNextClicked(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
-  }
-
-  onNextConfirmed(modalRef: BsModalRef){
-    this.router.navigateByUrl('/utilitarian');
-    this.authService.finishedExpShop();
-    modalRef.hide();
+  onNextClicked() {
+    const initialState = {
+      navigateTo: 'utilitarian'
+    }
+    this.modalRef = this.modalService.show(NextShopModalComponent,{initialState});
   }
 
 }

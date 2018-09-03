@@ -77,6 +77,10 @@ slider:active {
      border-color: none !important;
  }
 
+ .btn-add{
+    margin-bottom: 20px;
+}
+
  .btn-cart:disabled{
     border-color: none !important;
 }
@@ -87,4 +91,14 @@ slider:active {
     padding: 5px;
     border-radius: 20px;
     
+}
+
+.next-shop-msg{
+    border: solid 1px #e0e0e0;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.next-shop-msg>button{
+    margin-left: 0;
 }

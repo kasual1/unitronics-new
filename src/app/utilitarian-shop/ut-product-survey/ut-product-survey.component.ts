@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { BsModalRef } from 'ngx-bootstrap';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { UtDataService } from '../ut-data.service';
 import { UtCartService } from '../ut-cart.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -8,6 +8,7 @@ import { GoogleAnalyticsService } from '../../google-analytics.service';
 import { global } from '../../../variables/global';
 import { AuthService } from '../../auth.service';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { NextShopModalComponent } from '../../next-shop-modal/next-shop-modal.component';
 
 @Component({
   selector: 'app-ut-product-survey',
@@ -21,6 +22,8 @@ export class UtProductSurveyComponent implements OnInit {
   surveyAlreadyTaken: boolean = true;
   productInCart: boolean = true;
   isLoading: boolean = true;
+  modalRef: BsModalRef;
+
 
   userSurvey = new FormGroup(
     {
@@ -36,6 +39,7 @@ export class UtProductSurveyComponent implements OnInit {
     private cookieService: CookieService,
     private googleAnalyticsService: GoogleAnalyticsService,
     private authService: AuthService,
+    private modalService: BsModalService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -173,6 +177,14 @@ export class UtProductSurveyComponent implements OnInit {
       this.userSurvey.value.attractive,
       this.userSurvey.value.like,
     );
+  }
+
+
+  onNextShopClicked(){
+    const initialState = {
+      navigateTo: 'credence'
+    }
+    this.modalRef = this.modalService.show(NextShopModalComponent,{initialState});
   }
 
 

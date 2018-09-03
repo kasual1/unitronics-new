@@ -1,7 +1,7 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
-import { AuthService } from '../../auth.service';
+import { NextShopModalComponent } from '../../next-shop-modal/next-shop-modal.component';
+
 
 @Component({
   selector: 'app-hed-landing-page',
@@ -13,23 +13,19 @@ export class HedLandingPageComponent implements OnInit {
   modalRef: BsModalRef;
 
   constructor(
-    private router: Router,
-    private modalService: BsModalService,
-    private authService: AuthService
+    private modalService: BsModalService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(){
+
   }
 
-  onNextClicked(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
+  onNextClicked() {
+    const initialState = {
+      navigateTo: 'experienced'
+    }
+    this.modalRef = this.modalService.show(NextShopModalComponent,{initialState});
   }
-
-  onNextConfirmed(modalRef: BsModalRef){
-    this.router.navigateByUrl('/experienced');
-    this.authService.finishedHedShop();
-    modalRef.hide();
-  }
-
 
 }
+

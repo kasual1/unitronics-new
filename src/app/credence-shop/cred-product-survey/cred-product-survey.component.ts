@@ -1,13 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { global } from '../../../variables/global';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { BsModalRef } from 'ngx-bootstrap';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { CredDataService } from '../cred-data.service';
 import { CredCartService } from '../cred-cart.service';
 import { CookieService } from 'ngx-cookie-service';
 import { GoogleAnalyticsService } from '../../google-analytics.service';
 import { AuthService } from '../../auth.service';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { NextShopModalComponent } from '../../next-shop-modal/next-shop-modal.component';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class CredProductSurveyComponent implements OnInit {
   surveyAlreadyTaken: boolean = true;
   productInCart: boolean = true;
   isLoading: boolean = true;
+  modalRef: BsModalRef;
 
   userSurvey = new FormGroup(
     {
@@ -37,6 +39,7 @@ export class CredProductSurveyComponent implements OnInit {
     private cookieService: CookieService,
     private googleAnalyticsService: GoogleAnalyticsService,
     private authService: AuthService,
+    private modalService: BsModalService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -176,6 +179,13 @@ export class CredProductSurveyComponent implements OnInit {
     );
   }
 
+
+  onNextShopClicked(){
+    const initialState = {
+      navigateTo: 'final-survey'
+    }
+    this.modalRef = this.modalService.show(NextShopModalComponent,{initialState});
+  }
 
 
 

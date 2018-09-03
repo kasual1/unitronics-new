@@ -19,6 +19,7 @@ import { UtTestimonialsComponent } from './ut-testimonials/ut-testimonials.compo
 import { ModalModule } from 'ngx-bootstrap';
 import { UtProductSurveyComponent } from './ut-product-survey/ut-product-survey.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NextShopModalComponent } from '../next-shop-modal/next-shop-modal.component';
 
 @NgModule({
   imports: [
@@ -46,6 +47,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     UtTestimonialsComponent,
     UtProductSurveyComponent
   ],
-  bootstrap: [UtProductSurveyComponent]
+  bootstrap: [UtProductSurveyComponent, NextShopModalComponent]
 })
 export class UtModule { }

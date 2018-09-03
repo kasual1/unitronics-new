@@ -1,25 +1,9 @@
-<ng-template #template>
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">Important</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <p>Are you sure you want to leave this shop? You can't come back!</p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-default" (click)="modalRef.hide()">Cancel</button>
-    <button type="button" class="btn btn-default" (click)="onNextConfirmed(modalRef)">Go to next Shop</button>
-  </div>
-</ng-template>
-
 <div class="row shop-nav-header">
   <div class="col-md-10">
     <p>If you are done shopping in this shop, click on next!</p>
   </div>
   <div class="col-md-2">
-    <button type="button" class="btn btn-next pull-right next" (click)="onNextClicked(template)">
+    <button type="button" class="btn btn-next pull-right next" (click)="onNextClicked()">
       Next Shop
     </button>
   </div>

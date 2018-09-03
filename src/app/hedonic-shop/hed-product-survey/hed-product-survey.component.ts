@@ -7,7 +7,8 @@ import { global } from '../../../variables/global';
 import { GoogleAnalyticsService } from '../../google-analytics.service';
 import { AuthService } from '../../auth.service';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
-
+import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { NextShopModalComponent } from '../../next-shop-modal/next-shop-modal.component';
 
 @Component({
   selector: 'app-hed-product-survey',
@@ -21,6 +22,7 @@ export class HedProductSurveyComponent implements OnInit {
   surveyAlreadyTaken: boolean = true;
   productInCart: boolean = true;
   isLoading: boolean = true;
+  modalRef: BsModalRef;
 
   userSurvey = new FormGroup(
     {
@@ -36,6 +38,7 @@ export class HedProductSurveyComponent implements OnInit {
     private cookieService: CookieService,
     private googleAnalyticsService: GoogleAnalyticsService,
     private authService: AuthService,
+    private modalService: BsModalService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -176,7 +179,12 @@ export class HedProductSurveyComponent implements OnInit {
   }
 
 
-
+  onNextShopClicked(){
+    const initialState = {
+      navigateTo: 'experienced'
+    }
+    this.modalRef = this.modalService.show(NextShopModalComponent,{initialState});
+  }
 
   private createCart(product: any) {
     let userId = this.authService.getUser();
