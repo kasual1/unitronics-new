@@ -63,18 +63,21 @@
     <button type="submit" class="btn btn-default btn-cart" [disabled]="!userSurvey.valid">
       <i class="fa fa-shopping-cart"></i> Submit and add to cart to buy</button>
     <button type="button" class="btn btn-default btn-submit" [disabled]="!userSurvey.valid" (click)="onSubmitOnly()">
-        Submit without buying </button>
+      Submit without buying </button>
   </form>
   <div *ngIf="surveyAlreadyTaken" class="survey-complete-msg">
-      <h3><i class="fa fa-check"></i> Your preference about this product is submitted!</h3>
-      <h3 *ngIf="productInCart"><i class="fa fa-check"></i> Product in cart!</h3>
-      <button *ngIf="!productInCart" type="button" class="btn btn-default btn-cart btn-add" (click)="onAddToCartOnly()">
-        <i class="fa fa-shopping-cart"></i> Add to Cart</button>
-      <div class="next-shop-msg">
-        <p>You can continue shopping at this online shop or click on next to go to the next shop.</p>
-        <button type="button" class="btn btn-default btn-submit" (click)="onNextShopClicked()">
-          Go to next shop
-        </button>
-      </div>
+    <h3><i class="fa fa-check"></i> Your preference about this product is submitted!</h3>
+    <h3 *ngIf="productInCart"><i class="fa fa-check"></i> Product in cart!</h3>
+    <h3 *ngIf="!productInCart">
+      <i class="fa fa-check not-in-cart"></i>
+      Product not in your cart! Do you want to
+      <a class="clickable add-cart-link" (click)="onAddToCartOnly()">add it</a>?
+    </h3>
+    <div class="next-shop-msg">
+      <p>You can continue shopping at this online shop or click on next to go to the next shop.</p>
+      <button type="button" class="btn btn-default btn-submit" (click)="onNextShopClicked()">
+        Go to next shop
+      </button>
     </div>
+  </div>
 </div>

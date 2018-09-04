@@ -93,6 +93,22 @@ slider:active {
     
 }
 
+.add-cart-link{
+    color: black;
+    text-decoration: underline;
+}
+
+.add-cart-link:hover{
+    color: #ec2f2f;
+}
+
+.not-in-cart{
+    color: white;
+   background-color: #e0e0e0 !important;
+   padding: 5px;
+   border-radius: 20px;
+}
+
 .next-shop-msg{
     border: solid 1px #e0e0e0;
     padding: 15px;
