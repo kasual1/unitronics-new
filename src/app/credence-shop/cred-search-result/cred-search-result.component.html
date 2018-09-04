@@ -49,11 +49,17 @@
       <!-- Product Filter Starts -->
       <!-- Product List Display Starts -->
       <!-- Product #1 Starts -->
+      <div *ngIf="results.length==0" class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
       <div *ngFor="let product of results" class="row">
         <div class="col-xs-12">
           <div class="product-col list clearfix">
             <div class="image">
-              <a routerLink="/credence/detail/{{product.Id}}"><img src="{{product.MediumImageUrl}}" alt="product" class="img-responsive center-block" /></a>
+              <a routerLink="/credence/detail/{{product.Id}}"><img src="{{product.MediumImageUrl}}" alt="product" class="img-responsive center-block"
+                /></a>
             </div>
             <div class="caption">
               <h4>
@@ -93,7 +99,7 @@
         <!-- Results Starts -->
         <div class="col-sm-6 results">
           Total of {{totalPages}} Page(s)
-         </div>
+        </div>
         <!-- Results Ends -->
       </div>
       <!-- Pagination & Results Ends -->
