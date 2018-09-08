@@ -17,6 +17,7 @@ import { CredModule } from './credence-shop/cred.module';
 import { CredSurveyModule } from './credence-survey/cred-survey.module';
 import { FinalSurveyModule } from './app-final-survey/final-survey.module';
 import { NextShopModalComponent } from './next-shop-modal/next-shop-modal.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { NextShopModalComponent } from './next-shop-modal/next-shop-modal.compon
     BrowserModule,
     FormsModule
   ],
-  providers: [CookieService],
+  providers: [CookieService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
