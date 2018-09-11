@@ -1,8 +1,6 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UtDataService } from '../ut-data.service';
-import { CookieService } from 'ngx-cookie-service';
-import { BsModalService } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-ut-detail-page',
@@ -17,13 +15,11 @@ export class UtDetailPageComponent implements OnInit {
   
   constructor(
     private route: ActivatedRoute,
-    private dataService: UtDataService,
-    private router: Router,
+    private dataService: UtDataService
   ) {
-    this.router.events.subscribe(val => {
-      this.id = +this.route.snapshot.paramMap.get('id');
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
       this.getProduct();
-      window.scrollTo(0, 0);
     });
   }
 
@@ -31,6 +27,7 @@ export class UtDetailPageComponent implements OnInit {
   }
 
   getProduct() {
+    this.product = null;
     this.dataService.readProduct(this.id)
       .subscribe(data => {
         this.product = data;

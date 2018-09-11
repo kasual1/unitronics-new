@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ExpDataService } from '../exp-data.service';
 
 @Component({
@@ -16,13 +16,11 @@ export class ExpDetailPageComponent implements OnInit {
   
   constructor(
     private route: ActivatedRoute,
-    private dataService: ExpDataService,
-    private router: Router,
+    private dataService: ExpDataService
   ) {
-    this.router.events.subscribe(val => {
-      this.id = +this.route.snapshot.paramMap.get('id');
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
       this.getProduct();
-      window.scrollTo(0, 0);
     });
   }
 
@@ -30,6 +28,7 @@ export class ExpDetailPageComponent implements OnInit {
   }
 
   getProduct() {
+    this.product = null;
     this.dataService.readProduct(this.id)
       .subscribe(data => {
         this.product = data;

@@ -3,9 +3,15 @@
 		<li>
 			<a routerLink="/hedonic">Home</a>
 		</li>
-		<span>&#187;</span> 
+		<span>&#187;</span>
 		<li class="active">Product Details</li>
 	</ol>
+	<!-- Progress spinner (Loading...)-->
+	<div *ngIf="!product" class="spinner">
+		<div class="bounce1"></div>
+		<div class="bounce2"></div>
+		<div class="bounce3"></div>
+	</div>
 	<!-- Product Info Starts -->
 	<div *ngIf="product" class="row product-info full">
 		<!-- Left Starts -->
@@ -86,7 +92,9 @@
 	</div>
 	<!-- Tabs Ends -->
 	<!-- Related Products Starts -->
-	<app-hed-recommended-products></app-hed-recommended-products>
+	<div *ngIf="product">
+		<app-hed-recommended-products></app-hed-recommended-products>
+	</div>
 	<!-- Related Products Ends -->
 </div>
 <!-- Main Container Ends -->

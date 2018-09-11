@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CredDataService } from '../cred-data.service';
 
 @Component({
@@ -16,13 +16,11 @@ export class CredDetailPageComponent implements OnInit {
   
   constructor(
     private route: ActivatedRoute,
-    private dataService: CredDataService,
-    private router: Router,
+    private dataService: CredDataService
   ) {
-    this.router.events.subscribe(val => {
-      this.id = +this.route.snapshot.paramMap.get('id');
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
       this.getProduct();
-      window.scrollTo(0, 0);
     });
   }
 
@@ -30,6 +28,7 @@ export class CredDetailPageComponent implements OnInit {
   }
 
   getProduct() {
+    this.product = null;
     this.dataService.readProduct(this.id)
       .subscribe(data => {
         this.product = data;

@@ -1,10 +1,6 @@
-import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HedDataService } from '../hed-data.service';
-import { AuthService } from '../../auth.service';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Validators } from '@angular/forms';
-import { HedCartService } from '../hed-cart.service';
 
 @Component({
   selector: 'app-hed-detail-page',
@@ -21,12 +17,10 @@ export class HedDetailPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private dataService: HedDataService,
-    private router: Router,
   ) {
-    this.router.events.subscribe(val => {
-      this.id = +this.route.snapshot.paramMap.get('id');
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
       this.getProduct();
-      window.scrollTo(0, 0);
     });
   }
 
@@ -34,6 +28,7 @@ export class HedDetailPageComponent implements OnInit {
   }
 
   getProduct() {
+    this.product = null;
     this.dataService.readProduct(this.id)
       .subscribe(data => {
         this.product = data;
