@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { HedProductSurveyComponent } from '../hed-product-survey/hed-product-survey.component';
-import { GoogleAnalyticsService } from '../../google-analytics.service';
-
 
 @Component({
   selector: 'app-hed-add-cart-button',
@@ -16,8 +14,7 @@ export class HedAddCartButtonComponent implements OnInit {
   bsModalRef: BsModalRef;
 
   constructor(
-    private modalService: BsModalService,
-    private googleAnalyticsService: GoogleAnalyticsService
+    private modalService: BsModalService
   ) { }
 
   ngOnInit() {
@@ -26,7 +23,6 @@ export class HedAddCartButtonComponent implements OnInit {
 
   onAddToCartClicked() {
     this.openModalWithComponent();
-    this.googleAnalyticsService.sendAddToCartButtonUnconfirmedEvent(this.product.Id);
   }
 
   openModalWithComponent() {

@@ -4,7 +4,6 @@ import { HedDataService } from '../hed-data.service';
 import { CookieService } from 'ngx-cookie-service';
 import { HedCartService } from '../hed-cart.service';
 import { global } from '../../../variables/global';
-import { GoogleAnalyticsService } from '../../google-analytics.service';
 import { AuthService } from '../../auth.service';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
@@ -36,7 +35,6 @@ export class HedProductSurveyComponent implements OnInit {
     private dataService: HedDataService,
     private cartService: HedCartService,
     private cookieService: CookieService,
-    private googleAnalyticsService: GoogleAnalyticsService,
     private authService: AuthService,
     private modalService: BsModalService,
     private router: Router,
@@ -135,13 +133,6 @@ export class HedProductSurveyComponent implements OnInit {
       console.log("Create new cart");
       this.createCart(this.product);
     }
-    this.googleAnalyticsService.sendAddToCartButtonConfirmedEvent(this.product.Id);
-    this.googleAnalyticsService.sendProductSurveyData(
-      this.product.Id,
-      this.userSurvey.value.likelihood,
-      this.userSurvey.value.attractive,
-      this.userSurvey.value.like,
-    );
   }
 
   onSubmitOnly() {
@@ -169,13 +160,6 @@ export class HedProductSurveyComponent implements OnInit {
       console.log("Create new cart");
       this.createCart(this.product);
     }
-    this.googleAnalyticsService.sendAddToCartButtonConfirmedEvent(this.product.Id);
-    this.googleAnalyticsService.sendProductSurveyData(
-      this.product.Id,
-      this.userSurvey.value.likelihood,
-      this.userSurvey.value.attractive,
-      this.userSurvey.value.like,
-    );
   }
 
 

@@ -4,7 +4,6 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { UtDataService } from '../ut-data.service';
 import { UtCartService } from '../ut-cart.service';
 import { CookieService } from 'ngx-cookie-service';
-import { GoogleAnalyticsService } from '../../google-analytics.service';
 import { global } from '../../../variables/global';
 import { AuthService } from '../../auth.service';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
@@ -37,7 +36,6 @@ export class UtProductSurveyComponent implements OnInit {
     private dataService: UtDataService,
     private cartService: UtCartService,
     private cookieService: CookieService,
-    private googleAnalyticsService: GoogleAnalyticsService,
     private authService: AuthService,
     private modalService: BsModalService,
     private router: Router,
@@ -136,13 +134,6 @@ export class UtProductSurveyComponent implements OnInit {
       console.log("Create new cart");
       this.createCart(this.product);
     }
-    this.googleAnalyticsService.sendAddToCartButtonConfirmedEvent(this.product.Id);
-    this.googleAnalyticsService.sendProductSurveyData(
-      this.product.Id,
-      this.userSurvey.value.likelihood,
-      this.userSurvey.value.attractive,
-      this.userSurvey.value.like,
-    );
   }
 
   onSubmitOnly() {
@@ -170,13 +161,6 @@ export class UtProductSurveyComponent implements OnInit {
       console.log("Create new cart");
       this.createCart(this.product);
     }
-    this.googleAnalyticsService.sendAddToCartButtonConfirmedEvent(this.product.Id);
-    this.googleAnalyticsService.sendProductSurveyData(
-      this.product.Id,
-      this.userSurvey.value.likelihood,
-      this.userSurvey.value.attractive,
-      this.userSurvey.value.like,
-    );
   }
 
 

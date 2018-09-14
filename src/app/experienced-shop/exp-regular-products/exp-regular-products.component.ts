@@ -22,7 +22,7 @@ export class ExpRegularProductsComponent implements OnInit {
     constructor(private dataService: ExpDataService) { }
   
     ngOnInit() {
-      this.getProducts(0, 12, this.category);
+      this.getProducts(0, 15, this.category);
     }
   
     getProducts(pageIndex, pageSize, category){

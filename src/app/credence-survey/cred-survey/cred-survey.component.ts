@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CredDataService } from '../../credence-shop/cred-data.service';
 import { AuthService } from '../../auth.service';
 import { Router } from '@angular/router';
-import { GoogleAnalyticsService } from '../../google-analytics.service';
 import { v4 as uuid } from 'uuid';
 
 
@@ -20,8 +19,7 @@ export class CredSurveyComponent implements OnInit {
   constructor(
     private dataService: CredDataService,
     private authService: AuthService,
-    private router: Router,
-    private googleAnalyticsService: GoogleAnalyticsService
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -47,7 +45,6 @@ export class CredSurveyComponent implements OnInit {
       data => {
         this.authService.submitCredSurvey();
         this.router.navigateByUrl('/credence');
-        this.googleAnalyticsService.sendInitialSurveyCompleted();
       });
   }
 

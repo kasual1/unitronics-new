@@ -23,7 +23,7 @@ export class CredRegularProductsComponent implements OnInit {
     constructor(private dataService: CredDataService) { }
   
     ngOnInit() {
-      this.getProducts(0, 12, this.category);
+      this.getProducts(0, 15, this.category);
     }
   
     getProducts(pageIndex, pageSize, category){

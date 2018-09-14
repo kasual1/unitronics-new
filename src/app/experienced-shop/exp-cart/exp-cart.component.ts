@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ExpDataService } from '../exp-data.service';
 import { ExpCartService } from '../exp-cart.service';
-import { CookieService } from 'ngx-cookie-service';
-import { GoogleAnalyticsService } from '../../google-analytics.service';
-
 
 @Component({
   selector: 'app-exp-cart',
@@ -18,8 +15,7 @@ export class ExpCartComponent implements OnInit {
 
   constructor(
     private databaseService: ExpDataService,
-    private cartService: ExpCartService,
-    private googleAnalyticsService: GoogleAnalyticsService
+    private cartService: ExpCartService
   ) { }
 
   ngOnInit(): void {
@@ -54,7 +50,6 @@ export class ExpCartComponent implements OnInit {
         console.log(data);
         this.cart = data;
         this.cartService.updateCart(data);
-        this.googleAnalyticsService.sendRemoveFromCartEvent(cartItem.Product.Id);
         this.totalAmount = "EUR " + this.calculateTotalAmount();
       });
   }

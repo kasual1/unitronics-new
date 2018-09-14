@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CredDataService } from '../cred-data.service';
-import { GoogleAnalyticsService } from '../../google-analytics.service';
 import { CredCartService } from '../cred-cart.service';
 
 @Component({
@@ -16,8 +15,7 @@ export class CredCartComponent implements OnInit {
 
   constructor(
     private databaseService: CredDataService,
-    private cartService: CredCartService,
-    private googleAnalyticsService: GoogleAnalyticsService
+    private cartService: CredCartService
   ) { }
 
   ngOnInit(): void {
@@ -49,7 +47,6 @@ export class CredCartComponent implements OnInit {
   deleteFromCart(cartItem: any) {
     this.databaseService.deleteFromCart(this.cartService.getCartId(), cartItem)
       .subscribe(data => {
-        this.googleAnalyticsService.sendRemoveFromCartEvent(cartItem.Product.Id);
         this.cart = data;
         this.cartService.updateCart(data);
         this.totalAmount = "EUR " + this.calculateTotalAmount();

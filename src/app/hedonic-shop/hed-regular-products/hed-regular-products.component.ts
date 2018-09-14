@@ -22,11 +22,11 @@ export class HedRegularProductsComponent implements OnInit {
     constructor(private dataService: HedDataService) { }
   
     ngOnInit() {
-      this.getProducts(0, 12, this.category);
+      this.getProducts(0, 15, this.category);
     }
   
     getProducts(pageIndex, pageSize, category){
-      this.dataService.readProducts(pageIndex*pageSize, pageSize, category)
+      this.dataService.readProducts(pageIndex, pageSize, category)
       .subscribe(
       data => {
         this.products = data.products;

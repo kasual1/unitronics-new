@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { UtDataService } from '../../utilitarian-shop/ut-data.service';
 import { v4 as uuid } from 'uuid';
-import { GoogleAnalyticsService } from '../../google-analytics.service';
 
 
 @Component({
@@ -19,8 +18,7 @@ export class UtSurveyComponent implements OnInit {
   constructor(
     private dataService: UtDataService,
     private authService: AuthService,
-    private router: Router,
-    private googleAnalyticsService: GoogleAnalyticsService
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -46,7 +44,6 @@ export class UtSurveyComponent implements OnInit {
       data => {
         this.authService.submitUtSurvey();
         this.router.navigateByUrl('/utilitarian');
-        this.googleAnalyticsService.sendInitialSurveyCompleted();
       });
   }
 

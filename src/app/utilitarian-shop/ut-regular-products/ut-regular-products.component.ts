@@ -22,7 +22,7 @@ export class UtRegularProductsComponent implements OnInit {
     constructor(private dataService: UtDataService) { }
   
     ngOnInit() {
-      this.getProducts(0, 12, this.category);
+      this.getProducts(0, 15, this.category);
     }
   
     getProducts(pageIndex, pageSize, category){

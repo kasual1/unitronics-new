@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { ExpDataService } from '../../experienced-shop/exp-data.service';
 import { v4 as uuid } from 'uuid';
-import { GoogleAnalyticsService } from '../../google-analytics.service';
 
 
 @Component({
@@ -20,8 +19,7 @@ export class ExpSurveyComponent implements OnInit {
   constructor(
     private dataService: ExpDataService,
     private authService: AuthService,
-    private router: Router,
-    private googleAnalyticsService: GoogleAnalyticsService
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -47,7 +45,6 @@ export class ExpSurveyComponent implements OnInit {
       data => {
         this.authService.submitExpSurvey();
         this.router.navigateByUrl('/experienced');
-        this.googleAnalyticsService.sendInitialSurveyCompleted();
       });
   }
 

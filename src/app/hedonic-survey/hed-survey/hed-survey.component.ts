@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { HedDataService } from '../../hedonic-shop/hed-data.service';
 import { v4 as uuid } from 'uuid';
-import { GoogleAnalyticsService } from '../../google-analytics.service';
 
 @Component({
   selector: 'app-hed-survey',
@@ -19,8 +18,7 @@ export class HedSurveyComponent implements OnInit {
   constructor(
     private dataService: HedDataService,
     private authService: AuthService,
-    private router: Router,
-    private googleAnalyticsService: GoogleAnalyticsService
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -46,7 +44,6 @@ export class HedSurveyComponent implements OnInit {
       data => {
         this.authService.submitHedSurvey();
         this.router.navigateByUrl('/hedonic');
-        this.googleAnalyticsService.sendInitialSurveyCompleted();
       });
   }
 

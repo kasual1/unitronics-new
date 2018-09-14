@@ -5,7 +5,6 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { CredDataService } from '../cred-data.service';
 import { CredCartService } from '../cred-cart.service';
 import { CookieService } from 'ngx-cookie-service';
-import { GoogleAnalyticsService } from '../../google-analytics.service';
 import { AuthService } from '../../auth.service';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { NextShopModalComponent } from '../../next-shop-modal/next-shop-modal.component';
@@ -37,7 +36,6 @@ export class CredProductSurveyComponent implements OnInit {
     private dataService: CredDataService,
     private cartService: CredCartService,
     private cookieService: CookieService,
-    private googleAnalyticsService: GoogleAnalyticsService,
     private authService: AuthService,
     private modalService: BsModalService,
     private router: Router,
@@ -136,13 +134,6 @@ export class CredProductSurveyComponent implements OnInit {
       console.log("Create new cart");
       this.createCart(this.product);
     }
-    this.googleAnalyticsService.sendAddToCartButtonConfirmedEvent(this.product.Id);
-    this.googleAnalyticsService.sendProductSurveyData(
-      this.product.Id,
-      this.userSurvey.value.likelihood,
-      this.userSurvey.value.attractive,
-      this.userSurvey.value.like,
-    );
   }
 
   onSubmitOnly() {
@@ -170,13 +161,6 @@ export class CredProductSurveyComponent implements OnInit {
       console.log("Create new cart");
       this.createCart(this.product);
     }
-    this.googleAnalyticsService.sendAddToCartButtonConfirmedEvent(this.product.Id);
-    this.googleAnalyticsService.sendProductSurveyData(
-      this.product.Id,
-      this.userSurvey.value.likelihood,
-      this.userSurvey.value.attractive,
-      this.userSurvey.value.like,
-    );
   }
 
 

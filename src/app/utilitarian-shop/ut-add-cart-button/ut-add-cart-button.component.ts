@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { UtProductSurveyComponent } from '../ut-product-survey/ut-product-survey.component';
-import { GoogleAnalyticsService } from '../../google-analytics.service';
 
 
 @Component({
@@ -15,8 +14,7 @@ export class UtAddCartButtonComponent implements OnInit {
   bsModalRef: BsModalRef;
 
   constructor(
-    private modalService: BsModalService,
-    private googleAnalyticsService: GoogleAnalyticsService
+    private modalService: BsModalService
   ) { }
 
   ngOnInit() {
@@ -24,7 +22,6 @@ export class UtAddCartButtonComponent implements OnInit {
 
   onAddToCartClicked() {
     this.openModalWithComponent();
-    this.googleAnalyticsService.sendAddToCartButtonUnconfirmedEvent(this.product.Id);
   }
 
   openModalWithComponent() {

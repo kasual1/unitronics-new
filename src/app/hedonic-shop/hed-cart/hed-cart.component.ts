@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HedDataService } from '../hed-data.service';
 import { HedCartService } from '../hed-cart.service';
-import { GoogleAnalyticsService } from '../../google-analytics.service';
 
 @Component({
   selector: 'app-hed-cart',
@@ -16,8 +15,7 @@ export class HedCartComponent implements OnInit {
 
   constructor(
     private databaseService: HedDataService,
-    private cartService: HedCartService,
-    private googleAnalyticsService: GoogleAnalyticsService
+    private cartService: HedCartService
   ) { }
 
   ngOnInit(): void {
@@ -49,7 +47,6 @@ export class HedCartComponent implements OnInit {
   deleteFromCart(cartItem: any) {
     this.databaseService.deleteFromCart(this.cartService.getCartId(), cartItem)
       .subscribe(data => {
-        this.googleAnalyticsService.sendRemoveFromCartEvent(cartItem.Product.Id);
         this.cart = data;
         this.cartService.updateCart(data);
         this.totalAmount = "EUR " + this.calculateTotalAmount();

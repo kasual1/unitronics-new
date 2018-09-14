@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UtDataService } from '../ut-data.service';
 import { UtCartService } from '../ut-cart.service';
-import { CookieService } from 'ngx-cookie-service';
-import { GoogleAnalyticsService } from '../../google-analytics.service';
-
 
 @Component({
   selector: 'app-ut-cart',
@@ -18,8 +15,7 @@ export class UtCartComponent implements OnInit {
 
   constructor(
     private databaseService: UtDataService,
-    private cartService: UtCartService,
-    private googleAnalyticsService: GoogleAnalyticsService
+    private cartService: UtCartService
   ) { }
 
   ngOnInit(): void {
@@ -54,7 +50,6 @@ export class UtCartComponent implements OnInit {
         console.log(data);
         this.cart = data;
         this.cartService.updateCart(data);
-        this.googleAnalyticsService.sendRemoveFromCartEvent(cartItem.Product.Id);
         this.totalAmount = "EUR " + this.calculateTotalAmount();
       });
   }

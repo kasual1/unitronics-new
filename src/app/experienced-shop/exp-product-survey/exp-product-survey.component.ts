@@ -4,7 +4,6 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { ExpDataService } from '../exp-data.service';
 import { ExpCartService } from '../exp-cart.service';
 import { CookieService } from 'ngx-cookie-service';
-import { GoogleAnalyticsService } from '../../google-analytics.service';
 import { global } from '../../../variables/global';
 import { AuthService } from '../../auth.service';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
@@ -38,7 +37,6 @@ export class ExpProductSurveyComponent implements OnInit {
     private dataService: ExpDataService,
     private cartService: ExpCartService,
     private cookieService: CookieService,
-    private googleAnalyticsService: GoogleAnalyticsService,
     private authService: AuthService,
     private modalService: BsModalService,
     private router: Router,
@@ -137,13 +135,6 @@ export class ExpProductSurveyComponent implements OnInit {
       console.log("Create new cart");
       this.createCart(this.product);
     }
-    this.googleAnalyticsService.sendAddToCartButtonConfirmedEvent(this.product.Id);
-    this.googleAnalyticsService.sendProductSurveyData(
-      this.product.Id,
-      this.userSurvey.value.likelihood,
-      this.userSurvey.value.attractive,
-      this.userSurvey.value.like,
-    );
   }
 
   onSubmitOnly() {
@@ -171,13 +162,6 @@ export class ExpProductSurveyComponent implements OnInit {
       console.log("Create new cart");
       this.createCart(this.product);
     }
-    this.googleAnalyticsService.sendAddToCartButtonConfirmedEvent(this.product.Id);
-    this.googleAnalyticsService.sendProductSurveyData(
-      this.product.Id,
-      this.userSurvey.value.likelihood,
-      this.userSurvey.value.attractive,
-      this.userSurvey.value.like,
-    );
   }
 
   onNextShopClicked(){

@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
-import { GoogleAnalyticsService } from '../../google-analytics.service';
 import { CredProductSurveyComponent } from '../cred-product-survey/cred-product-survey.component';
 
 @Component({
@@ -16,8 +15,7 @@ export class CredAddCartButtonComponent implements OnInit {
   bsModalRef: BsModalRef;
 
   constructor(
-    private modalService: BsModalService,
-    private googleAnalyticsService: GoogleAnalyticsService
+    private modalService: BsModalService
   ) { }
 
   ngOnInit() {
@@ -26,7 +24,6 @@ export class CredAddCartButtonComponent implements OnInit {
 
   onAddToCartClicked() {
     this.openModalWithComponent();
-    this.googleAnalyticsService.sendAddToCartButtonUnconfirmedEvent(this.product.Id);
   }
 
   openModalWithComponent() {
