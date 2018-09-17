@@ -5,10 +5,11 @@ import { UtSearchResultComponent } from './ut-search-result/ut-search-result.com
 import { UtDetailPageComponent } from './ut-detail-page/ut-detail-page.component';
 import { UtAuthGuardService } from './ut-auth-guard.service';
 import { UtMainContentComponent } from './ut-main-content/ut-main-content.component';
+import { environment } from '../../environments/environment';
 
 const routes: Routes = [
   {
-    path: 'utilitarian',
+    path: environment.basePathUt,
     component: UtLandingPageComponent,
     canActivate: [UtAuthGuardService],
     children:

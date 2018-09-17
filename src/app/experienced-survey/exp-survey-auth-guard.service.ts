@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class ExpSurveyAuthGuardService {
     if (!this.authService.getSubmitExpSurvey()) {
       return true;
     } else {
-      this.router.navigate(['/experienced']);
+      this.router.navigate(['/' + environment.basePathExp]);
       return false;
     }
   }

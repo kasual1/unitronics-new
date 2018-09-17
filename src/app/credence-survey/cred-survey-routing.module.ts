@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CredSurveyComponent } from './cred-survey/cred-survey.component';
 import { CredSurveyAuthGuardService } from './cred-survey-auth-guard.service';
+import { environment } from '../../environments/environment';
 
 const routes: Routes = [
   {
-    path: 'cred-survey',
+    path: environment.basePathCredSurvey,
     component: CredSurveyComponent,
     canActivate: [CredSurveyAuthGuardService]
   }

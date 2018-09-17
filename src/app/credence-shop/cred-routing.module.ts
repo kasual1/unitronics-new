@@ -5,10 +5,11 @@ import { CredAuthGuardService } from './cred-auth-guard.service';
 import { CredSearchResultComponent } from './cred-search-result/cred-search-result.component';
 import { CredDetailPageComponent } from './cred-detail-page/cred-detail-page.component';
 import { CredMainContentComponent } from './cred-main-content/cred-main-content.component';
+import { environment } from '../../environments/environment';
 
 const routes: Routes = [
   {
-    path: 'credence',
+    path: environment.basePathCred,
     component: CredLandingPageComponent,
     canActivate: [CredAuthGuardService],
     children:

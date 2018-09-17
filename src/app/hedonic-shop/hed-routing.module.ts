@@ -5,10 +5,11 @@ import { HedDetailPageComponent } from './hed-detail-page/hed-detail-page.compon
 import { HedSearchResultComponent } from './hed-search-result/hed-search-result.component';
 import { HedAuthGuardService } from './hed-auth-guard.service';
 import { HedMainContentComponent } from './hed-main-content/hed-main-content.component';
+import { environment } from '../../environments/environment';
 
 const routes: Routes = [
   {
-    path: 'hedonic',
+    path: environment.basePathHed,
     component: HedLandingPageComponent,
     canActivate: [HedAuthGuardService],
     children:

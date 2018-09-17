@@ -5,10 +5,11 @@ import { ExpSearchResultComponent } from './exp-search-result/exp-search-result.
 import { ExpDetailPageComponent } from './exp-detail-page/exp-detail-page.component';
 import { ExpAuthGuardService } from './exp-auth-guard.service';
 import { ExpMainContentComponent } from './exp-main-content/exp-main-content.component';
+import { environment } from '../../environments/environment';
 
 const routes: Routes = [
   {
-    path: 'experienced',
+    path: environment.basePathExp,
     component: ExpLandingPageComponent,
     canActivate: [ExpAuthGuardService],
     children:

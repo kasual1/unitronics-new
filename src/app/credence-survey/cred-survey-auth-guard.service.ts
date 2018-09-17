@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class CredSurveyAuthGuardService {
     if(!this.authService.getSubmitCredSurvey()){
       return true;
     } else {
-      this.router.navigate(['/credence']);
+      this.router.navigate(['/' + environment.basePathCred]);
       return false;
     }
   }

@@ -6,4 +6,12 @@
 export const environment = {
   production: false,
   apiUrl: 'http://www.localhost:8004',
+  basePathHed: 'hedonic',
+  basePathExp: 'experienced',
+  basePathUt: 'utilitarian',
+  basePathCred: 'credence',
+  basePathHedSurvey: 'hed-survey',
+  basePathExpSurvey: 'exp-survey',
+  basePathUtSurvey: 'ut-survey',
+  basePathCredSurvey: 'cred-survey'
 };

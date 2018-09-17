@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,7 @@ export class CredAuthGuardService {
     if (this.authService.getSubmitCredSurvey() && !this.authService.getFinCredShop()) {
       return true;
     } else if(!this.authService.getSubmitCredSurvey()){
-      this.router.navigate(['/cred-survey']);
+      this.router.navigate(['/' + environment.basePathCredSurvey]);
       return false;
     } else if(this.authService.getFinCredShop()){
       this.router.navigate(['/final-survey']);
