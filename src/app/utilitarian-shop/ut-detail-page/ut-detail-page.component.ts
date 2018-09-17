@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { UtDataService } from '../ut-data.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-ut-detail-page',
@@ -12,11 +13,13 @@ export class UtDetailPageComponent implements OnInit {
   product: any;
   previewImageUrl: string;
   relatedProducts: any[] = [];
+  basePath: string;
   
   constructor(
     private route: ActivatedRoute,
     private dataService: UtDataService
   ) {
+    this.basePath = environment.basePathUt;
     this.route.params.subscribe(params => {
       this.id = params['id'];
       this.getProduct();

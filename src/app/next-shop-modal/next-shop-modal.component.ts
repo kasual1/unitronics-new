@@ -31,6 +31,7 @@ export class NextShopModalComponent implements OnInit {
   }
 
   onNextShopClicked() {
+    console.log(this.navigateTo);
     switch (this.navigateTo) {
       case environment.basePathExp:
         this.router.navigateByUrl('/' + environment.basePathExp);

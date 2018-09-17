@@ -170,7 +170,7 @@ export class ExpProductSurveyComponent implements OnInit {
 
   onNextShopClicked(){
     const initialState = {
-      navigateTo: 'utilitarian'
+      navigateTo: environment.basePathUt
     }
     this.modalRef = this.modalService.show(NextShopModalComponent,{initialState});
   }

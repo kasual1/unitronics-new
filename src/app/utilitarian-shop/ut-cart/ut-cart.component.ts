@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UtDataService } from '../ut-data.service';
 import { UtCartService } from '../ut-cart.service';
+import { environment } from '../../../environments/environment';
+
 
 @Component({
   selector: 'app-ut-cart',
@@ -12,11 +14,14 @@ export class UtCartComponent implements OnInit {
   public cart: any = null;
   totalAmount: string;
   parser: DOMParser;
+  basePath: string;
 
   constructor(
     private databaseService: UtDataService,
     private cartService: UtCartService
-  ) { }
+  ) {
+    this.basePath = environment.basePathUt;
+   }
 
   ngOnInit(): void {
     let cartId = this.cartService.getCartId();

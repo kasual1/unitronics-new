@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { SlickComponent } from 'ngx-slick';
 import { CredDataService } from '../cred-data.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-cred-regular-products',
@@ -11,7 +12,8 @@ export class CredRegularProductsComponent implements OnInit {
 
  
   products;
-  public loading: boolean = true; 
+  public loading: boolean = true;
+  basePath: string;
   @Input() category: string;
   @Input() titleFirst: string;
   @Input() titleBold: string;
@@ -20,7 +22,9 @@ export class CredRegularProductsComponent implements OnInit {
   
   slideConfig = {"slidesToShow": 4, "slidesToScroll": 1, "dots": false, "infinite": false, "autoplay": false};
 
-    constructor(private dataService: CredDataService) { }
+    constructor(private dataService: CredDataService) {
+      this.basePath = environment.basePathCred;
+     }
   
     ngOnInit() {
       this.getProducts(0, 15, this.category);

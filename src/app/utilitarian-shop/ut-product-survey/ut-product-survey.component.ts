@@ -8,6 +8,7 @@ import { global } from '../../../variables/global';
 import { AuthService } from '../../auth.service';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { NextShopModalComponent } from '../../next-shop-modal/next-shop-modal.component';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-ut-product-survey',
@@ -22,6 +23,7 @@ export class UtProductSurveyComponent implements OnInit {
   productInCart: boolean = true;
   isLoading: boolean = true;
   modalRef: BsModalRef;
+  basePath: string;
 
 
   userSurvey = new FormGroup(
@@ -40,7 +42,9 @@ export class UtProductSurveyComponent implements OnInit {
     private modalService: BsModalService,
     private router: Router,
     private route: ActivatedRoute
-  ) { }
+  ) { 
+    this.basePath = environment.basePathUt;
+  }
 
   ngOnInit() {
     this.cartId = this.cartService.getCartId();
@@ -166,7 +170,7 @@ export class UtProductSurveyComponent implements OnInit {
 
   onNextShopClicked(){
     const initialState = {
-      navigateTo: 'credence'
+      navigateTo: environment.basePathCred
     }
     this.modalRef = this.modalService.show(NextShopModalComponent,{initialState});
   }

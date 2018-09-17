@@ -11,7 +11,7 @@
           <table class="table hcart">
             <tr *ngFor="let item of cart.CartItems">
               <td class="text-left">
-                <a routerLink="/utilitarian/detail/{{item.Product.Id}}">{{item.Product.Title}}</a>
+                <a routerLink="/{{basePath}}/detail/{{item.Product.Id}}">{{item.Product.Title}}</a>
               </td>
               <td class="text-right">{{item.Product.LowestNewPriceFormatted}}</td>
               <td class="text-center">

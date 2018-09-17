@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
+
 
 @Component({
   selector: 'app-cred-search',
@@ -9,16 +11,19 @@ import { Router } from '@angular/router';
 export class CredSearchComponent implements OnInit {
 
   suggestions: any = [];
+  basePath: string;
 
   constructor(
     private route: Router,
-  ) { }
+  ) {
+    this.basePath = environment.basePathCred;
+   }
 
   ngOnInit() {
   }
 
   search(searchTerm: string){
-    this.route.navigate(['credence/results'], { queryParams: { index: 1, size: 10, q: searchTerm } });
+    this.route.navigate([this.basePath + '/results'], { queryParams: { index: 1, size: 10, q: searchTerm } });
   }
 
 }

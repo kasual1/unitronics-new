@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { SlickComponent } from 'ngx-slick';
 import { UtDataService } from '../ut-data.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-ut-regular-products',
@@ -10,16 +11,19 @@ import { UtDataService } from '../ut-data.service';
 export class UtRegularProductsComponent implements OnInit {
 
   products;
-  public loading: boolean = true; 
+  public loading: boolean = true;
+  basePath: string; 
   @Input() category: string;
   @Input() titleFirst: string;
   @Input() titleBold: string;
 
   @ViewChild(SlickComponent) slickComponent: SlickComponent;
   
-  slideConfig = {"slidesToShow": 3, "slidesToScroll": 1, "dots": false, "infinite": false, "autoplay": false};
+  slideConfig = {"slidesToShow": 4, "slidesToScroll": 1, "dots": false, "infinite": false, "autoplay": false};
 
-    constructor(private dataService: UtDataService) { }
+    constructor(private dataService: UtDataService) {
+      this.basePath = environment.basePathUt;
+     }
   
     ngOnInit() {
       this.getProducts(0, 15, this.category);

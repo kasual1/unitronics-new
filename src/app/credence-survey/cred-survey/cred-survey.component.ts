@@ -3,7 +3,7 @@ import { CredDataService } from '../../credence-shop/cred-data.service';
 import { AuthService } from '../../auth.service';
 import { Router } from '@angular/router';
 import { v4 as uuid } from 'uuid';
-
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-cred-survey',
@@ -15,12 +15,15 @@ export class CredSurveyComponent implements OnInit {
   max: number = 5;
   ratedProducts = [];
   randomProducts = [];
+  basePath: string;
 
   constructor(
     private dataService: CredDataService,
     private authService: AuthService,
     private router: Router
-  ) { }
+  ) { 
+    this.basePath = environment.basePathCred;
+  }
 
   ngOnInit() {
     this.dataService.getRandomProducts().subscribe(
@@ -44,7 +47,7 @@ export class CredSurveyComponent implements OnInit {
     this.dataService.submitUserRatings(userId, this.ratedProducts).subscribe(
       data => {
         this.authService.submitCredSurvey();
-        this.router.navigateByUrl('/credence');
+        this.router.navigateByUrl('/' + this.basePath);
       });
   }
 

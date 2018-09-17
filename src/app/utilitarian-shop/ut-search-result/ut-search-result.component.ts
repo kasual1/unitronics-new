@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UtDataService } from '../ut-data.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-ut-search-result',
@@ -19,6 +20,7 @@ export class UtSearchResultComponent implements OnInit {
   public pageIndex: number = 1;
   public pageSize: number = 10;
   public pageIndices: number[] = [];
+  basePath: string;
 
   filter = new FormGroup(
     {
@@ -31,7 +33,9 @@ export class UtSearchResultComponent implements OnInit {
     private dataService: UtDataService,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) { 
+    this.basePath = environment.basePathUt;
+  }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -81,7 +85,7 @@ export class UtSearchResultComponent implements OnInit {
         c: this.category
       }
     }
-    this.router.navigate(['/utilitarian/results'], queryParams);
+    this.router.navigate(['/' + this.basePath + '/results'], queryParams);
   }
 
   onLastPageClicked() {
@@ -97,7 +101,7 @@ export class UtSearchResultComponent implements OnInit {
           c: this.category
         }
       }
-      this.router.navigate(['/utilitarian/results'], queryParams);
+      this.router.navigate(['/' + this.basePath + '/results'], queryParams);
     }
   }
 
@@ -112,7 +116,7 @@ export class UtSearchResultComponent implements OnInit {
         c: this.category
       }
     }
-    this.router.navigate(['/utilitarian/results'], queryParams);
+    this.router.navigate(['/' + this.basePath + '/results'], queryParams);
   }
 
   onSubmit() {
@@ -144,6 +148,6 @@ export class UtSearchResultComponent implements OnInit {
       }
     }
 
-    this.router.navigate(['/utilitarian/results'], queryParams);
+    this.router.navigate(['/' + this.basePath + '/results'], queryParams);
   }
 }

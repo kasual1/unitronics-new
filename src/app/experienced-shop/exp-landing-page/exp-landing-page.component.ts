@@ -25,7 +25,7 @@ export class ExpLandingPageComponent implements OnInit {
 
   onNextClicked() {
     const initialState = {
-      navigateTo: 'utilitarian'
+      navigateTo: environment.basePathUt
     }
     this.modalRef = this.modalService.show(NextShopModalComponent,{initialState});
   }

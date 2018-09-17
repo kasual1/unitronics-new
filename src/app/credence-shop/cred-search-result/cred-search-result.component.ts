@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { CredDataService } from '../cred-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-cred-search-result',
@@ -21,6 +22,7 @@ export class CredSearchResultComponent implements OnInit {
   public pageIndices: number[] = [];
   public from: number;
   public to: number;
+  basePath: string;
 
   filter = new FormGroup(
     {
@@ -33,7 +35,9 @@ export class CredSearchResultComponent implements OnInit {
     private dataService: CredDataService,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {
+    this.basePath = environment.basePathCred;
+   }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -82,7 +86,7 @@ export class CredSearchResultComponent implements OnInit {
         c: this.category
       }
     }
-    this.router.navigate(['/credence/results'], queryParams);
+    this.router.navigate(['/' + this.basePath + '/results'], queryParams);
   }
 
   onLastPageClicked() {
@@ -98,7 +102,7 @@ export class CredSearchResultComponent implements OnInit {
           c: this.category
         }
       }
-      this.router.navigate(['/credence/results'], queryParams);
+      this.router.navigate(['/' + this.basePath + '/results'], queryParams);
     }
   }
 
@@ -113,7 +117,7 @@ export class CredSearchResultComponent implements OnInit {
           c: this.category
         }
       }
-      this.router.navigate(['/credence/results'], queryParams);
+      this.router.navigate(['/' + this.basePath + '/results'], queryParams);
   }
 
   onSubmit() {
@@ -145,7 +149,7 @@ export class CredSearchResultComponent implements OnInit {
         }
       }
 
-    this.router.navigate(['/credence/results'], queryParams);
+    this.router.navigate(['/' + this.basePath + '/results'], queryParams);
   }
 
 }

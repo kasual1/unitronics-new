@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-cred-ad-banner',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CredAdBannerComponent implements OnInit {
 
-  constructor() { }
+  basePath: string;
+
+  constructor() { 
+    this.basePath = environment.basePathCred;
+  }
 
   ngOnInit() {
   }

@@ -38,7 +38,7 @@
             <!-- Logo Starts -->
             <div class="col-md-3 col-sm-3 col-xs-12">
               <div id="logo">
-                <a routerLink="/credence">
+                <a routerLink="/{{basePath}}">
                   <img src="assets/images/7k-backpacks-logo-full.png" title="Champ Nutrition" alt="Champ Nutrition" class="img-responsive img-center">
                 </a>
               </div>
@@ -77,13 +77,13 @@
               <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Hiking</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Osprey'}">Osprey</a>
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Osprey'}">Osprey</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Deuter'}">Deuter</a>
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Deuter'}">Deuter</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Jack Wolfskin'}">Jack
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Jack Wolfskin'}">Jack
                     Wolfskin</a>
                 </li>
               </ul>
@@ -92,15 +92,15 @@
               <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Work</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Laptop'}">Laptop
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Laptop'}">Laptop
                     Case</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: '22 Liters (Work)'}">23
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: '22 Liters (Work)'}">23
                     Liters</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: '25plus Liters (Work)'}">>
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: '25plus Liters (Work)'}">>
                     25 Liters Workout
                   </a>
                 </li>
@@ -110,17 +110,17 @@
               <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Travel</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Men (Travel)'}">Men</a>
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Men (Travel)'}">Men</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Woman (Travel)'}">Woman</a>
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Woman (Travel)'}">Woman</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: '25 less Liter (Travel)'}"><
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: '25 less Liter (Travel)'}"><
                       25 Liters</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: '25plus Liters (Travel)'}">>
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: '25plus Liters (Travel)'}">>
                     25 Liters</a>
                 </li>
               </ul>
@@ -129,29 +129,29 @@
               <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Trending</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Herschel'}">
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Herschel'}">
                     Herschel
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Eastpak'}">
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Eastpak'}">
                     Eastpak
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Timbuk2'}">
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Timbuk2'}">
                     Timbuk2
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Fjällräven'}">
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Fjällräven'}">
                     Fjällräven
                   </a>
                 </li>
               </ul>
             </li>
             <li dropdown>
-              <a class="clickable" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'New'}">Neu</a>
+              <a class="clickable" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'New'}">Neu</a>
             </li>
 
           </ul>
@@ -177,27 +177,27 @@
           <h5>Stay Connected</h5>
           <ul class="list-unstyled list-inline foot-sm-links">
             <li>
-              <a routerLink="/credence">
+              <a routerLink="/{{basePath}}">
                 <i class="fa fa-facebook"></i>
               </a>
             </li>
             <li>
-              <a routerLink="/credence">
+              <a routerLink="/{{basePath}}">
                 <i class="fa fa-twitter"></i>
               </a>
             </li>
             <li>
-              <a routerLink="/credence">
+              <a routerLink="/{{basePath}}">
                 <i class="fa fa-google-plus"></i>
               </a>
             </li>
             <li>
-              <a routerLink="/credence">
+              <a routerLink="/{{basePath}}">
                 <i class="fa fa-pinterest"></i>
               </a>
             </li>
             <li>
-              <a routerLink="/credence">
+              <a routerLink="/{{basePath}}">
                 <i class="fa fa-linkedin"></i>
               </a>
             </li>
@@ -217,7 +217,7 @@
             </li>
             <li>
               Email:
-              <a routerLink="/credence">info@uni-koeln.de</a>
+              <a routerLink="/{{basePath}}">info@uni-koeln.de</a>
             </li>
           </ul>
         </div>

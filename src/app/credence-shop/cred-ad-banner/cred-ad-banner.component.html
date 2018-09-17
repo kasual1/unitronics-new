@@ -1,14 +1,14 @@
 <div class="row" style="margin-bottom: 45px;">
   <div class="container col-md-6">
     <img src="assets/images/backpack-brand1.jpg" alt="Avatar" class="image" style="width:100%; border-radius: 5px;">
-    <div class="middle" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Eastpak'}">
+    <div class="middle" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Eastpak'}">
       <div class="text">More</div>
     </div>
   </div>
 
   <div class="container col-md-6">
     <img src="assets/images/backpack-brand2.jpg" alt="Avatar" height="184px" width="569px" class="image" style="width:100%; border-radius: 5px;">
-    <div class="middle" [routerLink]="['/credence/results']" [queryParams]="{index: 1, size:10, c: 'Fjällräven'}">
+    <div class="middle" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Fjällräven'}">
       <div class="text">More</div>
     </div>
   </div>

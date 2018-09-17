@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CredDataService } from '../cred-data.service';
 import { CredCartService } from '../cred-cart.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-cred-cart',
@@ -12,11 +13,14 @@ export class CredCartComponent implements OnInit {
   public cart: any = null;
   totalAmount: string;
   parser: DOMParser;
+  basePath: string;
 
   constructor(
     private databaseService: CredDataService,
     private cartService: CredCartService
-  ) { }
+  ) {
+    this.basePath = environment.basePathCred;
+   }
 
   ngOnInit(): void {
     let cartId = this.cartService.getCartId();

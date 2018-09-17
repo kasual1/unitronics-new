@@ -8,7 +8,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '../../auth.service';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { NextShopModalComponent } from '../../next-shop-modal/next-shop-modal.component';
-
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-cred-product-survey',
@@ -23,6 +23,7 @@ export class CredProductSurveyComponent implements OnInit {
   productInCart: boolean = true;
   isLoading: boolean = true;
   modalRef: BsModalRef;
+  basePath: string;
 
   userSurvey = new FormGroup(
     {
@@ -40,7 +41,9 @@ export class CredProductSurveyComponent implements OnInit {
     private modalService: BsModalService,
     private router: Router,
     private route: ActivatedRoute
-  ) { }
+  ) { 
+    this.basePath = environment.basePathCred;
+  }
 
   ngOnInit() {
     this.cartId = this.cartService.getCartId();

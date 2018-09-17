@@ -176,7 +176,7 @@ export class HedProductSurveyComponent implements OnInit {
 
   onNextShopClicked(){
     const initialState = {
-      navigateTo: 'experienced'
+      navigateTo: environment.basePathExp
     }
     this.modalRef = this.modalService.show(NextShopModalComponent,{initialState});
   }

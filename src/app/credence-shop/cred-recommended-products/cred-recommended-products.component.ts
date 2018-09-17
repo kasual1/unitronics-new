@@ -3,6 +3,7 @@ import { SlickComponent } from 'ngx-slick';
 import { CredDataService } from '../cred-data.service';
 import { AuthService } from '../../auth.service';
 import { RecommenderExperiment } from '../../app-experiments/recommender-experiment';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-cred-recommended-products',
@@ -18,6 +19,7 @@ export class CredRecommendedProductsComponent implements OnInit {
   loading: boolean = true;
   showRecommendations: boolean = true;
   recommenderType: string;
+  basePath: string;
 
   slideConfig = { "slidesToShow": 3, "slidesToScroll": 1, "dots": false, "infinite": false, "autoplay": false };
   zone: any;
@@ -28,6 +30,7 @@ export class CredRecommendedProductsComponent implements OnInit {
     private dataService: CredDataService,
     private authService: AuthService
   ) {
+    this.basePath = environment.basePathCred;
   }
 
   ngOnInit() {

@@ -3,6 +3,7 @@ import { UtDataService } from '../ut-data.service';
 import { AuthService } from '../../auth.service';
 import { SlickComponent } from 'ngx-slick';
 import { RecommenderExperiment } from '../../app-experiments/recommender-experiment';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-ut-recommended-products',
@@ -18,6 +19,7 @@ export class UtRecommendedProductsComponent implements OnInit {
   loading: boolean = true;
   showRecommendations: boolean = true;
   recommenderType: string;
+  basePath: string;
 
   slideConfig = { "slidesToShow": 3, "slidesToScroll": 1, "dots": false, "infinite": false, "autoplay": false };
   zone: any;
@@ -28,6 +30,7 @@ export class UtRecommendedProductsComponent implements OnInit {
     private dataService: UtDataService,
     private authService: AuthService
   ) {
+    this.basePath = environment.basePathUt;
   }
 
   ngOnInit() {

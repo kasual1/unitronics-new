@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { UtDataService } from '../../utilitarian-shop/ut-data.service';
 import { v4 as uuid } from 'uuid';
-
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-ut-survey',
@@ -14,12 +14,15 @@ export class UtSurveyComponent implements OnInit {
   max: number = 5;
   ratedProducts = [];
   randomProducts = [];
+  basePath: string;
 
   constructor(
     private dataService: UtDataService,
     private authService: AuthService,
     private router: Router
-  ) { }
+  ) { 
+    this.basePath = environment.basePathUt;
+  }
 
   ngOnInit() {
     this.dataService.getRandomProducts().subscribe(
@@ -43,7 +46,7 @@ export class UtSurveyComponent implements OnInit {
     this.dataService.submitUserRatings(userId, this.ratedProducts).subscribe(
       data => {
         this.authService.submitUtSurvey();
-        this.router.navigateByUrl('/utilitarian');
+        this.router.navigateByUrl('/' + this.basePath);
       });
   }
 

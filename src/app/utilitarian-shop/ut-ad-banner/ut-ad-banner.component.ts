@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-ut-ad-banner',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UtAdBannerComponent implements OnInit {
 
-  constructor() { }
+  basePath: string;
+
+  constructor() {
+    this.basePath = environment.basePathUt;
+   }
 
   ngOnInit() {
   }
