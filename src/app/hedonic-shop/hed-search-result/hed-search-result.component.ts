@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HedDataService } from '../hed-data.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-hed-search-result',
@@ -21,6 +22,7 @@ export class HedSearchResultComponent implements OnInit {
   public pageIndices: number[] = [];
   public from: number;
   public to: number;
+  basePath: string;
 
   filter = new FormGroup(
     {
@@ -32,7 +34,9 @@ export class HedSearchResultComponent implements OnInit {
     private dataService: HedDataService,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) { 
+    this.basePath = environment.basePathHed;
+  }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -81,7 +85,7 @@ export class HedSearchResultComponent implements OnInit {
         c: this.category
       }
     }
-    this.router.navigate(['/hedonic/results'], queryParams);
+    this.router.navigate(['/' + this.basePath + '/results'], queryParams);
   }
 
   onLastPageClicked() {
@@ -97,7 +101,7 @@ export class HedSearchResultComponent implements OnInit {
           c: this.category
         }
       }
-      this.router.navigate(['/hedonic/results'], queryParams);
+      this.router.navigate(['/' + this.basePath + '/results'], queryParams);
     }
   }
 
@@ -112,7 +116,7 @@ export class HedSearchResultComponent implements OnInit {
           c: this.category
         }
       }
-      this.router.navigate(['/hedonic/results'], queryParams);
+      this.router.navigate(['/' + this.basePath + '/results'], queryParams);
   }
 
   onSubmit() {
@@ -144,6 +148,6 @@ export class HedSearchResultComponent implements OnInit {
         }
       }
 
-    this.router.navigate(['/hedonic/results'], queryParams);
+    this.router.navigate(['/' + this.basePath + '/results'], queryParams);
   }
 }

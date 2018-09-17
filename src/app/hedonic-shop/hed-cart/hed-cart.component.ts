@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HedDataService } from '../hed-data.service';
 import { HedCartService } from '../hed-cart.service';
+import { environment } from '../../../environments/environment';
+
 
 @Component({
   selector: 'app-hed-cart',
@@ -12,11 +14,14 @@ export class HedCartComponent implements OnInit {
   public cart: any = null;
   totalAmount: string;
   parser: DOMParser;
+  basePath: string;
 
   constructor(
     private databaseService: HedDataService,
     private cartService: HedCartService
-  ) { }
+  ) { 
+    this.basePath = environment.basePathHed;
+  }
 
   ngOnInit(): void {
     let cartId = this.cartService.getCartId();

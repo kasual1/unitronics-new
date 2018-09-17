@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../../environments/environment';
+
 
 @Component({
   selector: 'app-hed-ad-banner',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HedAdBannerComponent implements OnInit {
 
-  constructor() { }
+  basePath: string;
+
+  constructor() {
+    this.basePath = environment.basePathHed;
+  }
 
   ngOnInit() {
   }

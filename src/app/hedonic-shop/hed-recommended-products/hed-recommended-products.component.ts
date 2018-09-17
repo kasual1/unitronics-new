@@ -3,6 +3,7 @@ import { SlickComponent } from 'ngx-slick';
 import { HedDataService } from '../hed-data.service';
 import { AuthService } from '../../auth.service';
 import { RecommenderExperiment } from '../../app-experiments/recommender-experiment';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-hed-recommended-products',
@@ -18,6 +19,8 @@ export class HedRecommendedProductsComponent implements OnInit {
   loading: boolean = true;
   showRecommendations: boolean = true;
   recommenderType: string;
+  basePath: string;
+  isProduction: boolean;
 
   slideConfig = { "slidesToShow": 3, "slidesToScroll": 1, "dots": false, "infinite": false, "autoplay": false };
   zone: any;
@@ -28,6 +31,8 @@ export class HedRecommendedProductsComponent implements OnInit {
     private dataService: HedDataService,
     private authService: AuthService
   ) {
+    this.basePath = environment.basePathHed;
+    this.isProduction = environment.production;
   }
 
   ngOnInit() {

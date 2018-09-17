@@ -8,7 +8,7 @@
     </button>
   </div>
 </div>
-<div class="shop-info-banner">
+<div *ngIf="!isProduction" class="shop-info-banner">
   <h2>Hedonic Goods Online Shop</h2>
 </div>
 <!-- Header Section Starts -->
@@ -78,16 +78,16 @@
               <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Men</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/hedonic/results']" [queryParams]="{index: 0, size:10, q: 'Casio'}">Casio</a>
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 0, size:10, q: 'Casio'}">Casio</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/hedonic/results']" [queryParams]="{index: 0, size:10, q: 'Fossil'}">Fossil</a>
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 0, size:10, q: 'Fossil'}">Fossil</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/hedonic/results']" [queryParams]="{index: 0, size:10, q: 'Timex'}">Timex</a>
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 0, size:10, q: 'Timex'}">Timex</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/hedonic/results']" [queryParams]="{index: 0, size:10, q: 'G-Shock'}">G-Shock</a>
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 0, size:10, q: 'G-Shock'}">G-Shock</a>
                 </li>
               </ul>
             </li>
@@ -95,16 +95,16 @@
               <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Woman</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/hedonic/results']" [queryParams]="{index: 0, size:10, q: 'Cluse'}">Cluse</a>
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 0, size:10, q: 'Cluse'}">Cluse</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/hedonic/results']" [queryParams]="{index: 0, size:10, q: 'Swatch Damen'}">Swatch</a>
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 0, size:10, q: 'Swatch Damen'}">Swatch</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/hedonic/results']" [queryParams]="{index: 0, size:10, q: 'Guess'}">Guess</a>
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 0, size:10, q: 'Guess'}">Guess</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/hedonic/results']" [queryParams]="{index: 0, size:10, q: 'Daniel Wellington'}">Daniel
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 0, size:10, q: 'Daniel Wellington'}">Daniel
                     Wellington
                   </a>
                 </li>
@@ -114,13 +114,13 @@
               <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Unisex</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/hedonic/results']" [queryParams]="{index: 0, size:10, q: 'Timex Unisex'}">Timex</a>
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 0, size:10, q: 'Timex Unisex'}">Timex</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/hedonic/results']" [queryParams]="{index: 0, size:10, q: 'Swatch Unisex'}">Swatch</a>
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 0, size:10, q: 'Swatch Unisex'}">Swatch</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/hedonic/results']" [queryParams]="{index: 0, size:10, q: 'Collection Unisex'}">Casio</a>
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 0, size:10, q: 'Collection Unisex'}">Casio</a>
                 </li>
               </ul>
             </li>
@@ -128,11 +128,11 @@
               <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Sport</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/hedonic/results']" [queryParams]="{index: 0, size:10, q: 'Fitness'}">Fitness
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 0, size:10, q: 'Fitness'}">Fitness
                     Tracker</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/hedonic/results']" [queryParams]="{index: 0, size:10, q: 'Sport'}">Others</a>
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 0, size:10, q: 'Sport'}">Others</a>
                 </li>
               </ul>
             </li>
@@ -140,12 +140,12 @@
               <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Casual</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/hedonic/results']" [queryParams]="{index: 0, size:10, q: 'Swatch'}">
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 0, size:10, q: 'Swatch'}">
                     Swatch
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/hedonic/results']" [queryParams]="{index: 0, size:10, q: 'Casio'}">
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 0, size:10, q: 'Casio'}">
                     Casio
                   </a>
                 </li>
@@ -155,15 +155,15 @@
               <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Fancy</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/hedonic/results']" [queryParams]="{index: 0, size:10, q: 'Tommy Hilfiger'}">Tommy
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 0, size:10, q: 'Tommy Hilfiger'}">Tommy
                     Hilfiger</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/hedonic/results']" [queryParams]="{index: 0, size:10, q: 'Boss Orange'}">Boss
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 0, size:10, q: 'Boss Orange'}">Boss
                     Orange</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/hedonic/results']" [queryParams]="{index: 0, size:10, q: 'Daniel Wellington'}">Daniel Wellington</a>
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 0, size:10, q: 'Daniel Wellington'}">Daniel Wellington</a>
                 </li>
               </ul>
             </li>
@@ -192,27 +192,27 @@
           <h5>Stay Connected</h5>
           <ul class="list-unstyled list-inline foot-sm-links">
             <li>
-              <a routerLink="/hedonic">
+              <a routerLink="/{{basePath}}">
                 <i class="fa fa-facebook"></i>
               </a>
             </li>
             <li>
-              <a routerLink="/hedonic">
+              <a routerLink="/{{basePath}}">
                 <i class="fa fa-twitter"></i>
               </a>
             </li>
             <li>
-              <a routerLink="/hedonic">
+              <a routerLink="/{{basePath}}">
                 <i class="fa fa-google-plus"></i>
               </a>
             </li>
             <li>
-              <a routerLink="/hedonic">
+              <a routerLink="/{{basePath}}">
                 <i class="fa fa-pinterest"></i>
               </a>
             </li>
             <li>
-              <a routerLink="/hedonic">
+              <a routerLink="/{{basePath}}">
                 <i class="fa fa-linkedin"></i>
               </a>
             </li>
@@ -232,7 +232,7 @@
             </li>
             <li>
               Email:
-              <a routerLink="/hedonic">info@uni-koeln.de</a>
+              <a routerLink="/{{basePath}}">info@uni-koeln.de</a>
             </li>
           </ul>
         </div>

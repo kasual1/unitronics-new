@@ -9,6 +9,7 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { NextShopModalComponent } from '../../next-shop-modal/next-shop-modal.component';
 import { LoggerService } from '../../logger.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-hed-product-survey',
@@ -23,6 +24,7 @@ export class HedProductSurveyComponent implements OnInit {
   productInCart: boolean = true;
   isLoading: boolean = true;
   modalRef: BsModalRef;
+  basePath: string;
 
   userSurvey = new FormGroup(
     {
@@ -41,7 +43,9 @@ export class HedProductSurveyComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private loggerService: LoggerService
-  ) { }
+  ) {
+    this.basePath = environment.basePathHed;    
+   }
 
   ngOnInit() {
     this.cartId = this.cartService.getCartId();

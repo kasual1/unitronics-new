@@ -10,6 +10,7 @@ export const environment = {
   basePathExp: 'experienced',
   basePathUt: 'utilitarian',
   basePathCred: 'credence',
+  resultsPathHed: '/hedonic/results',
   basePathHedSurvey: 'hed-survey',
   basePathExpSurvey: 'exp-survey',
   basePathUtSurvey: 'ut-survey',

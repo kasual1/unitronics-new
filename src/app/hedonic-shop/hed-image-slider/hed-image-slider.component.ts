@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SlickComponent } from 'ngx-slick';
+import { environment } from '../../../environments/environment';
+
 
 @Component({
   selector: 'app-hed-image-slider',
@@ -9,18 +11,21 @@ import { SlickComponent } from 'ngx-slick';
 export class HedImageSliderComponent implements OnInit {
 
   @ViewChild(SlickComponent) slickComponent: SlickComponent;
-  slideConfig = {"slidesToShow": 1, "slidesToScroll": 1, "dots": true, "infinite": true, "autoplay": true, "autoplaySpeed": 3000};
+  slideConfig = { "slidesToShow": 1, "slidesToScroll": 1, "dots": true, "infinite": true, "autoplay": true, "autoplaySpeed": 3000 };
+  basePath: string;
 
-  constructor() { }
+  constructor() {
+    this.basePath = environment.basePathHed;
+  }
 
   ngOnInit() {
   }
 
-  next(){
+  next() {
     this.slickComponent.slickNext();
   }
 
-  previous(){
+  previous() {
     this.slickComponent.slickPrev();
   }
 }

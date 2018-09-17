@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { SlickComponent } from 'ngx-slick';
 import { HedDataService } from '../hed-data.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-hed-regular-products',
@@ -16,10 +17,14 @@ export class HedRegularProductsComponent implements OnInit {
   @Input() titleBold: string;
 
   @ViewChild(SlickComponent) slickComponent: SlickComponent;
+  basePath: string;
   
   slideConfig = {"slidesToShow": 4, "slidesToScroll": 1, "dots": false, "infinite": false, "autoplay": false};
 
-    constructor(private dataService: HedDataService) { }
+    constructor(private dataService: HedDataService) 
+    {
+      this.basePath = environment.basePathHed;
+     }
   
     ngOnInit() {
       this.getProducts(0, 15, this.category);

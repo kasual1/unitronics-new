@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { HedDataService } from '../../hedonic-shop/hed-data.service';
 import { v4 as uuid } from 'uuid';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-hed-survey',
@@ -14,12 +15,15 @@ export class HedSurveyComponent implements OnInit {
   max: number = 5;
   ratedProducts = [];
   randomProducts = [];
+  basePath: string;
 
   constructor(
     private dataService: HedDataService,
     private authService: AuthService,
     private router: Router
-  ) { }
+  ) { 
+    this.basePath = environment.basePathHed;
+  }
 
   ngOnInit() {
     this.dataService.getRandomProducts().subscribe(
@@ -43,7 +47,7 @@ export class HedSurveyComponent implements OnInit {
     this.dataService.submitUserRatings(userId, this.ratedProducts).subscribe(
       data => {
         this.authService.submitHedSurvey();
-        this.router.navigateByUrl('/hedonic');
+        this.router.navigateByUrl('/' + this.basePath);
       });
   }
 

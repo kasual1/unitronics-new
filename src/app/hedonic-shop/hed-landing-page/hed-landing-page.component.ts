@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { NextShopModalComponent } from '../../next-shop-modal/next-shop-modal.component';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -11,10 +12,15 @@ import { NextShopModalComponent } from '../../next-shop-modal/next-shop-modal.co
 export class HedLandingPageComponent implements OnInit {
 
   modalRef: BsModalRef;
+  basePath: string;
+  isProduction: boolean;
 
   constructor(
     private modalService: BsModalService
-  ) { }
+  ) {
+    this.basePath = environment.basePathHed;
+    this.isProduction = environment.production;
+   }
 
   ngOnInit(){
 
