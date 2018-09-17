@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { SlickComponent } from 'ngx-slick';
 import { ExpDataService } from '../exp-data.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-exp-regular-products',
@@ -11,6 +12,7 @@ export class ExpRegularProductsComponent implements OnInit {
 
   products;
   public loading: boolean = true; 
+  basePath: string;
   @Input() category: string;
   @Input() titleFirst: string;
   @Input() titleBold: string;
@@ -19,7 +21,9 @@ export class ExpRegularProductsComponent implements OnInit {
   
   slideConfig = {"slidesToShow": 4, "slidesToScroll": 1, "dots": false, "infinite": false, "autoplay": false};
 
-    constructor(private dataService: ExpDataService) { }
+    constructor(private dataService: ExpDataService) {
+      this.basePath = environment.basePathExp;
+     }
   
     ngOnInit() {
       this.getProducts(0, 15, this.category);

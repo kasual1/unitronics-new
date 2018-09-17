@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ExpDataService } from '../exp-data.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-exp-detail-page',
@@ -13,11 +14,13 @@ export class ExpDetailPageComponent implements OnInit {
   product: any;
   previewImageUrl: string;
   relatedProducts: any[] = [];
+  basePath: string;
   
   constructor(
     private route: ActivatedRoute,
     private dataService: ExpDataService
   ) {
+    this.basePath = environment.basePathExp;
     this.route.params.subscribe(params => {
       this.id = params['id'];
       this.getProduct();

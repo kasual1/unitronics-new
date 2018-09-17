@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { ExpDataService } from '../../experienced-shop/exp-data.service';
 import { v4 as uuid } from 'uuid';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -15,12 +16,15 @@ export class ExpSurveyComponent implements OnInit {
   max: number = 5;
   ratedProducts = [];
   randomProducts = [];
+  basePath: string;
 
   constructor(
     private dataService: ExpDataService,
     private authService: AuthService,
     private router: Router
-  ) { }
+  ) { 
+    this.basePath = environment.basePathExp;
+  }
 
   ngOnInit() {
     this.dataService.getRandomProducts().subscribe(
@@ -44,7 +48,7 @@ export class ExpSurveyComponent implements OnInit {
     this.dataService.submitUserRatings(userId, this.ratedProducts).subscribe(
       data => {
         this.authService.submitExpSurvey();
-        this.router.navigateByUrl('/experienced');
+        this.router.navigateByUrl('/' + this.basePath);
       });
   }
 

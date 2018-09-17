@@ -3,6 +3,7 @@ import { ExpDataService } from '../exp-data.service';
 import { AuthService } from '../../auth.service';
 import { SlickComponent } from 'ngx-slick';
 import { RecommenderExperiment } from '../../app-experiments/recommender-experiment';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-exp-recommended-products',
@@ -19,6 +20,7 @@ export class ExpRecommendedProductsComponent implements OnInit {
   loading: boolean = true;
   showRecommendations: boolean = true;
   recommenderType: string;
+  basePath: string;
 
   slideConfig = { "slidesToShow": 3, "slidesToScroll": 1, "dots": false, "infinite": false, "autoplay": false };
   zone: any;
@@ -29,6 +31,7 @@ export class ExpRecommendedProductsComponent implements OnInit {
     private dataService: ExpDataService,
     private authService: AuthService
   ) {
+    this.basePath = environment.basePathExp;
   }
 
   ngOnInit() {

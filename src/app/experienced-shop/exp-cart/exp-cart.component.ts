@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ExpDataService } from '../exp-data.service';
 import { ExpCartService } from '../exp-cart.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-exp-cart',
@@ -12,11 +13,14 @@ export class ExpCartComponent implements OnInit {
   public cart: any = null;
   totalAmount: string;
   parser: DOMParser;
+  basePath: string;
 
   constructor(
     private databaseService: ExpDataService,
     private cartService: ExpCartService
-  ) { }
+  ) {
+    this.basePath = environment.basePathExp;
+   }
 
   ngOnInit(): void {
     let cartId = this.cartService.getCartId();

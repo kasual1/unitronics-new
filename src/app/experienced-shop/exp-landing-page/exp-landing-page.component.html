@@ -38,8 +38,9 @@
             <!-- Logo Starts -->
             <div class="col-md-3 col-sm-3 col-xs-12">
               <div id="logo">
-                <a routerLink="/experienced">
-                  <img src="assets/images/ex-libris-book-logo-full.png" title="Electronics Shoppe" alt="Electronics Shoppe" class="img-responsive img-center">
+                <a routerLink="/{{basePath}}">
+                  <img src="assets/images/ex-libris-book-logo-full.png" title="Electronics Shoppe" alt="Electronics Shoppe"
+                    class="img-responsive img-center">
                 </a>
               </div>
             </div>
@@ -77,14 +78,14 @@
               <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Thriller</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 1, size:10, c: 'Stephen King'}">Stephen
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Stephen King'}">Stephen
                     King</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 1, size:10, c: 'Fitzek'}">Fitzek</a>
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Fitzek'}">Fitzek</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 1, size:10, c: 'Stieg Larsson'}">Stieg
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Stieg Larsson'}">Stieg
                     Larsson</a>
                 </li>
               </ul>
@@ -93,11 +94,11 @@
               <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Fantasy</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 1, size:10, c: 'Herr der Ringe'}">
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Herr der Ringe'}">
                     Herr der Ringe</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 1, size:10, c: 'Harry Potter'}">
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Harry Potter'}">
                     Harry Potter</a>
                 </li>
               </ul>
@@ -106,12 +107,12 @@
               <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Liebe</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 1, size:10, c: 'Nicholas Sparks'}">
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Nicholas Sparks'}">
                     Nicholas Sparks
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 1, size:10, q: 'Others'}">
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, q: 'Others'}">
                     Others
                   </a>
                 </li>
@@ -121,22 +122,22 @@
               <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Historisch</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 1, size:10, q: 'Ken Follet'}">
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, q: 'Ken Follet'}">
                     Ken Follet
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" [routerLink]="['/experienced/results']" [queryParams]="{index: 1, size:10, q: 'Others'}">
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, q: 'Others'}">
                     Others
                   </a>
                 </li>
               </ul>
             </li>
             <li dropdown>
-              <a [routerLink]="['/experienced/results']" [queryParams]="{index: 1, size:10, c: 'Bestseller'}">Bestseller</a>
+              <a routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Bestseller'}">Bestseller</a>
             </li>
             <li dropdown>
-              <a [routerLink]="['/experienced/results']" [queryParams]="{index: 1, size:10, c: 'New'}">Neu</a>
+              <a routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'New'}">Neu</a>
             </li>
           </ul>
         </div>
@@ -161,27 +162,27 @@
           <h5>Stay Connected</h5>
           <ul class="list-unstyled list-inline foot-sm-links">
             <li>
-              <a routerLink="/experienced">
+              <a routerLink="/{{basePath}}">
                 <i class="fa fa-facebook"></i>
               </a>
             </li>
             <li>
-              <a routerLink="/experienced">
+              <a routerLink="/{{basePath}}">
                 <i class="fa fa-twitter"></i>
               </a>
             </li>
             <li>
-              <a routerLink="/experienced">
+              <a routerLink="/{{basePath}}">
                 <i class="fa fa-google-plus"></i>
               </a>
             </li>
             <li>
-              <a routerLink="/experienced">
+              <a routerLink="/{{basePath}}">
                 <i class="fa fa-pinterest"></i>
               </a>
             </li>
             <li>
-              <a routerLink="/experienced">
+              <a routerLink="/{{basePath}}">
                 <i class="fa fa-linkedin"></i>
               </a>
             </li>
@@ -201,7 +202,7 @@
             </li>
             <li>
               Email:
-              <a routerLink="/experienced">info@uni-koeln.de</a>
+              <a routerLink="/{{basePath}}">info@uni-koeln.de</a>
             </li>
           </ul>
         </div>

@@ -2,7 +2,7 @@
 <div id="main-container" class="container">
   <ol class="breadcrumb">
     <li>
-      <a routerLink="/experienced">Home</a>
+      <a routerLink="/{{basePath}}">Home</a>
     </li>
     <span>&#187;</span>
     <li class="active">Search Results</li>
@@ -61,12 +61,12 @@
         <div class="col-xs-12">
           <div class="product-col list clearfix">
             <div class="image">
-              <a routerLink="/experienced/detail/{{product.Id}}"><img src="{{product.MediumImageUrl}}" alt="product" class="img-responsive center-block"
+              <a routerLink="/{{basePath}}/detail/{{product.Id}}"><img src="{{product.MediumImageUrl}}" alt="product" class="img-responsive center-block"
                 /></a>
             </div>
             <div class="caption">
               <h4>
-                <a routerLink="/experienced/detail/{{product.Id}}">{{product.Title}}</a>
+                <a routerLink="/{{basePath}}/detail/{{product.Id}}">{{product.Title}}</a>
               </h4>
               <div>
                 <rating *ngIf="product.ShowReviews" [(ngModel)]="product.StarRating" class="center-block" [max]="5" [readonly]="true" [customTemplate]="t"

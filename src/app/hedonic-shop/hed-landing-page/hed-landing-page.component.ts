@@ -28,7 +28,7 @@ export class HedLandingPageComponent implements OnInit {
 
   onNextClicked() {
     const initialState = {
-      navigateTo: 'experienced'
+      navigateTo: this.basePath
     }
     this.modalRef = this.modalService.show(NextShopModalComponent,{initialState});
   }

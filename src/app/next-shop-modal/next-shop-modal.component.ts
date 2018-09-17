@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { environment } from '../../environments/environment';
+
 
 @Component({
   selector: 'app-next-shop-modal',
@@ -11,12 +13,15 @@ import { AuthService } from '../auth.service';
 export class NextShopModalComponent implements OnInit {
 
   @Input() navigateTo: string = null;
+  basePath: string;
 
   constructor(
     public bsModalRef: BsModalRef,
     private router: Router,
     private authService: AuthService,
-  ) { }
+  ) {
+    this.basePath = environment.basePathExp;
+   }
 
   ngOnInit() {
   }
@@ -27,16 +32,16 @@ export class NextShopModalComponent implements OnInit {
 
   onNextShopClicked() {
     switch (this.navigateTo) {
-      case 'experienced':
-        this.router.navigateByUrl('/experienced');
+      case environment.basePathExp:
+        this.router.navigateByUrl('/' + environment.basePathExp);
         this.authService.finishedHedShop();
         break;
-      case 'utilitarian':
-        this.router.navigateByUrl('/utilitarian');
+      case environment.basePathUt:
+        this.router.navigateByUrl('/' + environment.basePathUt);
         this.authService.finishedExpShop();
         break;
-      case 'credence':
-        this.router.navigateByUrl('/credence');
+      case environment.basePathCred:
+        this.router.navigateByUrl('/' + environment.basePathCred);
         this.authService.finishedUtShop();
         break;
       case 'final-survey':
