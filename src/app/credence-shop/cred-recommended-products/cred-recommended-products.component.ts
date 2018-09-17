@@ -20,6 +20,7 @@ export class CredRecommendedProductsComponent implements OnInit {
   showRecommendations: boolean = true;
   recommenderType: string;
   basePath: string;
+  isProduction: boolean;
 
   slideConfig = { "slidesToShow": 3, "slidesToScroll": 1, "dots": false, "infinite": false, "autoplay": false };
   zone: any;
@@ -31,6 +32,7 @@ export class CredRecommendedProductsComponent implements OnInit {
     private authService: AuthService
   ) {
     this.basePath = environment.basePathCred;
+    this.isProduction = environment.production;
   }
 
   ngOnInit() {

@@ -21,6 +21,7 @@ export class ExpRecommendedProductsComponent implements OnInit {
   showRecommendations: boolean = true;
   recommenderType: string;
   basePath: string;
+  isProduction: boolean;
 
   slideConfig = { "slidesToShow": 3, "slidesToScroll": 1, "dots": false, "infinite": false, "autoplay": false };
   zone: any;
@@ -32,6 +33,7 @@ export class ExpRecommendedProductsComponent implements OnInit {
     private authService: AuthService
   ) {
     this.basePath = environment.basePathExp;
+    this.isProduction = environment.production;
   }
 
   ngOnInit() {

@@ -20,6 +20,7 @@ export class UtRecommendedProductsComponent implements OnInit {
   showRecommendations: boolean = true;
   recommenderType: string;
   basePath: string;
+  isProduction: boolean;
 
   slideConfig = { "slidesToShow": 3, "slidesToScroll": 1, "dots": false, "infinite": false, "autoplay": false };
   zone: any;
@@ -31,6 +32,7 @@ export class UtRecommendedProductsComponent implements OnInit {
     private authService: AuthService
   ) {
     this.basePath = environment.basePathUt;
+    this.isProduction = environment.production;
   }
 
   ngOnInit() {

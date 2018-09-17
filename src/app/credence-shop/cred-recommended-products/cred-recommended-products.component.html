@@ -8,7 +8,7 @@
   </div>
   -->
   </h2>
-  <p [class]="recommenderType">Used algorithm: <strong>{{recommenderType}}</strong></p>
+  <p *ngIf="!isProduction" [class]="recommenderType">Used algorithm: <strong>{{recommenderType}}</strong></p>
   <div *ngIf="loading" class="spinner">
     <div class="bounce1"></div>
     <div class="bounce2"></div>

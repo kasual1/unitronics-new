@@ -12,11 +12,13 @@ export class CredLandingPageComponent implements OnInit {
   
   modalRef: BsModalRef;
   basePath: string;
+  isProduction: boolean;
 
   constructor(
     private modalService: BsModalService
   ) {
     this.basePath = environment.basePathCred;
+    this.isProduction = environment.production;
    }
 
   ngOnInit(){

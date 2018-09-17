@@ -11,11 +11,13 @@ import { environment } from '../../../environments/environment';
 export class UtLandingPageComponent implements OnInit {
   modalRef: BsModalRef;
   basePath: string;
+  isProduction: boolean;
 
   constructor(
     private modalService: BsModalService
   ) { 
     this.basePath = environment.basePathUt;
+    this.isProduction = environment.production;
   }
 
   ngOnInit(){

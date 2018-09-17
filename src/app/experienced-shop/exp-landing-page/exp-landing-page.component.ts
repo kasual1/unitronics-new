@@ -12,11 +12,13 @@ export class ExpLandingPageComponent implements OnInit {
 
   modalRef: BsModalRef;
   basePath: string;
+  isProduction: boolean;
 
   constructor(
     private modalService: BsModalService
   ) {
     this.basePath = environment.basePathExp;
+    this.isProduction = environment.production;
    }
 
   ngOnInit(){
