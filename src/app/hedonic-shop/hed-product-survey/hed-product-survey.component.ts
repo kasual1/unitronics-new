@@ -8,6 +8,7 @@ import { AuthService } from '../../auth.service';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { NextShopModalComponent } from '../../next-shop-modal/next-shop-modal.component';
+import { LoggerService } from '../../logger.service';
 
 @Component({
   selector: 'app-hed-product-survey',
@@ -38,7 +39,8 @@ export class HedProductSurveyComponent implements OnInit {
     private authService: AuthService,
     private modalService: BsModalService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loggerService: LoggerService
   ) { }
 
   ngOnInit() {
@@ -133,6 +135,11 @@ export class HedProductSurveyComponent implements OnInit {
       console.log("Create new cart");
       this.createCart(this.product);
     }
+
+    this.loggerService.log({
+    }).subscribe(() => {
+      // DO NOTHING
+    });
   }
 
   onSubmitOnly() {

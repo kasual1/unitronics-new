@@ -16,7 +16,10 @@ export class FinalSurveyComponent implements OnInit {
 
   finalSurvey = new FormGroup(
     {
-      satisfaction: new FormControl('', Validators.required),
+      satisfactionHedonic: new FormControl('', Validators.required),
+      satisfactionExperienced: new FormControl('', Validators.required),
+      satisfactionUtilitarian: new FormControl('', Validators.required),
+      satisfactionCredence: new FormControl('', Validators.required),
       comeBackHedonic: new FormControl('', Validators.required),
       comeBackExperienced: new FormControl('', Validators.required),
       comeBackUtilitarian: new FormControl('', Validators.required),

@@ -32,8 +32,7 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         let pathArray = event.urlAfterRedirects.split('/');
-        console.log(pathArray);
-        let data = {
+        this.loggerService.log({
           SessionId: this.authService.getUser(),
           Timestamp: Date.now(),
           Url: event.urlAfterRedirects,
@@ -42,9 +41,8 @@ export class AppComponent implements OnInit {
           Treatment: this.recommenderType,
           Shop: pathArray[1],
           ProductId: pathArray[3]
-        }
-        this.loggerService.log(data).subscribe(() =>{
-
+        }).subscribe(() => {
+          // DO NOTHING
         });
       }
     });

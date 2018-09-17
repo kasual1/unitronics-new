@@ -5,8 +5,8 @@ h4 {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 250px;
     font-size: 1.1em;
+    text-align: center;
 }
 
 img{
@@ -28,4 +28,8 @@ img{
 
 .product-image{
     padding: 0 25%;
+}
+
+.caption{
+    text-align: center;
 }

@@ -2,8 +2,8 @@ h4 {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 250px;
     font-size: 1.1em;
+    text-align: center;
 }
 
 
@@ -42,5 +42,9 @@ img{
     background-color: violet;
     padding: 10px;
     font-size: 1.4em;
+}
+
+.caption{
+    text-align: center;
 }
 

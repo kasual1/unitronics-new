@@ -20,7 +20,7 @@ export class ExpRecommendedProductsComponent implements OnInit {
   showRecommendations: boolean = true;
   recommenderType: string;
 
-  slideConfig = { "slidesToShow": 4, "slidesToScroll": 1, "dots": false, "infinite": false, "autoplay": false };
+  slideConfig = { "slidesToShow": 3, "slidesToScroll": 1, "dots": false, "infinite": false, "autoplay": false };
   zone: any;
   $instance: any;
 

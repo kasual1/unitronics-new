@@ -9,21 +9,75 @@
             <div class="panel panel-default">
               <div class="panel-body">
                 <p>1. How satisfied are you with the overall shopping experience? (1 = not satisfied, 7 = very satisfied)</p>
-                <div class="radio-group">
-                  <label class="radio-inline">
-                    <input type="radio" formControlName="satisfaction" [value]=1 required>1</label>
-                  <label class="radio-inline">
-                    <input type="radio" formControlName="satisfaction" [value]=2 required>2</label>
-                  <label class="radio-inline">
-                    <input type="radio" formControlName="satisfaction" [value]=3 required>3</label>
-                  <label class="radio-inline">
-                    <input type="radio" formControlName="satisfaction" [value]=4 required>4</label>
-                  <label class="radio-inline">
-                    <input type="radio" formControlName="satisfaction" [value]=5 required>5</label>
-                  <label class="radio-inline">
-                    <input type="radio" formControlName="satisfaction" [value]=6 required>6</label>
-                  <label class="radio-inline">
-                    <input type="radio" formControlName="satisfaction" [value]=7 required>7</label>
+                <div class="sub-p">
+                  <p>1.1 Happy Watch (online shop for watches)</p>
+                  <div class="radio-group">
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionHedonic" [value]=1 required>1</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionHedonic" [value]=2 required>2</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionHedonic" [value]=3 required>3</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionHedonic" [value]=4 required>4</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionHedonic" [value]=5 required>5</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionHedonic" [value]=6 required>6</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionHedonic" [value]=7 required>7</label>
+                  </div>
+                  <p>1.2 Ex Libris (online shop for books)</p>
+                  <div class="radio-group">
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionExperienced" [value]=1 required>1</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionExperienced" [value]=2 required>2</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionExperienced" [value]=3 required>3</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionExperienced" [value]=4 required>4</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionExperienced" [value]=5 required>5</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionExperienced" [value]=6 required>6</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionExperienced" [value]=7 required>7</label>
+                  </div>
+                  <p>1.3 Uni Shop (online shop for university equipment)</p>
+                  <div class="radio-group">
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionUtilitarian" [value]=1 required>1</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionUtilitarian" [value]=2 required>2</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionUtilitarian" [value]=3 required>3</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionUtilitarian" [value]=4 required>4</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionUtilitarian" [value]=5 required>5</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionUtilitarian" [value]=6 required>6</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionUtilitarian" [value]=7 required>7</label>
+                  </div>
+                  <p>1.4 7K Backpacks (online shop for backpacks)</p>
+                  <div class="radio-group">
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionCredence" [value]=1 required>1</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionCredence" [value]=2 required>2</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionCredence" [value]=3 required>3</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionCredence" [value]=4 required>4</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionCredence" [value]=5 required>5</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionCredence" [value]=6 required>6</label>
+                    <label class="radio-inline">
+                      <input type="radio" formControlName="satisfactionCredence" [value]=7 required>7</label>
+                  </div>
                 </div>
               </div>
             </div>
@@ -137,8 +191,6 @@
                     <input type="radio" formControlName="gender" [value]=1 required>Male</label>
                   <label class="radio-inline">
                     <input type="radio" formControlName="gender" [value]=2 required>Female</label>
-                  <label class="radio-inline">
-                    <input type="radio" formControlName="gender" [value]=3 required>None</label>
                 </div>
                 <hr>
                 <p class="danger">To complete the survey the email address is not required. But if you want to take part in the lottery we

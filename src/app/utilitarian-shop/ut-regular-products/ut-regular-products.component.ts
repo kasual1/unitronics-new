@@ -17,7 +17,7 @@ export class UtRegularProductsComponent implements OnInit {
 
   @ViewChild(SlickComponent) slickComponent: SlickComponent;
   
-  slideConfig = {"slidesToShow": 4, "slidesToScroll": 1, "dots": false, "infinite": false, "autoplay": false};
+  slideConfig = {"slidesToShow": 3, "slidesToScroll": 1, "dots": false, "infinite": false, "autoplay": false};
 
     constructor(private dataService: UtDataService) { }
   
