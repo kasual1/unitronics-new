@@ -10,6 +10,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { NextShopModalComponent } from '../../next-shop-modal/next-shop-modal.component';
 import { LoggerService } from '../../logger.service';
 import { environment } from '../../../environments/environment';
+import { RecommenderExperiment } from '../../app-experiments/recommender-experiment';
 
 @Component({
   selector: 'app-hed-product-survey',
@@ -139,10 +140,8 @@ export class HedProductSurveyComponent implements OnInit {
       console.log("Create new cart");
       this.createCart(this.product);
     }
-
-    this.loggerService.log({
-    }).subscribe(() => {
-      // DO NOTHING
+    this.loggerService.productId = this.product.Id;
+    this.loggerService.log('submit + add to cart', this.router.url).subscribe((result: any) => {
     });
   }
 
@@ -160,6 +159,9 @@ export class HedProductSurveyComponent implements OnInit {
         this.surveyAlreadyTaken = true;
       }
     );
+    this.loggerService.productId = this.product.Id;
+    this.loggerService.log('submit', this.router.url).subscribe((result: any) => {
+    });
   }
 
   onAddToCartOnly() {
@@ -171,6 +173,9 @@ export class HedProductSurveyComponent implements OnInit {
       console.log("Create new cart");
       this.createCart(this.product);
     }
+    this.loggerService.productId = this.product.Id;
+    this.loggerService.log('add to cart', this.router.url).subscribe((result: any) => {
+    });
   }
 
 

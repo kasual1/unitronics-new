@@ -33,6 +33,7 @@ export class CredRecommendedProductsComponent implements OnInit {
   ) {
     this.basePath = environment.basePathCred;
     this.isProduction = environment.production;
+    this.isProduction = environment.production;
   }
 
   ngOnInit() {

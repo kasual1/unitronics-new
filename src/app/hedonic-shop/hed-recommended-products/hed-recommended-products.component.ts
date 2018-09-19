@@ -4,6 +4,9 @@ import { HedDataService } from '../hed-data.service';
 import { AuthService } from '../../auth.service';
 import { RecommenderExperiment } from '../../app-experiments/recommender-experiment';
 import { environment } from '../../../environments/environment';
+import { LoggerService } from '../../logger.service';
+import { Router } from '@angular/router';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-hed-recommended-products',
@@ -29,7 +32,9 @@ export class HedRecommendedProductsComponent implements OnInit {
 
   constructor(
     private dataService: HedDataService,
-    private authService: AuthService
+    private authService: AuthService,
+    private loggerService: LoggerService,
+    private router: Router
   ) {
     this.basePath = environment.basePathHed;
     this.isProduction = environment.production;
@@ -80,6 +85,15 @@ export class HedRecommendedProductsComponent implements OnInit {
         console.log(this.recommendedProducts);
         this.loading = false;
       });
+  }
+
+  onItemClicked(product: any){
+    this.loggerService.productId = product.Id;
+    this.loggerService.log('click', this.router.url).subscribe((result: any) => {
+      this.loggerService.source = 'recommender';
+      this.loggerService.productId = product.Id;
+      this.router.navigate(['/' + environment.basePathHed + '/detail/' + product.Id]);
+    });
   }
 
   next() {

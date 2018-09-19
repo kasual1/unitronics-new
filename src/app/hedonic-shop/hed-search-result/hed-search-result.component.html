@@ -62,7 +62,7 @@
             </div>
             <div class="caption">
               <h4>
-                <a routerLink="/{{basePath}}/detail/{{product.Id}}">{{product.Title}}</a>
+                <a class="clickable" (click)="onItemClicked(product)">{{product.Title}}</a>
               </h4>
               <div>
                 <rating *ngIf="product.ShowReviews" [(ngModel)]="product.StarRating" class="center-block" [max]="5" [readonly]="true" [customTemplate]="t"

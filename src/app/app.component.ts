@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { AuthService } from './auth.service';
 import { RecommenderExperiment } from './app-experiments/recommender-experiment';
 import { LoggerService } from './logger.service';
+import { Log } from './app-models/log';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +19,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private authService: AuthService,
     private loggerService: LoggerService
   ) {
@@ -31,18 +34,9 @@ export class AppComponent implements OnInit {
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        let pathArray = event.urlAfterRedirects.split('/');
-        this.loggerService.log({
-          SessionId: this.authService.getUser(),
-          Timestamp: Date.now(),
-          Url: event.urlAfterRedirects,
-          Event: "view",
-          Source: null,
-          Treatment: this.recommenderType,
-          Shop: pathArray[1],
-          ProductId: pathArray[3]
-        }).subscribe(() => {
-          // DO NOTHING
+        this.route.params.subscribe(params => {
+          this.loggerService.log('view', event.urlAfterRedirects).subscribe((result: any) => {
+          });
         });
       }
     });

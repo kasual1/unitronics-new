@@ -18,11 +18,13 @@ import { CredSurveyModule } from './credence-survey/cred-survey.module';
 import { FinalSurveyModule } from './app-final-survey/final-survey.module';
 import { NextShopModalComponent } from './next-shop-modal/next-shop-modal.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { LogComponent } from './app-models/log/log.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NextShopModalComponent
+    NextShopModalComponent,
+    LogComponent
   ],
   imports: [
     ExpModule,

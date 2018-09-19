@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { HedDataService } from '../hed-data.service';
 import { HedCartService } from '../hed-cart.service';
 import { environment } from '../../../environments/environment';
+import { AuthService } from '../../auth.service';
+import { RecommenderExperiment } from '../../app-experiments/recommender-experiment';
+import { Router } from '@angular/router';
+import { LoggerService } from '../../logger.service';
 
 
 @Component({
@@ -18,8 +22,11 @@ export class HedCartComponent implements OnInit {
 
   constructor(
     private databaseService: HedDataService,
-    private cartService: HedCartService
-  ) { 
+    private cartService: HedCartService,
+    private authService: AuthService,
+    private router: Router,
+    private loggerService: LoggerService
+  ) {
     this.basePath = environment.basePathHed;
   }
 
@@ -40,10 +47,20 @@ export class HedCartComponent implements OnInit {
       });
   }
 
+  onItemClicked(product: any) {
+    this.loggerService.productId = product.Id;
+    if (this.router.url != '/' + this.basePath + '/detail/' + product.Id) {
+      this.loggerService.log('click', this.router.url).subscribe((result: any) => {
+        this.loggerService.source = 'cart';
+        this.loggerService.productId = product.Id;
+        this.router.navigateByUrl('/' + this.basePath + '/detail/' + product.Id);
+      });
+    }
+  }
+
   getCart(cartId) {
     this.databaseService.getCart(cartId)
       .subscribe((data: any) => {
-        console.log(data);
         this.cart = data;
         this.totalAmount = "EUR " + this.calculateTotalAmount();
       });
@@ -56,6 +73,10 @@ export class HedCartComponent implements OnInit {
         this.cartService.updateCart(data);
         this.totalAmount = "EUR " + this.calculateTotalAmount();
       });
+
+    this.loggerService.productId = cartItem.Product.Id;
+    this.loggerService.log('remove from cart', this.router.url).subscribe((result: any) => {
+    });
   }
 
   private calculateTotalAmount() {

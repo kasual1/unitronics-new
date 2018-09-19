@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { HedDataService } from '../hed-data.service';
 import { environment } from '../../../environments/environment';
+import { LoggerService } from '../../logger.service';
 
 @Component({
   selector: 'app-hed-detail-page',
@@ -11,19 +12,26 @@ import { environment } from '../../../environments/environment';
 export class HedDetailPageComponent implements OnInit {
 
   id: number;
+  src: string;
   product: any;
   previewImageUrl: string;
   relatedProducts: any[] = [];
   basePath: string;
-  
+
   constructor(
     private route: ActivatedRoute,
     private dataService: HedDataService,
+    private router: Router,
+    private loggerService: LoggerService
   ) {
-    this.basePath = environment.basePathHed;
-    this.route.params.subscribe(params => {
-      this.id = params['id'];
-      this.getProduct();
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.basePath = environment.basePathHed;
+        this.route.params.subscribe(params => {
+          this.id = params['id'];
+          this.getProduct();
+        });
+      }
     });
   }
 

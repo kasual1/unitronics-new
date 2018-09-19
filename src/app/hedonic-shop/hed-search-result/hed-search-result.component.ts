@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HedDataService } from '../hed-data.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { environment } from '../../../environments/environment';
+import { LoggerService } from '../../logger.service';
 
 @Component({
   selector: 'app-hed-search-result',
@@ -33,7 +34,8 @@ export class HedSearchResultComponent implements OnInit {
   constructor(
     private dataService: HedDataService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private loggerService: LoggerService
   ) { 
     this.basePath = environment.basePathHed;
   }
@@ -71,6 +73,15 @@ export class HedSearchResultComponent implements OnInit {
         }
       }
       );
+  }
+
+  onItemClicked(product: any){
+    this.loggerService.productId = product.Id;
+    this.loggerService.log('click', this.router.url).subscribe((result: any) => {
+      this.loggerService.source = 'search results';
+      this.loggerService.productId = product.Id;
+    this.router.navigateByUrl('/' + environment.basePathHed + '/detail/' + product.Id);
+    });
   }
 
   onNextPageClicked() {
