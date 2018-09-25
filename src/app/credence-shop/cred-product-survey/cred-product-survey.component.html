@@ -9,7 +9,7 @@
     <div class="options">
 
       <div class="slidecontainer">
-        <p>1. How attractive is the product? (1 = not attractive, 7 = very attractive)</p>
+        <p>1. Wie attraktiv ist das Produkt? (1 = nicht attraktiv, 7 = sehr attraktiv)</p>
         <div>
           <label class="radio-inline">
             <input type="radio" formControlName="attractive" [value]=1 required>1</label>
@@ -30,7 +30,7 @@
 
       <div class="slidecontainer">
         <div class="form-group">
-          <p>2. How do you like the product? (1 = not at all, 7 = very much)</p>
+          <p>2. Wie gefällt dir das Produkt? (1 = gefällt mir gar nicht, 7 =  gefällt mir sehr)</p>
           <div>
             <label class="radio-inline">
               <input type="radio" formControlName="like" [value]=1 required>1</label>
@@ -52,7 +52,7 @@
 
 
       <div class="slidecontainer">
-        <p>3. How likely would you buy this product?</p>
+        <p>3. Mit welcher Wahrscheinlichkeit würdest du das Produkt kaufen?</p>
         <p style="float: left;">0%</p>
         <input type="range" min="0" max="100" class="slider" id="likelihood" style="float: left;" formControlName="likelihood" required>
         <p style="float: left;">100%</p>
@@ -61,25 +61,25 @@
 
     </div>
     <button type="submit" class="btn btn-default btn-cart" [disabled]="!userSurvey.valid">
-      <i class="fa fa-shopping-cart"></i> Submit and add to cart to buy</button>
+      <i class="fa fa-shopping-cart"></i> Abschicken und in den Einkaufswagen legen</button>
     <button type="button" class="btn btn-default btn-submit" [disabled]="!userSurvey.valid" (click)="onSubmitOnly()">
-      Submit without buying </button>
+      Nur Abschicken </button>
   </form>
   <div *ngIf="surveyAlreadyTaken" class="survey-complete-msg">
-    <h3><i class="fa fa-check"></i> Your preference about this product is submitted!</h3>
-    <h3 *ngIf="productInCart"><i class="fa fa-check"></i> Product in cart!</h3>
+    <h3><i class="fa fa-check"></i> Deine Präferenzen wurden erfolgreich gespeichert!</h3>
+    <h3 *ngIf="productInCart"><i class="fa fa-check"></i> Produkt im Einkaufswagen!</h3>
     <h3 *ngIf="!productInCart">
       <i class="fa fa-check not-in-cart"></i>
-      Product not in your cart! Do you want to
-      <a class="clickable add-cart-link" (click)="onAddToCartOnly()">add it</a>?
+      Produkt noch nicht im Einkaufswagen. Möchtest du es 
+      <a class="clickable add-cart-link" (click)="onAddToCartOnly()">hinzufügen</a>?
     </h3>
     <div class="next-shop-msg">
-      <p>You can continue shopping at this online shop or click on next to go to the final survey.</p>
+      <p>Du kannst deinen Einkauf in diesem Shop fortsetzen oder auf weiter klicken um mit der abschließenden Umfrage weiter zu machen.</p>
       <button type="button" class="btn btn-default btn-submit" routerLink="/{{basePath}}">
-        Continue shopping at this online shop
+        Einkauf in diesem Shop fortsetzen
       </button>
       <button type="button" class="btn btn-default btn-submit" (click)="onNextShopClicked()">
-        Go to final survey
+        Weiter zur Umfrage
       </button>
     </div>
   </div>

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UtDataService } from '../ut-data.service';
 import { UtCartService } from '../ut-cart.service';
 import { environment } from '../../../environments/environment';
+import { LoggerService } from '../../logger.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,10 +20,12 @@ export class UtCartComponent implements OnInit {
 
   constructor(
     private databaseService: UtDataService,
-    private cartService: UtCartService
+    private cartService: UtCartService,
+    private loggerService: LoggerService,
+    private router: Router
   ) {
     this.basePath = environment.basePathUt;
-   }
+  }
 
   ngOnInit(): void {
     let cartId = this.cartService.getCartId();
@@ -38,6 +42,12 @@ export class UtCartComponent implements OnInit {
         this.cart = data;
         this.totalAmount = "EUR " + this.calculateTotalAmount();
       });
+  }
+
+  onItemClicked(product: any) {
+    this.loggerService.log('click', this.router.url, null, product.Id).subscribe((result: any) => {
+      this.router.navigate(['/' + this.basePath + '/detail/' + product.Id], { queryParams: { src: 'c' } });
+    });
   }
 
   getCart(cartId) {
@@ -57,6 +67,8 @@ export class UtCartComponent implements OnInit {
         this.cartService.updateCart(data);
         this.totalAmount = "EUR " + this.calculateTotalAmount();
       });
+    this.loggerService.log('remove from cart', this.router.url, null, cartItem.Product.Id).subscribe((result: any) => {
+    });
   }
 
   private calculateTotalAmount() {

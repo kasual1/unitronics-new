@@ -5,17 +5,17 @@
 
         <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig">
             <div ngxSlickItem>
-                <a routerLink="/{{basePath}}/detail/911">
+                <a class="clickable" (click)="onItemClick(productList[0])">
                     <img src="assets/images/slider-imgs/book1.jpg" alt="Slider" class="image img-responsive" />
                 </a>
             </div>
             <div ngxSlickItem>
-                <a routerLink="/{{basePath}}/detail/1024">
+                <a class="clickable" (click)="onItemClick(productList[1])">
                     <img src="assets/images/slider-imgs/book3.jpg" alt="Slider" class="image img-responsive" />
                 </a>
             </div>
             <div ngxSlickItem>
-                <a routerLink="/{{basePath}}/detail/1023">
+                <a class="clickable" (click)="onItemClick(productList[2])">
                     <img src="assets/images/slider-imgs/book2.jpg" alt="Slider" class="image img-responsive" />
                 </a>
             </div>

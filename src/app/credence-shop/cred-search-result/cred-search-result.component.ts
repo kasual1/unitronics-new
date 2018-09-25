@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { CredDataService } from '../cred-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
+import { LoggerService } from '../../logger.service';
 
 @Component({
   selector: 'app-cred-search-result',
@@ -34,7 +35,8 @@ export class CredSearchResultComponent implements OnInit {
   constructor(
     private dataService: CredDataService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private loggerService: LoggerService
   ) {
     this.basePath = environment.basePathCred;
    }
@@ -51,6 +53,12 @@ export class CredSearchResultComponent implements OnInit {
       this.searchProducts(this.pageIndex, this.pageSize, this.searchTerm, this.order, this.category);
     });
 
+  }
+
+  onItemClicked(product: any) {
+    this.loggerService.log('click', this.router.url, null, product.Id).subscribe((result: any) => {
+      this.router.navigate(['/' + environment.basePathCred + '/detail/' + product.Id], {queryParams: { src: 's'}});
+    });
   }
 
   searchProducts(pageIndex, pageSize, searchTerm?, priceOrder?, category?) {

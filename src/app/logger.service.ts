@@ -14,27 +14,17 @@ export class LoggerService {
 
   private baseUrl = environment.apiUrl + "/log";
 
-  public source = null;
-
-  public productId = null;
-
   private experiment: RecommenderExperiment;
 
   constructor
     (
     private http: HttpClient,
-    private authService: AuthService,
-    private route: ActivatedRoute
+    private authService: AuthService
   ) {
-    this.experiment = new RecommenderExperiment({ userId: this.authService.getUser() });
-    
   }
 
-  log(eventType: string, url: string, productId?: number): Observable<any> {
-    if(this.productId == null){
-      this.productId = isNumber(+url.split('/')[3]) ? +url.split('/')[3] : null;
-    }
-    console.log('LOGGING DATA:', this.productId );
+  log(eventType: string, url: string, source?: string, productId?: number): Observable<any> {
+    this.experiment = new RecommenderExperiment({ userId: this.authService.getUser() });
     let post = this.http.post(
       this.baseUrl,
       {
@@ -42,10 +32,10 @@ export class LoggerService {
         Timestamp: Date.now(),
         Url: url,
         Event: eventType,
-        Source: this.source,
+        Source: source,
         Treatment: this.experiment.get('recommenderType'),
-        Shop: 'hedonic',
-        ProductId: this.productId
+        Shop: url.split('/')[1],
+        ProductId: productId
       },
       {
         headers:
@@ -55,8 +45,6 @@ export class LoggerService {
         responseType: 'json'
       }
     );
-    this.source = null;
-    this.productId = null;
     return post;
   }
 

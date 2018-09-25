@@ -58,6 +58,7 @@ export class HedDataService {
 
   readProduct(id): Observable<any> {
     let url = this.urlGetProduct + id;
+    console.log(url);
     return this.http.get(url, { responseType: 'json' });
   }
 

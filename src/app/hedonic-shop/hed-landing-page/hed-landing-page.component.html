@@ -1,10 +1,10 @@
 <div class="row shop-nav-header">
   <div class="col-md-10">
-    <p>If you are done shopping in this shop, click on next!</p>
+    <p>Wenn du in diesem Shop fertig bist, klicke auf weiter!</p>
   </div>
   <div class="col-md-2">
     <button type="button" class="btn btn-next pull-right next" (click)="onNextClicked()">
-      Next Shop
+      Weiter
     </button>
   </div>
 </div>
@@ -75,7 +75,7 @@
         <div class="collapse navbar-collapse navbar-cat-collapse">
           <ul class="nav navbar-nav">
             <li dropdown>
-              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Men</a>
+              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Für Ihn</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
                   <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 0, size:10, q: 'Casio'}">Casio</a>
@@ -92,7 +92,7 @@
               </ul>
             </li>
             <li dropdown>
-              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Woman</a>
+              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Für Sie</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
                   <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 0, size:10, q: 'Cluse'}">Cluse</a>
@@ -137,7 +137,7 @@
               </ul>
             </li>
             <li dropdown>
-              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Casual</a>
+              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Freizeit</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
                   <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 0, size:10, q: 'Swatch'}">
@@ -152,7 +152,7 @@
               </ul>
             </li>
             <li dropdown>
-              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Fancy</a>
+              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Edel</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
                   <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 0, size:10, q: 'Tommy Hilfiger'}">Tommy
@@ -189,7 +189,7 @@
       <div class="row">
         <!-- Foot Col#1 Starts -->
         <div class="col-md-4 col-xs-12">
-          <h5>Stay Connected</h5>
+          <h5>Folge uns</h5>
           <ul class="list-unstyled list-inline foot-sm-links">
             <li>
               <a routerLink="/{{basePath}}">
@@ -219,9 +219,9 @@
           </ul>
         </div>
         <!-- Foot Col#1 Ends -->
-        <!-- Contact Us Starts -->
+        <!-- Kontakt Starts -->
         <div class="col-md-4 col-sm-4 col-xs-12 last">
-          <h5>Contact Us</h5>
+          <h5>Kontakt</h5>
           <ul>
             <li>Universität zu Köln</li>
             <li>
@@ -236,7 +236,7 @@
             </li>
           </ul>
         </div>
-        <!-- Contact Us Ends -->
+        <!-- Kontakt Ends -->
       </div>
       <!-- Nested Row Ends -->
     </div>

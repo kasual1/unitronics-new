@@ -48,14 +48,9 @@ export class HedCartComponent implements OnInit {
   }
 
   onItemClicked(product: any) {
-    this.loggerService.productId = product.Id;
-    if (this.router.url != '/' + this.basePath + '/detail/' + product.Id) {
-      this.loggerService.log('click', this.router.url).subscribe((result: any) => {
-        this.loggerService.source = 'cart';
-        this.loggerService.productId = product.Id;
-        this.router.navigateByUrl('/' + this.basePath + '/detail/' + product.Id);
-      });
-    }
+    this.loggerService.log('click', this.router.url, null, product.Id).subscribe((result: any) => {
+      this.router.navigate(['/' + this.basePath + '/detail/' + product.Id], { queryParams: { src: 'c' } });
+    });
   }
 
   getCart(cartId) {
@@ -73,9 +68,7 @@ export class HedCartComponent implements OnInit {
         this.cartService.updateCart(data);
         this.totalAmount = "EUR " + this.calculateTotalAmount();
       });
-
-    this.loggerService.productId = cartItem.Product.Id;
-    this.loggerService.log('remove from cart', this.router.url).subscribe((result: any) => {
+    this.loggerService.log('remove from cart', this.router.url, null, cartItem.Product.Id).subscribe((result: any) => {
     });
   }
 

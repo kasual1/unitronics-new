@@ -9,6 +9,7 @@ import { AuthService } from '../../auth.service';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { NextShopModalComponent } from '../../next-shop-modal/next-shop-modal.component';
 import { environment } from '../../../environments/environment';
+import { LoggerService } from '../../logger.service';
 
 @Component({
   selector: 'app-ut-product-survey',
@@ -41,7 +42,8 @@ export class UtProductSurveyComponent implements OnInit {
     private authService: AuthService,
     private modalService: BsModalService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loggerService: LoggerService
   ) { 
     this.basePath = environment.basePathUt;
   }
@@ -138,6 +140,8 @@ export class UtProductSurveyComponent implements OnInit {
       console.log("Create new cart");
       this.createCart(this.product);
     }
+    this.loggerService.log('submit + add to cart', this.router.url, null, this.product.Id).subscribe((result: any) => {
+    });
   }
 
   onSubmitOnly() {
@@ -154,6 +158,8 @@ export class UtProductSurveyComponent implements OnInit {
         this.surveyAlreadyTaken = true;
       }
     );
+    this.loggerService.log('submit', this.router.url, null, this.product.Id).subscribe((result: any) => {
+    });
   }
 
   onAddToCartOnly() {
@@ -165,6 +171,8 @@ export class UtProductSurveyComponent implements OnInit {
       console.log("Create new cart");
       this.createCart(this.product);
     }
+    this.loggerService.log('add to cart', this.router.url, null, this.product.Id).subscribe((result: any) => {
+    });
   }
 
 

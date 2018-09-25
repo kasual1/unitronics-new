@@ -1,29 +1,29 @@
 <!-- Slider Starts -->
 <div id="main-carousel" class="carousel slide center-block" data-ride="carousel">
-  <!-- Wrapper For Slides Starts -->
-  <div class="carousel-inner">
+    <!-- Wrapper For Slides Starts -->
+    <div class="carousel-inner">
 
-      <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig">
-          <div ngxSlickItem>
-              <a routerLink="/{{basePath}}/detail/1268">
-                  <img src="assets/images/slider-imgs/backpack1.jpg" alt="Slider" class="image img-responsive" />
-              </a>
-          </div>
-          <div ngxSlickItem>
-              <a routerLink="/{{basePath}}/detail/1234">
-                  <img src="assets/images/slider-imgs/backpack2.jpg" alt="Slider" class="image img-responsive" />
-              </a>
-          </div>
-          <div ngxSlickItem>
-              <a routerLink="/{{basePath}}/detail/1252">
-                  <img src="assets/images/slider-imgs/backpack3.jpg" alt="Slider" class="image img-responsive" />
-              </a>
-          </div>
+        <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig">
+            <div ngxSlickItem>
+                <a class="clickable" (click)="onItemClick(productList[0])">
+                    <img src="assets/images/slider-imgs/backpack1.jpg" alt="Slider" class="image img-responsive" />
+                </a>
+            </div>
+            <div ngxSlickItem>
+                <a class="clickable" (click)="onItemClick(productList[1])">
+                    <img src="assets/images/slider-imgs/backpack2.jpg" alt="Slider" class="image img-responsive" />
+                </a>
+            </div>
+            <div ngxSlickItem>
+                <a class="clickable" (click)="onItemClick(productList[2])">
+                    <img src="assets/images/slider-imgs/backpack3.jpg" alt="Slider" class="image img-responsive" />
+                </a>
+            </div>
 
-      </ngx-slick>
-      <!-- Wrapper For Slides Ends -->
-      <!-- Controls Starts -->
-      <!--
+        </ngx-slick>
+        <!-- Wrapper For Slides Ends -->
+        <!-- Controls Starts -->
+        <!--
       <a class="left carousel-control" role="button" (click)="previous()">
           <i class="fa fa-chevron-left"></i>
       </a>
@@ -31,7 +31,7 @@
           <i class="fa fa-chevron-right"></i>
       </a>
       -->
-      <!-- Controls Ends -->
-  </div>
-  <!-- Slider Ends -->
+        <!-- Controls Ends -->
+    </div>
+    <!-- Slider Ends -->
 </div>

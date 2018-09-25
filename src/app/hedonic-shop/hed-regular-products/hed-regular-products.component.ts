@@ -51,11 +51,8 @@ export class HedRegularProductsComponent implements OnInit {
   }
 
   onItemClicked(product: any) {
-    this.loggerService.productId = product.Id;
-    this.loggerService.log('click', this.router.url).subscribe((result: any) => {
-      this.loggerService.source = 'on sale';
-      this.loggerService.productId = product.Id;
-      this.router.navigateByUrl('/' + environment.basePathHed + '/detail/' + product.Id);
+    this.loggerService.log('click', this.router.url, null, product.Id).subscribe((result: any) => {
+      this.router.navigate(['/' + environment.basePathHed + '/detail/' + product.Id], { queryParams: {src: 'os'}});
     });
   }
 

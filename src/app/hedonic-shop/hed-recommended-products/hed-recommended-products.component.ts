@@ -87,12 +87,9 @@ export class HedRecommendedProductsComponent implements OnInit {
       });
   }
 
-  onItemClicked(product: any){
-    this.loggerService.productId = product.Id;
-    this.loggerService.log('click', this.router.url).subscribe((result: any) => {
-      this.loggerService.source = 'recommender';
-      this.loggerService.productId = product.Id;
-      this.router.navigate(['/' + environment.basePathHed + '/detail/' + product.Id]);
+  onItemClicked(product: any) {
+    this.loggerService.log('click', this.router.url, null, product.Id).subscribe((result: any) => {
+      this.router.navigate(['/' + environment.basePathHed + '/detail/' + product.Id], { queryParams: {src: 'r'}});
     });
   }
 

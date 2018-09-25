@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ExpDataService } from '../exp-data.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { environment } from '../../../environments/environment';
+import { LoggerService } from '../../logger.service';
 
 @Component({
   selector: 'app-exp-search-result',
@@ -34,7 +35,8 @@ export class ExpSearchResultComponent implements OnInit {
   constructor(
     private dataService: ExpDataService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private loggerService: LoggerService
   ) {
     this.basePath = environment.basePathExp;
    }
@@ -72,6 +74,12 @@ export class ExpSearchResultComponent implements OnInit {
         }
       }
       );
+  }
+
+  onItemClicked(product: any) {
+    this.loggerService.log('click', this.router.url, null, product.Id).subscribe((result: any) => {
+      this.router.navigate(['/' + environment.basePathExp + '/detail/' + product.Id], {queryParams: { src: 's'}});
+    });
   }
 
   onNextPageClicked() {

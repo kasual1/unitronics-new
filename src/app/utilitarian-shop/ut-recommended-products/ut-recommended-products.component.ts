@@ -4,6 +4,8 @@ import { AuthService } from '../../auth.service';
 import { SlickComponent } from 'ngx-slick';
 import { RecommenderExperiment } from '../../app-experiments/recommender-experiment';
 import { environment } from '../../../environments/environment';
+import { LoggerService } from '../../logger.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ut-recommended-products',
@@ -29,7 +31,9 @@ export class UtRecommendedProductsComponent implements OnInit {
 
   constructor(
     private dataService: UtDataService,
-    private authService: AuthService
+    private authService: AuthService,
+    private loggerService: LoggerService,
+    private router: Router
   ) {
     this.basePath = environment.basePathUt;
     this.isProduction = environment.production;
@@ -80,6 +84,12 @@ export class UtRecommendedProductsComponent implements OnInit {
         console.log(this.recommendedProducts);
         this.loading = false;
       });
+  }
+
+  onItemClicked(product: any) {
+    this.loggerService.log('click', this.router.url, null, product.Id).subscribe((result: any) => {
+      this.router.navigate(['/' + environment.basePathUt + '/detail/' + product.Id], { queryParams: {src: 'r'}});
+    });
   }
 
   next() {

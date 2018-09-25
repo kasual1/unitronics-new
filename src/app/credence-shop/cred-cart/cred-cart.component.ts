@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CredDataService } from '../cred-data.service';
 import { CredCartService } from '../cred-cart.service';
 import { environment } from '../../../environments/environment';
+import { LoggerService } from '../../logger.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cred-cart',
@@ -17,10 +19,12 @@ export class CredCartComponent implements OnInit {
 
   constructor(
     private databaseService: CredDataService,
-    private cartService: CredCartService
+    private cartService: CredCartService,
+    private loggerService: LoggerService,
+    private router: Router
   ) {
     this.basePath = environment.basePathCred;
-   }
+  }
 
   ngOnInit(): void {
     let cartId = this.cartService.getCartId();
@@ -39,6 +43,12 @@ export class CredCartComponent implements OnInit {
       });
   }
 
+  onItemClicked(product: any) {
+    this.loggerService.log('click', this.router.url, null, product.Id).subscribe((result: any) => {
+      this.router.navigate(['/' + this.basePath + '/detail/' + product.Id], { queryParams: { src: 'c' } });
+    });
+  }
+
   getCart(cartId) {
     this.databaseService.getCart(cartId)
       .subscribe((data: any) => {
@@ -55,6 +65,8 @@ export class CredCartComponent implements OnInit {
         this.cartService.updateCart(data);
         this.totalAmount = "EUR " + this.calculateTotalAmount();
       });
+    this.loggerService.log('remove from cart', this.router.url, null, cartItem.Product.Id).subscribe((result: any) => {
+    });
   }
 
   private calculateTotalAmount() {

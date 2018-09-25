@@ -36,7 +36,7 @@ export class HedSearchResultComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private loggerService: LoggerService
-  ) { 
+  ) {
     this.basePath = environment.basePathHed;
   }
 
@@ -61,9 +61,9 @@ export class HedSearchResultComponent implements OnInit {
         window.scrollTo(0, 0);
         this.results = data.products;
         this.totalResults = data.totalResults;
-        this.totalPages = (this.totalResults % 10 > 0) 
-        ? Math.floor(this.totalResults / this.pageSize) + 1
-        : Math.floor(this.totalResults / this.pageSize);
+        this.totalPages = (this.totalResults % 10 > 0)
+          ? Math.floor(this.totalResults / this.pageSize) + 1
+          : Math.floor(this.totalResults / this.pageSize);
         this.pageIndices = [];
         this.from = this.pageIndex + 1;
         this.to = (this.pageSize + this.pageIndex) - ((Math.floor((this.pageSize + this.pageIndex) / this.totalResults) * (this.pageSize + this.pageIndex) % this.totalResults));
@@ -75,12 +75,9 @@ export class HedSearchResultComponent implements OnInit {
       );
   }
 
-  onItemClicked(product: any){
-    this.loggerService.productId = product.Id;
-    this.loggerService.log('click', this.router.url).subscribe((result: any) => {
-      this.loggerService.source = 'search results';
-      this.loggerService.productId = product.Id;
-    this.router.navigateByUrl('/' + environment.basePathHed + '/detail/' + product.Id);
+  onItemClicked(product: any) {
+    this.loggerService.log('click', this.router.url, null, product.Id).subscribe((result: any) => {
+      this.router.navigate(['/' + environment.basePathHed + '/detail/' + product.Id], {queryParams: { src: 's'}});
     });
   }
 
@@ -118,16 +115,16 @@ export class HedSearchResultComponent implements OnInit {
 
   onPageIndexClicked(index: number) {
     let queryParams =
+    {
+      queryParams:
       {
-        queryParams:
-        {
-          index: index,
-          size: this.pageSize,
-          q: this.searchTerm,
-          c: this.category
-        }
+        index: index,
+        size: this.pageSize,
+        q: this.searchTerm,
+        c: this.category
       }
-      this.router.navigate(['/' + this.basePath + '/results'], queryParams);
+    }
+    this.router.navigate(['/' + this.basePath + '/results'], queryParams);
   }
 
   onSubmit() {
@@ -149,15 +146,15 @@ export class HedSearchResultComponent implements OnInit {
     }
 
     let queryParams =
+    {
+      queryParams:
       {
-        queryParams:
-        {
-          index: this.pageIndex,
-          size: this.pageSize,
-          q: this.searchTerm,
-          c: this.category
-        }
+        index: this.pageIndex,
+        size: this.pageSize,
+        q: this.searchTerm,
+        c: this.category
       }
+    }
 
     this.router.navigate(['/' + this.basePath + '/results'], queryParams);
   }

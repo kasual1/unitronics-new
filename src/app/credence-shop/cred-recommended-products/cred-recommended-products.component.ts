@@ -4,6 +4,8 @@ import { CredDataService } from '../cred-data.service';
 import { AuthService } from '../../auth.service';
 import { RecommenderExperiment } from '../../app-experiments/recommender-experiment';
 import { environment } from '../../../environments/environment';
+import { LoggerService } from '../../logger.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cred-recommended-products',
@@ -29,7 +31,9 @@ export class CredRecommendedProductsComponent implements OnInit {
 
   constructor(
     private dataService: CredDataService,
-    private authService: AuthService
+    private authService: AuthService,
+    private loggerService: LoggerService,
+    private router: Router
   ) {
     this.basePath = environment.basePathCred;
     this.isProduction = environment.production;
@@ -54,6 +58,12 @@ export class CredRecommendedProductsComponent implements OnInit {
         this.getColabFilterRecommendedProducts(user);
         break;
     }
+  }
+
+  onItemClicked(product: any) {
+    this.loggerService.log('click', this.router.url, null, product.Id).subscribe((result: any) => {
+      this.router.navigate(['/' + environment.basePathCred + '/detail/' + product.Id], { queryParams: {src: 'r'}});
+    });
   }
 
   getRandomRecommendedProducts() {

@@ -4,7 +4,7 @@
 			<a routerLink="/{{basePath}}">Home</a>
 		</li>
 		<span>&#187;</span>
-		<li class="active">Product Details</li>
+		<li class="active">Produkt Details</li>
 	</ol>
 	<!-- Progress spinner (Loading...)-->
 	<div *ngIf="!product" class="spinner">
@@ -37,23 +37,22 @@
 				 style="color: #ffce31;font-size: 30px; margin-bottom: 10px;"></rating>
 				<ul class="list-unstyled manufacturer">
 					<li>
-						<span>Brand:</span> {{product.Brand}}
+						<span>Marke:</span> {{product.Brand}}
 					</li>
 					<li>
 						<span>ASIN:</span> {{product.Asin}}</li>
 					<li>
-						<span>Availability:</span>
-						<strong *ngIf="product.Availability" class="label label-success">Available</strong>
-						<strong *ngIf="!product.Availability" class="label label-danger">Not in stock</strong>
+						<span>Verfügbarkeit:</span>
+						<strong *ngIf="product.Availability" class="label label-success">Verfügbar</strong>
+						<strong *ngIf="!product.Availability" class="label label-danger">Nicht im Lager</strong>
 					</li>
 				</ul>
 				<!-- Manufacturer Ends -->
 				<hr />
 				<!-- Price Starts -->
 				<div class="price">
-					<span class="price-head">Price :</span>
+					<span class="price-head">Preis :</span>
 					<span class="price-new">{{product.LowestNewPriceFormatted}}</span>
-					<span class="price-old">{{product.ListPriceFormatted}}</span>
 				</div>
 				<!-- Price Ends -->
 				<hr />
@@ -72,10 +71,10 @@
 		<!-- Nav Tabs Starts -->
 		<ul *ngIf="product" class="nav nav-tabs">
 			<li id="descriptionTab" class="active">
-				<a (click)="showDescription()">Description</a>
+				<a (click)="showDescription()">Produkt Beschreibung</a>
 			</li>
 			<li id="reviewsTab" *ngIf="product.showReviews == 1">
-				<a (click)="showReviews()">Reviews</a>
+				<a (click)="showReviews()">Bewertungen</a>
 			</li>
 		</ul>
 		<!-- Nav Tabs Ends -->

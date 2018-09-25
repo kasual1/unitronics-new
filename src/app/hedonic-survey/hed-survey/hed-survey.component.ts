@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-hed-survey',
   templateUrl: './hed-survey.component.html',
-  styleUrls: ['./hed-survey.component.css']
+  styleUrls: ['./hed-survey.component.css'],
 })
 export class HedSurveyComponent implements OnInit {
 

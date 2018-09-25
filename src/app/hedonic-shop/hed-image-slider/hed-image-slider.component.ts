@@ -17,6 +17,18 @@ export class HedImageSliderComponent implements OnInit {
   @ViewChild(SlickComponent) slickComponent: SlickComponent;
   slideConfig = { "slidesToShow": 1, "slidesToScroll": 1, "dots": true, "infinite": true, "autoplay": true, "autoplaySpeed": 3000 };
   basePath: string;
+  productList =
+    [
+      {
+        Id: 853
+      },
+      {
+        Id: 816
+      },
+      {
+        Id: 825
+      }
+    ]
 
   constructor(
     private router: Router,
@@ -29,12 +41,9 @@ export class HedImageSliderComponent implements OnInit {
   ngOnInit() {
   }
 
-  onItemClick(productId: number){
-    this.loggerService.productId = productId;
-    this.loggerService.log('click', this.router.url).subscribe((result: any) => {
-      this.loggerService.source = 'big banner';
-      this.loggerService.productId = productId;
-    this.router.navigateByUrl('/' + environment.basePathHed + '/detail/' + productId);
+  onItemClick(product: any) {
+    this.loggerService.log('click', this.router.url, null, product.Id).subscribe((result: any) => {
+      this.router.navigate(['/' + environment.basePathHed + '/detail/' + product.Id], { queryParams: { src: 'bb' } });
     });
   }
 

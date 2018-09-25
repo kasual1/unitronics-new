@@ -140,8 +140,7 @@ export class HedProductSurveyComponent implements OnInit {
       console.log("Create new cart");
       this.createCart(this.product);
     }
-    this.loggerService.productId = this.product.Id;
-    this.loggerService.log('submit + add to cart', this.router.url).subscribe((result: any) => {
+    this.loggerService.log('submit + add to cart', this.router.url, null, this.product.Id).subscribe((result: any) => {
     });
   }
 
@@ -159,8 +158,7 @@ export class HedProductSurveyComponent implements OnInit {
         this.surveyAlreadyTaken = true;
       }
     );
-    this.loggerService.productId = this.product.Id;
-    this.loggerService.log('submit', this.router.url).subscribe((result: any) => {
+    this.loggerService.log('submit', this.router.url, null, this.product.Id).subscribe((result: any) => {
     });
   }
 
@@ -173,8 +171,7 @@ export class HedProductSurveyComponent implements OnInit {
       console.log("Create new cart");
       this.createCart(this.product);
     }
-    this.loggerService.productId = this.product.Id;
-    this.loggerService.log('add to cart', this.router.url).subscribe((result: any) => {
+    this.loggerService.log('add to cart', this.router.url, null, this.product.Id).subscribe((result: any) => {
     });
   }
 

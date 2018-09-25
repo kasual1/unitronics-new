@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UtDataService } from '../ut-data.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { environment } from '../../../environments/environment';
+import { LoggerService } from '../../logger.service';
 
 @Component({
   selector: 'app-ut-search-result',
@@ -32,7 +33,8 @@ export class UtSearchResultComponent implements OnInit {
   constructor(
     private dataService: UtDataService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private loggerService: LoggerService
   ) { 
     this.basePath = environment.basePathUt;
   }
@@ -49,6 +51,12 @@ export class UtSearchResultComponent implements OnInit {
       this.searchProducts(this.pageIndex, this.pageSize, this.searchTerm, this.order, this.category);
     });
 
+  }
+
+  onItemClicked(product: any) {
+    this.loggerService.log('click', this.router.url, null, product.Id).subscribe((result: any) => {
+      this.router.navigate(['/' + environment.basePathUt + '/detail/' + product.Id], {queryParams: { src: 's'}});
+    });
   }
 
   searchProducts(pageIndex, pageSize, searchTerm?, priceOrder?, category?) {

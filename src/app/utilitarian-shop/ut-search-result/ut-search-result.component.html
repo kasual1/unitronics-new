@@ -5,14 +5,14 @@
       <a routerLink="/{{basePath}}">Home</a>
     </li>
     <span>&#187;</span>
-    <li class="active">Search Results</li>
+    <li class="active">Suche</li>
   </ol>
   <!-- Nested Row Starts -->
   <div class="row">
     <!-- Sidebar Starts -->
     <div class="col-md-3">
       <!-- Shopping Options Starts -->
-      <h3 class="side-heading">Filter Options</h3>
+      <h3 class="side-heading">Filter</h3>
       <div class="list-group">
         <form [formGroup]="filter" (ngSubmit)="onSubmit()">
           <div class="list-group-item">
@@ -21,18 +21,18 @@
           <div class="list-group-item">
             <div class="filter-group">
               <label class="radio">
-                <input formControlName="priceOrder" [value]=1 type="radio" /> none
+                <input formControlName="priceOrder" [value]=1 type="radio" /> ohne
               </label>
               <label class="radio">
-                <input formControlName="priceOrder" [value]=2 type="radio" /> lowest first
+                <input formControlName="priceOrder" [value]=2 type="radio" /> günstigste zuerst
               </label>
               <label class="radio">
-                <input formControlName="priceOrder" [value]=3 type="radio" /> highest first
+                <input formControlName="priceOrder" [value]=3 type="radio" /> teuerste zuerst
               </label>
             </div>
           </div>
           <div class="list-group-item">
-            <button type="submit" class="btn btn-main">Filter</button>
+            <button type="submit" class="btn btn-main">Anwenden</button>
           </div>
         </form>
       </div>
@@ -43,7 +43,7 @@
     <div class="col-md-9">
       <!-- Main Heading Starts -->
       <h2 class="main-heading2 page-title">
-        {{totalResults}} Results for: {{searchTerm}}
+        {{totalResults}} Ergebnisse für: {{searchTerm}}
       </h2>
       <!-- Main Heading Ends -->
       <!-- Product Filter Starts -->
@@ -63,7 +63,7 @@
             </div>
             <div class="caption">
               <h4>
-                <a routerLink="/{{basePath}}/detail/{{product.Id}}">{{product.Title}}</a>
+                <a class="clickable" (click)="onItemClicked(product)">{{product.Title}}</a>
               </h4>
               <div>
                 <rating *ngIf="product.ShowReviews" [(ngModel)]="product.StarRating" class="center-block" [max]="5" [readonly]="true" [customTemplate]="t"
@@ -71,7 +71,6 @@
               </div>
               <div class="price">
                 <span class="price-new">{{product.LowestNewPriceFormatted}}</span>
-                <span *ngIf="product.ListPriceFormatted" class="price-old">{{product.ListPriceFormatted}}</span>
               </div>
             </div>
           </div>
@@ -98,7 +97,7 @@
         <!-- Pagination Ends -->
         <!-- Results Starts -->
         <div class="col-sm-6 results">
-          Total of {{totalPages}} Page(s)
+            {{totalPages}} Seite(n) insgesamt
         </div>
         <!-- Results Ends -->
       </div>

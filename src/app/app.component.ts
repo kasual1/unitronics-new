@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from './auth.service';
 import { RecommenderExperiment } from './app-experiments/recommender-experiment';
 import { LoggerService } from './logger.service';
-import { Log } from './app-models/log';
-import { forkJoin } from 'rxjs';
+import { global } from '../variables/global';
+
 
 @Component({
   selector: 'app-root',
@@ -19,10 +19,19 @@ export class AppComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     private authService: AuthService,
     private loggerService: LoggerService
   ) {
+
+    if (global.SHOW_SURVEYS == false) {
+      console.log('Surveys will be hidden!');
+      this.authService.setUser('dca22ed6-6225-4650-aba5-c343728eb303');
+      this.authService.submitHedSurvey();
+      this.authService.submitExpSurvey();
+      this.authService.submitUtSurvey();
+      this.authService.submitCredSurvey();
+    }
+
     // Initialize User
     let user = this.authService.getUser();
     console.log('User: ' + user);
@@ -34,9 +43,33 @@ export class AppComponent implements OnInit {
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.route.params.subscribe(params => {
-          this.loggerService.log('view', event.urlAfterRedirects).subscribe((result: any) => {
-          });
+        let matchesParams = event.urlAfterRedirects.match('src=([^&]*)');
+        let params = matchesParams != null ? matchesParams[1] : null;
+
+        let productId = parseInt(event.urlAfterRedirects.split('/')[3]);
+        productId = isNaN(productId) ? null : productId;
+
+        let source = null;
+        if (params != null) {
+          switch (params) {
+            case 'r':
+              source = 'recommender';
+              break;
+            case 'os':
+              source = 'on sale';
+              break;
+            case 'bb':
+              source = 'big banner';
+              break;
+            case 'c':
+              source = 'cart';
+              break;
+            case 's':
+              source = 'search';
+              break;
+          }
+        }
+        this.loggerService.log('view', event.urlAfterRedirects, source, productId).subscribe((result: any) => {
         });
       }
     });
@@ -44,7 +77,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
 
 }

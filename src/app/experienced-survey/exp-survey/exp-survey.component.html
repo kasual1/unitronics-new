@@ -1,8 +1,8 @@
 <div class="col-sm-8 col-sm-offset-2 survey-panel">
   <div class="panel panel-default">
     <div class="panel-body">
-      <h3>Help us understand your preferences!</h3>
-      <p>Please help us understand your preferences by rating the following 5 products.</p>
+      <h3>Hilf uns deine Vorlieben besser zu verstehen!</h3>
+      <p>Indem du die folgenden 5 Produkte bewertest hilfst du uns deine Vorlieben besser zu verstehen.</p>
       <div class="row">
         <div *ngFor="let product of randomProducts" class="col-sm-12">
           <div class="panel panel-default">
@@ -15,14 +15,21 @@
               <div class="panel-content col-xs-6 col-md-9">
                 <h3 style="text-align: center">{{product.Title}}</h3>
                 <!--<star-rating [staticColor]="'ok'" [starType]="'svg'" [rating]="0" [size]="'large'" (onClick)="onRatingChange($event, product)"></star-rating>-->
-                <rating [(ngModel)]="product.Score" class="center-block" [max]="5" [readonly]="isReadonly" (onHover)="hoveringOver($event)" (onLeave)="resetStar()" (click)="onRatingClicked(product)" [customTemplate]="t" style="color: #ffce31;font-size: 50px; text-align: center"></rating>
+                <rating [(ngModel)]="product.Score" class="center-block" [max]="5" [readonly]="isReadonly" (onHover)="hoveringOver($event)"
+                  (onLeave)="resetStar()" (click)="onRatingClicked(product)" [customTemplate]="t" style="color: #ffce31;font-size: 50px; text-align: center"></rating>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <p style="text-align: center">Rate
-        <span class="badge">{{max -(ratedProducts.length)}}</span> more products</p>
+      <p *ngIf="max -(ratedProducts.length) == 1" style="text-align: center">Bewerte
+        <span class="badge">{{max -(ratedProducts.length)}}</span> weiteres
+        Produkt</p>
+
+      <p *ngIf="max -(ratedProducts.length) != 1" style="text-align: center">Bewerte
+        <span class="badge">{{max -(ratedProducts.length)}}</span> weitere
+        Produkte</p>
+
       <button *ngIf="ratedProducts.length >= 5" type="button" class="btn btn-primary pull-right" (click)="onSubmitClick()">Submit</button>
       <button *ngIf="ratedProducts.length < 5" class="btn btn-primary pull-right" disabled="disabled">Submit</button>
     </div>

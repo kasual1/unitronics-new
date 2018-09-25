@@ -4,6 +4,7 @@ export const global = {
     EXP_CART_ID: 'expCartId',
     UT_CART_ID: 'utCartId',
     CRED_CART_ID: 'credCartId',
-    USER: 'user'
+    USER: 'user',
+    SHOW_SURVEYS: false
   };
   

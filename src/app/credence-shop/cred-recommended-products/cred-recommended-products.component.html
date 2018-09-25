@@ -1,6 +1,6 @@
 <div *ngIf="showRecommendations">
-  <h2 class="product-head text-uppercase">Recommended for
-    <strong>You</strong>
+  <h2 class="product-head text-uppercase">Empfohlen für
+    <strong>Dich</strong>
     <!--
   <div class="controls pull-right hidden-xs">
     <a class="left glyphicon glyphicon-chevron-left" (click)="previous()"></a>
@@ -20,19 +20,19 @@
         <div class="col-item">
           <div class="product-col alt" style="height: 300px;">
             <div class="image" style="height: 150px;">
-              <a routerLink="/{{basePath}}/detail/{{product.Id}}"><img src="{{product.MediumImageUrl}}" alt="product-item" class="img-responsive center-block"></a>
+              <a class="clickable" (click)="onItemClicked(product)"><img src="{{product.MediumImageUrl}}" alt="product-item"
+                  class="img-responsive center-block"></a>
             </div>
             <div class="caption">
               <div class="starRating">
-                <rating *ngIf="product.ShowReviews" [(ngModel)]="product.StarRating" class="center-block" [max]="5" [readonly]="true"
-                   [customTemplate]="t" style="color: #ffce31;font-size: 30px; margin-top: 15px; margin-bottom: 5px;"></rating>
+                <rating *ngIf="product.ShowReviews" [(ngModel)]="product.StarRating" class="center-block" [max]="5"
+                  [readonly]="true" [customTemplate]="t" style="color: #ffce31;font-size: 30px; margin-top: 15px; margin-bottom: 5px;"></rating>
               </div>
               <div class="price">
                 <span class="price-new">{{product.LowestNewPriceFormatted}}</span>
-                <span class="price-old">{{product.ListPriceFormatted}}</span>
               </div>
               <h4>
-                <a routerLink="/{{basePath}}/detail/{{product.Id}}">{{product.Title}}</a>
+                <a class="clickable" (click)="onItemClicked(product)">{{product.Title}}</a>
               </h4>
             </div>
           </div>

@@ -1,9 +1,11 @@
 <div class="col-sm-3 col-xs-12 pull-right">
   <div id="cart" class="btn-group btn-block" dropdown>
-    <button type="button" dropdownToggle data-toggle="dropdown" class="btn btn-block btn-lg dropdown-toggle text-uppercase"  aria-controls="dropdown-basic">
+    <button type="button" dropdownToggle data-toggle="dropdown" class="btn btn-block btn-lg dropdown-toggle text-uppercase"
+      aria-controls="dropdown-basic">
       <i id="cart-icon" class="fa fa-shopping-cart"></i>
-      <strong>Shopping Cart</strong>
-      <span *ngIf="cart" id="cart-total">{{cart.CartItems.length}} Items</span>
+      <strong>Einkaufswagen</strong>
+      <span *ngIf="cart && cart.CartItems.length == 1" id="cart-total">{{cart.CartItems.length}} Produkt</span>
+      <span *ngIf="cart && cart.CartItems.length != 1" id="cart-total">{{cart.CartItems.length}} Produkte</span>
       <i class="fa fa-angle-down"></i>
     </button>
     <ul id="dropdown-basic" *ngIf="cart" class="dropdown-menu pull-right">
@@ -11,7 +13,7 @@
         <table class="table hcart">
           <tr *ngFor="let item of cart.CartItems">
             <td class="text-left">
-              <a routerLink="/{{basePath}}/detail/{{item.Product.Id}}">{{item.Product.Title}}</a>
+              <a class="clickable" (click)="onItemClicked(item.Product)">{{item.Product.Title}}</a>
             </td>
             <td class="text-right">{{item.Product.LowestNewPriceFormatted}}</td>
             <td class="text-center">
@@ -27,7 +29,7 @@
           <tbody>
             <tr>
               <td class="text-right">
-                <strong>Total</strong>
+                <strong>Gesamt</strong>
               </td>
               <td *ngIf="totalAmount" class="text-left">{{totalAmount}}</td>
             </tr>

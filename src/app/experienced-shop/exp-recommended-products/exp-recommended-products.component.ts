@@ -4,6 +4,8 @@ import { AuthService } from '../../auth.service';
 import { SlickComponent } from 'ngx-slick';
 import { RecommenderExperiment } from '../../app-experiments/recommender-experiment';
 import { environment } from '../../../environments/environment';
+import { LoggerService } from '../../logger.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-exp-recommended-products',
@@ -27,10 +29,11 @@ export class ExpRecommendedProductsComponent implements OnInit {
   zone: any;
   $instance: any;
 
-
   constructor(
     private dataService: ExpDataService,
-    private authService: AuthService
+    private authService: AuthService,
+    private loggerService: LoggerService,
+    private router: Router
   ) {
     this.basePath = environment.basePathExp;
     this.isProduction = environment.production;
@@ -54,6 +57,12 @@ export class ExpRecommendedProductsComponent implements OnInit {
         this.getColabFilterRecommendedProducts(user);
         break;
     }
+  }
+
+  onItemClicked(product: any) {
+    this.loggerService.log('click', this.router.url, null, product.Id).subscribe((result: any) => {
+      this.router.navigate(['/' + environment.basePathExp + '/detail/' + product.Id], { queryParams: {src: 'r'}});
+    });
   }
 
   getRandomRecommendedProducts() {
