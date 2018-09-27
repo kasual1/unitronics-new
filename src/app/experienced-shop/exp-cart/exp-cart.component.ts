@@ -44,9 +44,7 @@ export class ExpCartComponent implements OnInit {
   }
 
   onItemClicked(product: any) {
-    this.loggerService.log('click', this.router.url, null, product.Id).subscribe((result: any) => {
-      this.router.navigate(['/' + this.basePath + '/detail/' + product.Id], { queryParams: { src: 'c' } });
-    });
+    this.router.navigate(['/' + environment.basePathHed + '/detail/' + product.Id], { queryParams: {src: 'c'}});
   }
 
   getCart(cartId) {

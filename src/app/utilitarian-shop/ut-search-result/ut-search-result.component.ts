@@ -54,9 +54,7 @@ export class UtSearchResultComponent implements OnInit {
   }
 
   onItemClicked(product: any) {
-    this.loggerService.log('click', this.router.url, null, product.Id).subscribe((result: any) => {
-      this.router.navigate(['/' + environment.basePathUt + '/detail/' + product.Id], {queryParams: { src: 's'}});
-    });
+    this.router.navigate(['/' + environment.basePathHed + '/detail/' + product.Id], { queryParams: {src: 's'}});
   }
 
   searchProducts(pageIndex, pageSize, searchTerm?, priceOrder?, category?) {

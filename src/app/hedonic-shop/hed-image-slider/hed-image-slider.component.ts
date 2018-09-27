@@ -42,9 +42,7 @@ export class HedImageSliderComponent implements OnInit {
   }
 
   onItemClick(product: any) {
-    this.loggerService.log('click', this.router.url, null, product.Id).subscribe((result: any) => {
-      this.router.navigate(['/' + environment.basePathHed + '/detail/' + product.Id], { queryParams: { src: 'bb' } });
-    });
+    this.router.navigate(['/' + environment.basePathHed + '/detail/' + product.Id], { queryParams: {src: 'bb'}});
   }
 
   next() {

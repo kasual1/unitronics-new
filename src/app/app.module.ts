@@ -15,6 +15,7 @@ import { UtSurveyModule } from './utilitarian-survey/ut-survey.module';
 import { FormsModule } from '@angular/forms';
 import { CredModule } from './credence-shop/cred.module';
 import { CredSurveyModule } from './credence-survey/cred-survey.module';
+import { InitialSurveyModule } from './app-initial-survey/initial-survey.module';
 import { FinalSurveyModule } from './app-final-survey/final-survey.module';
 import { NextShopModalComponent } from './next-shop-modal/next-shop-modal.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -33,6 +34,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     UtSurveyModule,
     CredModule,
     CredSurveyModule,
+    InitialSurveyModule,
     FinalSurveyModule,
     AppRoutingModule,
     HttpClientModule,

@@ -1,19 +1,20 @@
-<div class="col-sm-8 col-sm-offset-2 survey-panel">
+<div *ngIf="!showSuccessMessage" class="col-sm-8 col-sm-offset-2 survey-panel">
   <div class="panel panel-default">
     <div class="panel-body">
       <h3>Hilf uns deine Vorlieben besser zu verstehen!</h3>
-      <p>Indem du die folgenden 5 Produkte bewertest, hilfst du uns deine Vorlieben besser zu verstehen.</p>
+      <p>Indem du die folgenden {{max}} Produkte bewertest, hilfst du uns deine Vorlieben besser zu verstehen.</p>
       <div class="row">
         <div *ngFor="let product of randomProducts" class="col-sm-12">
           <div class="panel panel-default">
             <div class="panel-body">
-              <div class="col-xs-6 col-md-3" style="height: 150px;">
+              <div class="col-xs-12 col-md-3" style="height: 150px;">
                 <div class="image">
                   <img src="{{product.MediumImageUrl}}" class="image-responsive center-block" alt="{{product.Title}}">
                 </div>
               </div>
-              <div class="panel-content col-xs-6 col-md-9">
+              <div class="panel-content col-xs-12 col-md-9">
                 <h3 style="text-align: center">{{product.Title}}</h3>
+                <h3 class="price" style="text-align: center">{{product.LowestNewPriceFormatted}}</h3>
                 <rating [(ngModel)]="product.Score" class="center-block" [max]="5" [readonly]="isReadonly" (onHover)="hoveringOver($event)"
                   (onLeave)="resetStar()" (click)="onRatingClicked(product)" [customTemplate]="t" style="color: #ffce31;font-size: 50px; text-align: center"></rating>
               </div>
@@ -28,8 +29,16 @@
       <p *ngIf="max -(ratedProducts.length) != 1" style="text-align: center">Bewerte
         <span class="badge">{{max -(ratedProducts.length)}}</span> weitere
         Produkte</p>
-      <button *ngIf="ratedProducts.length >= 5" type="button" class="btn btn-primary pull-right" (click)="onSubmitClick()">Abschicken</button>
-      <button *ngIf="ratedProducts.length < 5" class="btn btn-primary pull-right" disabled="disabled">Submit</button>
+      <button *ngIf="ratedProducts.length >= max" type="button" class="btn btn-primary pull-right col-xs-12 col-md-2" (click)="onSubmitClick()">Abschicken</button>
+      <button *ngIf="ratedProducts.length < max" class="btn btn-primary pull-right col-xs-12 col-md-2" disabled="disabled">Abschicken</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="showSuccessMessage">
+  <div class="panel panel-default">
+    <div class="panel-body success">
+      <h3>Danke, dass du am Experiment teilgenommen hast!</h3>
+      <h1><span role="button" class="emoji emoji1f609" data-c="😉">😉</span></h1>
     </div>
   </div>
 </div>

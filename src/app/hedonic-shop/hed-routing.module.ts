@@ -20,7 +20,8 @@ const routes: Routes = [
         },
         {
           path: 'detail/:id',
-          component: HedDetailPageComponent
+          component: HedDetailPageComponent,
+          
         },
         {
           path: 'results',

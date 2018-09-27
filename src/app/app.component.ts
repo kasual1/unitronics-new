@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { AuthService } from './auth.service';
 import { RecommenderExperiment } from './app-experiments/recommender-experiment';
 import { LoggerService } from './logger.service';
 import { global } from '../variables/global';
+import { LocationChangeEvent, Location } from '@angular/common';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class AppComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private loggerService: LoggerService
+    private loggerService: LoggerService,
+    private location: Location
   ) {
 
     if (global.SHOW_SURVEYS == false) {
@@ -51,6 +53,7 @@ export class AppComponent implements OnInit {
 
         let source = null;
         if (params != null) {
+          this.location.replaceState(event.url.replace(/\?src=.+/, ''));
           switch (params) {
             case 'r':
               source = 'recommender';
@@ -69,8 +72,9 @@ export class AppComponent implements OnInit {
               break;
           }
         }
-        this.loggerService.log('view', event.urlAfterRedirects, source, productId).subscribe((result: any) => {
+        this.loggerService.log('view', event.urlAfterRedirects, source, productId, null).subscribe((result: any) => {
         });
+
       }
     });
 
