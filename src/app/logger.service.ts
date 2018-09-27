@@ -23,30 +23,27 @@ export class LoggerService {
 
   log(eventType: string, url: string, source?: string, productId?: number, surveyData?: any): Observable<any> {
     this.experiment = new RecommenderExperiment({ userId: this.authService.getUser() });
-
-    let matchesParams = url.match('src=([^&]*)');
-    let params = matchesParams != null ? matchesParams[1] : null;
-    
-    if(params != null){
-      switch (params) {
-        case 'r':
-          source = 'recommender';
-          break;
-        case 'os':
-          source = 'on sale';
-          break;
-        case 'bb':
-          source = 'big banner';
-          break;
-        case 'c':
-          source = 'cart';
-          break;
-        case 's':
-          source = 'search';
-          break;
-      }
+    switch (source) {
+      case 'r':
+        source = 'recommender';
+        break;
+      case 'os':
+        source = 'on sale';
+        break;
+      case 'bb':
+        source = 'big banner';
+        break;
+      case 'c':
+        source = 'cart';
+        break;
+      case 's':
+        source = 'search';
+        break;
+      default:
+        source = null;
+        break;
     }
-
+    
     let logEvent = null;
     if (surveyData != null) {
       logEvent = {

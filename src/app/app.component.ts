@@ -54,24 +54,9 @@ export class AppComponent implements OnInit {
         let source = null;
         if (params != null) {
           this.location.replaceState(event.url.replace(/\?src=.+/, ''));
-          switch (params) {
-            case 'r':
-              source = 'recommender';
-              break;
-            case 'os':
-              source = 'on sale';
-              break;
-            case 'bb':
-              source = 'big banner';
-              break;
-            case 'c':
-              source = 'cart';
-              break;
-            case 's':
-              source = 'search';
-              break;
-          }
+          source = params;
         }
+        console.log(source);
         this.loggerService.log('view', event.urlAfterRedirects, source, productId, null).subscribe((result: any) => {
         });
 
