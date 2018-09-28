@@ -25,6 +25,7 @@ export class UtProductSurveyComponent implements OnInit {
   isLoading: boolean = true;
   modalRef: BsModalRef;
   basePath: string;
+  source: string = null;
 
 
   userSurvey = new FormGroup(
@@ -46,6 +47,10 @@ export class UtProductSurveyComponent implements OnInit {
     private loggerService: LoggerService
   ) { 
     this.basePath = environment.basePathUt;
+
+    this.route.queryParams.subscribe((params: any) => {
+      this.source = params['src'];
+    });
   }
 
   ngOnInit() {
@@ -140,7 +145,7 @@ export class UtProductSurveyComponent implements OnInit {
       console.log("Create new cart");
       this.createCart(this.product);
     }
-    this.loggerService.log('submit + add to cart', this.router.url, null, this.product.Id).subscribe((result: any) => {
+    this.loggerService.log('submit + add to cart', this.router.url, this.source, this.product.Id).subscribe((result: any) => {
     });
   }
 
@@ -158,7 +163,7 @@ export class UtProductSurveyComponent implements OnInit {
         this.surveyAlreadyTaken = true;
       }
     );
-    this.loggerService.log('submit', this.router.url, null, this.product.Id).subscribe((result: any) => {
+    this.loggerService.log('submit', this.router.url, this.source, this.product.Id).subscribe((result: any) => {
     });
   }
 
@@ -171,7 +176,7 @@ export class UtProductSurveyComponent implements OnInit {
       console.log("Create new cart");
       this.createCart(this.product);
     }
-    this.loggerService.log('add to cart', this.router.url, null, this.product.Id).subscribe((result: any) => {
+    this.loggerService.log('add to cart', this.router.url, this.source, this.product.Id).subscribe((result: any) => {
     });
   }
 

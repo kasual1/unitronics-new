@@ -10,7 +10,6 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { NextShopModalComponent } from '../../next-shop-modal/next-shop-modal.component';
 import { LoggerService } from '../../logger.service';
 import { environment } from '../../../environments/environment';
-import { RecommenderExperiment } from '../../app-experiments/recommender-experiment';
 
 @Component({
   selector: 'app-hed-product-survey',
