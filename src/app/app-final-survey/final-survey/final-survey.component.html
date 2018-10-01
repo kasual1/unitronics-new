@@ -206,6 +206,8 @@
           </div>
         </div>
         <button type="submit" class="btn btn-primary pull-right" [disabled]="!finalSurvey.valid">Abschicken</button>
+        <p *ngIf="errorAlreadyAnswered" class="danger">Du hast die Umfrage bereits beantwortet!</p>
+        <p *ngIf="errorUnexpected" class="danger">Ein Fehler ist aufgetreten. Bitte versuche es erneut!</p>
       </div>
     </div>
   </form>

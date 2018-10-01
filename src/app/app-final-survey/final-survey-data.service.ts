@@ -10,18 +10,18 @@ import { AuthService } from '../auth.service';
 })
 export class FinalSurveyDataService {
 
-  private userUrl = environment.apiUrl + "/user";
+  private userUrl = environment.apiUrl + "/user/final-survey";
 
   constructor(
     private http: HttpClient
   ) { }
 
-  updateUser(email: string, userId: string): Observable<any> {
-    let user = { user: { uuid: userId, email: email} };
-    console.log(user);
-    console.log(this.userUrl);
-    return this.http.put(this.userUrl,
-      user, {
+  sendSurveyAnswers(userId: string, surveyAnswers: any){
+    return this.http.post(this.userUrl,
+      {
+        userId: userId,
+        surveyAnswers: surveyAnswers
+      }, {
         headers: {
           'Content-Type': 'application/json'
         }, responseType: 'json'

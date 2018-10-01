@@ -11,7 +11,7 @@ import { v4 as uuid } from 'uuid';
 })
 export class InitialSurveyComponent implements OnInit {
 
-  max: number = 40;
+  max: number = 20;
   ratedProducts = [];
   randomProducts = [];
   basePath: string;
