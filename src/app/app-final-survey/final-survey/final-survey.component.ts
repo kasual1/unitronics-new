@@ -41,6 +41,10 @@ export class FinalSurveyComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+        history.go(1);
+    };
   }
 
   onSubmit() {

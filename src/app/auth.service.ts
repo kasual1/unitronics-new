@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { global } from '../variables/global';
 import { v4 as uuid } from 'uuid';
+import { environment } from '../environments/environment';
 
 
 @Injectable({
@@ -9,6 +10,7 @@ import { v4 as uuid } from 'uuid';
 })
 export class AuthService {
 
+  shopArray: string[];
 
   constructor
     (private cookieService: CookieService) {
@@ -16,6 +18,13 @@ export class AuthService {
     if (user == null || user == '') {
       this.cookieService.set(global.USER, uuid());
     }
+
+    this.shopArray = [
+      environment.basePathHed,
+      environment.basePathExp,
+      environment.basePathCred,
+      environment.basePathUt
+    ];
   }
 
   submitHedSurvey() {
@@ -148,4 +157,13 @@ export class AuthService {
     return this.cookieService.get(global.USER);
   }
 
+  getRandomShop() {
+    if (this.shopArray.length >= 1) {
+      var randomNumber = Math.floor(Math.random() * this.shopArray.length);
+      var randomShop = this.shopArray[randomNumber];
+      return randomShop;
+    } else {
+      return 'final-survey';
+    }
+  }
 }

@@ -6,6 +6,8 @@ import { AuthService } from '../../auth.service';
 import { RecommenderExperiment } from '../../app-experiments/recommender-experiment';
 import { Router } from '@angular/router';
 import { LoggerService } from '../../logger.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { HelpModalComponent } from '../../help-modal/help-modal.component';
 
 
 @Component({
@@ -19,13 +21,15 @@ export class HedCartComponent implements OnInit {
   totalAmount: string;
   parser: DOMParser;
   basePath: string;
+  modalRef: BsModalRef;
 
   constructor(
     private databaseService: HedDataService,
     private cartService: HedCartService,
     private authService: AuthService,
     private router: Router,
-    private loggerService: LoggerService
+    private loggerService: LoggerService,
+    private modalService: BsModalService
   ) {
     this.basePath = environment.basePathHed;
   }
@@ -68,6 +72,11 @@ export class HedCartComponent implements OnInit {
       });
     this.loggerService.log('remove from cart', this.router.url, null, cartItem.Product.Id).subscribe((result: any) => {
     });
+  }
+
+  onHelpClicked(){
+    console.log('clicked');
+    this.modalRef = this.modalService.show(HelpModalComponent);
   }
 
   private calculateTotalAmount() {

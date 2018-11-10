@@ -21,7 +21,7 @@ export class ExpAuthGuardService {
       this.router.navigate(['/' + environment.basePathExpSurvey]);
       return false;
     } else if(this.authService.getFinExpShop()){
-      this.router.navigate(['/' + environment.basePathUtSurvey]);
+      this.router.navigate(['/' + this.authService.getRandomShop()]);
       return false;
     }
   }

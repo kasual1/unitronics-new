@@ -4,6 +4,8 @@ import { UtCartService } from '../ut-cart.service';
 import { environment } from '../../../environments/environment';
 import { LoggerService } from '../../logger.service';
 import { Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { HelpModalComponent } from '../../help-modal/help-modal.component';
 
 
 @Component({
@@ -17,12 +19,15 @@ export class UtCartComponent implements OnInit {
   totalAmount: string;
   parser: DOMParser;
   basePath: string;
+  modalRef: BsModalRef;
+
 
   constructor(
     private databaseService: UtDataService,
     private cartService: UtCartService,
     private loggerService: LoggerService,
-    private router: Router
+    private router: Router,
+    private modalService: BsModalService
   ) {
     this.basePath = environment.basePathUt;
   }
@@ -67,6 +72,10 @@ export class UtCartComponent implements OnInit {
       });
     this.loggerService.log('remove from cart', this.router.url, null, cartItem.Product.Id).subscribe((result: any) => {
     });
+  }
+
+  onHelpClicked(){
+    this.modalRef = this.modalService.show(HelpModalComponent);
   }
 
   private calculateTotalAmount() {

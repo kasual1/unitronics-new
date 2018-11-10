@@ -60,6 +60,17 @@ span[role=slider]{
 }
 
 
+.help {
+    color: black;
+}
+
+.help:hover {
+    color: black;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
 @-webkit-keyframes sk-bouncedelay {
     0%,
     80%,

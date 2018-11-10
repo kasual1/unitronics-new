@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { NextShopModalComponent } from '../../next-shop-modal/next-shop-modal.component';
 import { environment } from '../../../environments/environment';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-cred-landing-page',
@@ -15,19 +16,21 @@ export class CredLandingPageComponent implements OnInit {
   isProduction: boolean;
 
   constructor(
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private authService: AuthService
   ) {
     this.basePath = environment.basePathCred;
     this.isProduction = environment.production;
    }
 
   ngOnInit(){
-
+    this.authService.shopArray.splice(this.authService.shopArray.indexOf(this.basePath), 1);
   }
 
   onNextClicked() {
     const initialState = {
-      navigateTo: 'final-survey'
+      navigateTo: this.authService.getRandomShop(),
+      basePath: this.basePath
     }
     this.modalRef = this.modalService.show(NextShopModalComponent,{initialState});
   }

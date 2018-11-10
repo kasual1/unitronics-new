@@ -21,7 +21,7 @@ export class CredAuthGuardService {
       this.router.navigate(['/' + environment.basePathCredSurvey]);
       return false;
     } else if(this.authService.getFinCredShop()){
-      this.router.navigate(['/final-survey']);
+      this.router.navigate(['/' + this.authService.getRandomShop()]);
       return false;
     }
   }

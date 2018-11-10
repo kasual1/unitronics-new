@@ -1,7 +1,6 @@
 @import '../../../assets/style/hedonic/style.css';
 @import '../../../assets/style/hedonic/responsive.css';
 @import '../../../assets/style/hedonic/owl.carousel.css';
-
 .btn-block1 {
     display: block;
     width: 100%;
@@ -40,8 +39,6 @@
     -webkit-animation-iteration-count: 1;
     animation-iteration-count: 1;
 }
-
-
 
 @-webkit-keyframes swing {
     15% {

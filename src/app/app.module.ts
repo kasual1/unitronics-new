@@ -19,11 +19,14 @@ import { InitialSurveyModule } from './app-initial-survey/initial-survey.module'
 import { FinalSurveyModule } from './app-final-survey/final-survey.module';
 import { NextShopModalComponent } from './next-shop-modal/next-shop-modal.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { IntroductionModule } from './app-introduction/introduction.module';
+import { HelpModalComponent } from './help-modal/help-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NextShopModalComponent
+    NextShopModalComponent,
+    HelpModalComponent
   ],
   imports: [
     ExpModule,
@@ -34,6 +37,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     UtSurveyModule,
     CredModule,
     CredSurveyModule,
+    IntroductionModule,
     InitialSurveyModule,
     FinalSurveyModule,
     AppRoutingModule,

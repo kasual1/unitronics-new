@@ -13,42 +13,42 @@ import { environment } from '../../environments/environment';
 export class NextShopModalComponent implements OnInit {
 
   @Input() navigateTo: string = null;
-  basePath: string;
+  @Input() basePath: string;
 
   constructor(
     public bsModalRef: BsModalRef,
     private router: Router,
     private authService: AuthService,
-  ) {
-    this.basePath = environment.basePathExp;
-   }
+  ) { }
 
   ngOnInit() {
   }
 
-  onCloseClicked(){
+  onCloseClicked() {
     this.bsModalRef.hide();
   }
 
   onNextShopClicked() {
-    console.log(this.navigateTo);
-    switch (this.navigateTo) {
-      case environment.basePathExp:
-        this.router.navigateByUrl('/' + environment.basePathExp);
+    this.router.navigateByUrl('/' + this.authService.getRandomShop());
+    switch (this.basePath) {
+      case environment.basePathHed:
         this.authService.finishedHedShop();
         break;
-      case environment.basePathUt:
-        this.router.navigateByUrl('/' + environment.basePathUt);
+      case environment.basePathExp:
         this.authService.finishedExpShop();
         break;
-      case environment.basePathCred:
-        this.router.navigateByUrl('/' + environment.basePathCred);
+      case environment.basePathUt:
         this.authService.finishedUtShop();
         break;
-      case 'final-survey':
-        this.router.navigateByUrl('/final-survey');
+      case environment.basePathCred:
         this.authService.finishedCredShop();
         break;
+      /*
+    case 'final-survey':
+      this.router.navigateByUrl('/final-survey');
+      this.authService.finishedCredShop();
+      break;
+      */
     }
     this.bsModalRef.hide();
   }

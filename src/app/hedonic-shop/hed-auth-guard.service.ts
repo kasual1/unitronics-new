@@ -21,7 +21,7 @@ export class HedAuthGuardService {
       this.router.navigate(['/' + environment.basePathHedSurvey]);
       return false;
     } else if(this.authService.getFinHedShop()) {
-      this.router.navigate(['/' + environment.basePathExpSurvey]);
+      this.router.navigate(['/' + this.authService.getRandomShop()]);
       return false;
     }
   }
