@@ -38,7 +38,7 @@ export class UtImageSliderComponent implements OnInit {
   }
 
   onItemClick(product: any) {
-    this.router.navigate(['/' + environment.basePathHed + '/detail/' + product.Id], { queryParams: {src: 'bb'}});
+    this.router.navigate(['/' + this.basePath + '/detail/' + product.Id], { queryParams: {src: 'bb'}});
 
   }
 

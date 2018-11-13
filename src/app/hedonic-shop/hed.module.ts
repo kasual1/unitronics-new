@@ -21,6 +21,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap';
 import { NextShopModalComponent } from '../next-shop-modal/next-shop-modal.component';
 import { HelpModalComponent } from '../help-modal/help-modal.component';
+import { CartLimitModalComponent } from '../cart-limit-modal/cart-limit-modal.component';
 
 @NgModule({
   imports: [
@@ -48,6 +49,6 @@ import { HelpModalComponent } from '../help-modal/help-modal.component';
     HedMainContentComponent,
     HedProductSurveyComponent,
   ],
-  bootstrap: [HedProductSurveyComponent, NextShopModalComponent, HelpModalComponent]
+  bootstrap: [HedProductSurveyComponent, NextShopModalComponent,  CartLimitModalComponent, HelpModalComponent]
 })
 export class HedModule { }

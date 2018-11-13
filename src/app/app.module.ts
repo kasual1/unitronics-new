@@ -21,12 +21,14 @@ import { NextShopModalComponent } from './next-shop-modal/next-shop-modal.compon
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { IntroductionModule } from './app-introduction/introduction.module';
 import { HelpModalComponent } from './help-modal/help-modal.component';
+import { CartLimitModalComponent } from './cart-limit-modal/cart-limit-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NextShopModalComponent,
-    HelpModalComponent
+    HelpModalComponent,
+    CartLimitModalComponent
   ],
   imports: [
     ExpModule,

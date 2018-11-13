@@ -50,7 +50,7 @@ export class UtCartComponent implements OnInit {
   }
 
   onItemClicked(product: any) {
-    this.router.navigate(['/' + environment.basePathHed + '/detail/' + product.Id], { queryParams: {src: 'c'}});
+    this.router.navigate(['/' + this.basePath + '/detail/' + product.Id], { queryParams: {src: 'c'}});
   }
 
   getCart(cartId) {

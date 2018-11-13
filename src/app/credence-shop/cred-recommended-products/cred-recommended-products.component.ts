@@ -61,7 +61,7 @@ export class CredRecommendedProductsComponent implements OnInit {
   }
 
   onItemClicked(product: any) {
-    this.router.navigate(['/' + environment.basePathHed + '/detail/' + product.Id], { queryParams: {src: 'r'}});
+    this.router.navigate(['/' + environment.basePathCred + '/detail/' + product.Id], { queryParams: {src: 'r'}});
 
   }
 

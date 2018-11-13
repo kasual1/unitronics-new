@@ -10,6 +10,7 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { NextShopModalComponent } from '../../next-shop-modal/next-shop-modal.component';
 import { environment } from '../../../environments/environment';
 import { LoggerService } from '../../logger.service';
+import { CartLimitModalComponent } from '../../cart-limit-modal/cart-limit-modal.component';
 
 @Component({
   selector: 'app-cred-product-survey',
@@ -188,35 +189,63 @@ export class CredProductSurveyComponent implements OnInit {
 
 
 
+  private calculateCartValue(cart: any) {
+    let totalAmount = 0;
+    if (cart != null) {
+      for (let item of cart.CartItems) {
+        totalAmount += item.Product.LowestNewPriceRaw * item.Quantity;
+      }
+    }
+    return totalAmount;
+  }
+
+
   private createCart(product: any) {
-    let userId = this.authService.getUser();
-    if (userId != null) {
-      this.dataService.createCart(product, 1, userId)
-        .subscribe(
-          data => {
-            this.cookieService.set(global.CRED_CART_ID, data.Id)
-            this.cartService.updateCart(data);
-          });
+    if (product.LowestNewPriceRaw < 10000) {
+      let userId = this.authService.getUser();
+      if (userId != null) {
+        this.dataService.createCart(product, 1, userId)
+          .subscribe(
+            data => {
+              this.cookieService.set(global.CRED_CART_ID, data.Id)
+              this.cartService.updateCart(data);
+            });
+      }
+    } else {
+      this.productInCart = false;
+      console.log('Your cart exceeds the budget limitation!');
+      this.modalRef = this.modalService.show(CartLimitModalComponent);
     }
   }
 
   private addToCart(cartId, product: any) {
-    console.log(cartId);
-    this.dataService.addToCart(cartId, product, 1)
-      .subscribe(
-        (data: any) => {
-          this.cartService.updateCart(data);
-        },
-        (error: any) => {
-          switch (error.status) {
-            case 409:
-              console.log('409 Item already exists');
-              break;
-            case 500:
-              console.log('500 Server error');
-              break;
-          }
-        });
+    // Check if budget limit will be exceeded
+    this.dataService.getCart(cartId).subscribe((data: any) => {
+      console.log('ADDED TO CART CHECK: ', data, product);
+      if ((this.calculateCartValue(data) + product.LowestNewPriceRaw) < 10000) {
+        console.log("Add to existing cart")
+        // Add to existing cart
+        this.dataService.addToCart(cartId, product, 1)
+          .subscribe(
+            (data: any) => {
+              this.cartService.updateCart(data);
+            },
+            (error: any) => {
+              switch (error.status) {
+                case 409:
+                  console.log('409 Item already exists');
+                  break;
+                case 500:
+                  console.log('500 Server error');
+                  break;
+              }
+            });
+      } else {
+        this.productInCart = false;
+        console.log('Your cart exceeds the budget limitation!');
+        this.modalRef = this.modalService.show(CartLimitModalComponent);
+      }
+    });
   }
 
   private cotainsItem(cart: any) {

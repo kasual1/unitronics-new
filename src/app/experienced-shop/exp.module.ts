@@ -19,6 +19,8 @@ import { ExpAdBannerComponent } from './exp-ad-banner/exp-ad-banner.component';
 import { ExpProductSurveyComponent } from './exp-product-survey/exp-product-survey.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NextShopModalComponent } from '../next-shop-modal/next-shop-modal.component';
+import { CartLimitModalComponent } from '../cart-limit-modal/cart-limit-modal.component';
+import { HelpModalComponent } from '../help-modal/help-modal.component';
 
 @NgModule({
   imports: [
@@ -44,11 +46,13 @@ import { NextShopModalComponent } from '../next-shop-modal/next-shop-modal.compo
     ExpRecommendedProductsComponent,
     ExpTestimonialsComponent,
     ExpAdBannerComponent,
-    ExpProductSurveyComponent,
+    ExpProductSurveyComponent
   ],
   bootstrap:[
     ExpProductSurveyComponent,
-    NextShopModalComponent
+    NextShopModalComponent,
+    CartLimitModalComponent,
+    HelpModalComponent
   ]
 })
 export class ExpModule { }

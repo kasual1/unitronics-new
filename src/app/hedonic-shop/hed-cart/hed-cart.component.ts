@@ -75,7 +75,6 @@ export class HedCartComponent implements OnInit {
   }
 
   onHelpClicked(){
-    console.log('clicked');
     this.modalRef = this.modalService.show(HelpModalComponent);
   }
 

@@ -77,7 +77,7 @@ export class ExpSearchResultComponent implements OnInit {
   }
 
   onItemClicked(product: any) {
-    this.router.navigate(['/' + environment.basePathHed + '/detail/' + product.Id], { queryParams: {src: 's'}});
+    this.router.navigate(['/' + this.basePath + '/detail/' + product.Id], { queryParams: {src: 's'}});
   }
 
   onNextPageClicked() {

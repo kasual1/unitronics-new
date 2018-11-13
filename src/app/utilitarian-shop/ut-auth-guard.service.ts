@@ -20,7 +20,7 @@ export class UtAuthGuardService {
       this.router.navigate(['/' + environment.basePathUtSurvey]);
       return false;
     } else if(this.authService.getFinUtShop()){
-      this.router.navigate(['/' + environment.basePathCredSurvey]);
+      this.router.navigate(['/' + this.authService.getRandomShop()]);
       return false;
     }
   }

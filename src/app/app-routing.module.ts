@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { environment } from '../environments/environment';
 
 const routes: Routes = [
-  { path: '',   redirectTo: '/' + environment.basePathHedSurvey, pathMatch: 'full' }
+  { path: '',   redirectTo: '/introduction', pathMatch: 'full' }
 ];
 
 @NgModule({

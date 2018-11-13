@@ -4,6 +4,8 @@ import { CredCartService } from '../cred-cart.service';
 import { environment } from '../../../environments/environment';
 import { LoggerService } from '../../logger.service';
 import { Router } from '@angular/router';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { HelpModalComponent } from '../../help-modal/help-modal.component';
 
 @Component({
   selector: 'app-cred-cart',
@@ -16,12 +18,14 @@ export class CredCartComponent implements OnInit {
   totalAmount: string;
   parser: DOMParser;
   basePath: string;
+  modalRef: BsModalRef;
 
   constructor(
     private databaseService: CredDataService,
     private cartService: CredCartService,
     private loggerService: LoggerService,
-    private router: Router
+    private router: Router,
+    private modalService: BsModalService
   ) {
     this.basePath = environment.basePathCred;
   }
@@ -44,7 +48,7 @@ export class CredCartComponent implements OnInit {
   }
 
   onItemClicked(product: any) {
-    this.router.navigate(['/' + environment.basePathHed + '/detail/' + product.Id], { queryParams: {src: 'c'}});
+    this.router.navigate(['/' + this.basePath + '/detail/' + product.Id], { queryParams: {src: 'c'}});
   }
 
   getCart(cartId) {
@@ -65,6 +69,10 @@ export class CredCartComponent implements OnInit {
       });
     this.loggerService.log('remove from cart', this.router.url, null, cartItem.Product.Id).subscribe((result: any) => {
     });
+  }
+
+  onHelpClicked(){
+    this.modalRef = this.modalService.show(HelpModalComponent);
   }
 
   private calculateTotalAmount() {

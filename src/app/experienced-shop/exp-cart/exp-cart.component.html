@@ -1,3 +1,7 @@
+<div class="col-sm-3 col-xs-6 pull-left help" (click)="onHelpClicked()">
+  <i class="fa fa-question-circle" aria-hidden="true"></i>
+  Hilfe
+</div>
 <div class="col-sm-3 col-xs-12 pull-right">
   <div id="cart" class="btn-group btn-block" dropdown>
     <button type="button" dropdownToggle data-toggle="dropdown" class="btn btn-block btn-lg dropdown-toggle text-uppercase"
@@ -13,7 +17,7 @@
         <table class="table hcart">
           <tr *ngFor="let item of cart.CartItems">
             <td class="text-left">
-                <a class="clickable" (click)="onItemClicked(item.Product)">{{item.Product.Title}}</a>
+              <a class="clickable" (click)="onItemClicked(item.Product)">{{item.Product.Title}}</a>
             </td>
             <td class="text-right">{{item.Product.LowestNewPriceFormatted}}</td>
             <td class="text-center">

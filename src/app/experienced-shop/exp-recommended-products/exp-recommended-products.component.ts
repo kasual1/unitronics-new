@@ -60,7 +60,7 @@ export class ExpRecommendedProductsComponent implements OnInit {
   }
 
   onItemClicked(product: any) {
-    this.router.navigate(['/' + environment.basePathHed + '/detail/' + product.Id], { queryParams: {src: 'r'}});
+    this.router.navigate(['/' + environment.basePathExp + '/detail/' + product.Id], { queryParams: {src: 'r'}});
   }
 
   getRandomRecommendedProducts() {

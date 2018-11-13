@@ -131,6 +131,7 @@ export class UtDataService {
 
   getCart(cartId): Observable<any> {
     let url = this.urlGetCart + 'id=' + cartId;
+    console.log(url);
     return this.http.get(url, { responseType: 'json' });
   }
 

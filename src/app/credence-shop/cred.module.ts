@@ -18,6 +18,8 @@ import { CredTestimonialsComponent } from './cred-testimonials/cred-testimonials
 import { CredAdBannerComponent } from './cred-ad-banner/cred-ad-banner.component';
 import { CredProductSurveyComponent } from './cred-product-survey/cred-product-survey.component';
 import { NextShopModalComponent } from '../next-shop-modal/next-shop-modal.component';
+import { CartLimitModalComponent } from '../cart-limit-modal/cart-limit-modal.component';
+import { HelpModalComponent } from '../help-modal/help-modal.component';
 
 @NgModule({
   imports: [
@@ -43,8 +45,13 @@ import { NextShopModalComponent } from '../next-shop-modal/next-shop-modal.compo
     CredImageSliderComponent,
     CredTestimonialsComponent,
     CredAdBannerComponent,
-    CredProductSurveyComponent,
+    CredProductSurveyComponent
   ],
-  bootstrap:[CredProductSurveyComponent, NextShopModalComponent]
+  bootstrap:[
+    CredProductSurveyComponent,
+    NextShopModalComponent,
+    CartLimitModalComponent,
+    HelpModalComponent
+  ]
 })
 export class CredModule { }

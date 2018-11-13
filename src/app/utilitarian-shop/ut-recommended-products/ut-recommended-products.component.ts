@@ -87,7 +87,7 @@ export class UtRecommendedProductsComponent implements OnInit {
   }
 
   onItemClicked(product: any) {
-    this.router.navigate(['/' + environment.basePathHed + '/detail/' + product.Id], { queryParams: {src: 'r'}});
+    this.router.navigate(['/' + environment.basePathUt + '/detail/' + product.Id], { queryParams: {src: 'r'}});
 
   }
 
