@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IntroductionAuthGuardService {
 
-  constructor() { }
+  constructor(
+    private authService: AuthService
+  ) { }
 
   canActivate() {
-    if (true) {
+    if(!this.authService.getSubmitIntroduction()){
       return true;
     } else {
       return false;

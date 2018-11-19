@@ -17,11 +17,10 @@ export class HedAuthGuardService {
   canActivate() {
     if (this.authService.getSubmitHedSurvey() && !this.authService.getFinHedShop()) {
       return true;
-    } else if(!this.authService.getSubmitHedSurvey()) {
+    } else if (!this.authService.getSubmitHedSurvey()) {
       this.router.navigate(['/' + environment.basePathHedSurvey]);
       return false;
-    } else if(this.authService.getFinHedShop()) {
-      this.router.navigate(['/' + this.authService.getRandomShop()]);
+    } else {
       return false;
     }
   }

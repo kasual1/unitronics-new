@@ -31,6 +31,7 @@ export class FinalSurveyComponent implements OnInit {
       comeBackCredence: new FormControl('', Validators.required),
       priorExp: new FormControl('', Validators.required),
       gender: new FormControl('', Validators.required),
+      age: new FormControl('', Validators.required),
       email: new FormControl('')
     }
   );
@@ -64,6 +65,7 @@ export class FinalSurveyComponent implements OnInit {
       returnCred: this.finalSurvey.value.comeBackCredence,
       experience: this.finalSurvey.value.priorExp,
       gender: this.finalSurvey.value.gender,
+      age: this.finalSurvey.value.age,
       email: this.finalSurvey.value.email
     }
     this.dataService.sendSurveyAnswers(user, surveyAnswers).subscribe(

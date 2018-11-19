@@ -16,11 +16,10 @@ export class UtAuthGuardService {
   canActivate() {
     if (this.authService.getSubmitUtSurvey() && !this.authService.getFinUtShop()) {
       return true;
-    } else if(!this.authService.getSubmitUtSurvey()){
+    } else if (!this.authService.getSubmitUtSurvey()) {
       this.router.navigate(['/' + environment.basePathUtSurvey]);
       return false;
-    } else if(this.authService.getFinUtShop()){
-      this.router.navigate(['/' + this.authService.getRandomShop()]);
+    } else {
       return false;
     }
   }

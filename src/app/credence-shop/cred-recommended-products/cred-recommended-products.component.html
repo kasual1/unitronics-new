@@ -18,7 +18,7 @@
     <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig">
       <div ngxSlickItem *ngFor="let product of recommendedProducts" style="margin: 0 10px;">
         <div class="col-item">
-          <div class="product-col alt" style="height: 300px;">
+          <div class="product-col alt" style="height: 265px;">
             <div class="image" style="height: 150px;">
               <a class="clickable" (click)="onItemClicked(product)"><img src="{{product.MediumImageUrl}}" alt="product-item"
                   class="img-responsive center-block"></a>
@@ -30,6 +30,7 @@
               </div>
               <div class="price">
                 <span class="price-new">{{product.LowestNewPriceFormatted}}</span>
+                <span class="price-old">{{product.ListPriceFormatted}}</span>
               </div>
               <h4>
                 <a class="clickable" (click)="onItemClicked(product)">{{product.Title}}</a>

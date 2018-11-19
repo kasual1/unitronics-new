@@ -43,12 +43,6 @@ export class NextShopModalComponent implements OnInit {
       case environment.basePathCred:
         this.authService.finishedCredShop();
         break;
-      /*
-    case 'final-survey':
-      this.router.navigateByUrl('/final-survey');
-      this.authService.finishedCredShop();
-      break;
-      */
     }
     this.bsModalRef.hide();
   }

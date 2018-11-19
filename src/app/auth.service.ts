@@ -13,18 +13,17 @@ export class AuthService {
   shopArray: string[];
 
   constructor
-    (private cookieService: CookieService) {
+    (private cookieService: CookieService,
+    private authService: AuthService
+    ) {
     let user = this.cookieService.get(global.USER);
     if (user == null || user == '') {
       this.cookieService.set(global.USER, uuid());
     }
+  }
 
-    this.shopArray = [
-      environment.basePathHed,
-      environment.basePathExp,
-      environment.basePathCred,
-      environment.basePathUt
-    ];
+  submitIntroduction() {
+    this.cookieService.set('subIntro', 'true');
   }
 
   submitHedSurvey() {
@@ -41,6 +40,15 @@ export class AuthService {
 
   submitCredSurvey() {
     this.cookieService.set('subCred', 'true');
+  }
+
+  getSubmitIntroduction() {
+    if (this.cookieService.get('subIntro') != null
+      && this.cookieService.get('subIntro') != '') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   getSubmitHedSurvey() {
@@ -158,9 +166,29 @@ export class AuthService {
   }
 
   getRandomShop() {
-    if (this.shopArray.length >= 1) {
-      var randomNumber = Math.floor(Math.random() * this.shopArray.length);
-      var randomShop = this.shopArray[randomNumber];
+    let shopArray = [
+      environment.basePathHed,
+      environment.basePathExp,
+      environment.basePathCred,
+      environment.basePathUt
+    ];
+
+    if (this.getSubmitHedSurvey()) {
+      shopArray.splice(shopArray.indexOf(environment.basePathHed), 1);
+    }
+    if (this.getSubmitExpSurvey()) {
+      shopArray.splice(shopArray.indexOf(environment.basePathExp), 1);
+    }
+    if (this.getSubmitUtSurvey()) {
+      shopArray.splice(shopArray.indexOf(environment.basePathUt), 1);
+    }
+    if (this.getSubmitCredSurvey()) {
+      shopArray.splice(shopArray.indexOf(environment.basePathCred), 1);
+    }
+
+    if (shopArray.length >= 1) {
+      var randomNumber = Math.floor(Math.random() * shopArray.length);
+      var randomShop = shopArray[randomNumber];
       return randomShop;
     } else {
       return 'final-survey';

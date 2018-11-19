@@ -13,15 +13,17 @@ export class IntroductionComponent implements OnInit {
 
   basePath: string;
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private authService: AuthService
-    ) { }
+  ) { }
 
   ngOnInit() {
   }
 
   onNext() {
-    this.router.navigate(['/' + this.authService.getRandomShop()], {replaceUrl: true});
+    this.authService.submitIntroduction();
+    this.router.navigate(['/' + this.authService.getRandomShop()]);
   }
 
 }

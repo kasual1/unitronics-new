@@ -17,11 +17,10 @@ export class ExpAuthGuardService {
   canActivate() {
     if (this.authService.getSubmitExpSurvey() && !this.authService.getFinExpShop()) {
       return true;
-    } else if(!this.authService.getSubmitExpSurvey()) {
+    } else if (!this.authService.getSubmitExpSurvey()) {
       this.router.navigate(['/' + environment.basePathExpSurvey]);
       return false;
-    } else if(this.authService.getFinExpShop()){
-      this.router.navigate(['/' + this.authService.getRandomShop()]);
+    } else {
       return false;
     }
   }

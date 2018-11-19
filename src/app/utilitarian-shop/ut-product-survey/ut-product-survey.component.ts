@@ -133,6 +133,7 @@ export class UtProductSurveyComponent implements OnInit {
       like: this.userSurvey.value.like,
       addedToCart: true
     }
+    console.log(answers);
     this.dataService.createSurveyResults(this.authService.getUser(), this.product.Id, answers).subscribe(
       (data: any) => {
         console.log('Survey answered! (added to cart)');
@@ -147,7 +148,7 @@ export class UtProductSurveyComponent implements OnInit {
       console.log("Create new cart");
       this.createCart(this.product);
     }
-    this.loggerService.log('submit + add to cart', this.router.url, this.source, this.product.Id).subscribe((result: any) => {
+    this.loggerService.log('submit + add to cart', this.router.url, this.source, this.product.Id, answers).subscribe((result: any) => {
     });
   }
 
@@ -165,7 +166,7 @@ export class UtProductSurveyComponent implements OnInit {
         this.surveyAlreadyTaken = true;
       }
     );
-    this.loggerService.log('submit', this.router.url, this.source, this.product.Id).subscribe((result: any) => {
+    this.loggerService.log('submit', this.router.url, this.source, this.product.Id, answers).subscribe((result: any) => {
     });
   }
 

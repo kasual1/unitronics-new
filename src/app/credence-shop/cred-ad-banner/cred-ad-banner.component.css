@@ -39,3 +39,11 @@
   padding: 16px 32px;
   border-radius: 5px
 }
+
+
+h1{
+  text-align: center;
+  padding: 20px;
+  color:white;
+  background-color: aqua;
+}

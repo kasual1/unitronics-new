@@ -20,8 +20,7 @@ export class CredAuthGuardService {
     } else if(!this.authService.getSubmitCredSurvey()){
       this.router.navigate(['/' + environment.basePathCredSurvey]);
       return false;
-    } else if(this.authService.getFinCredShop()){
-      this.router.navigate(['/' + this.authService.getRandomShop()]);
+    } else {
       return false;
     }
   }

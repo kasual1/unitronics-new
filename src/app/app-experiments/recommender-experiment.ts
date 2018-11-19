@@ -14,7 +14,7 @@ export class RecommenderExperiment extends (planout.Experiment as { new(): any; 
   }
 
   log(event) {
-      console.log(event);
+    console.log(event);
   }
 
   previouslyLogged() {

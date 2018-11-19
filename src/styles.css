@@ -61,13 +61,21 @@ span[role=slider]{
 
 
 .help {
-    color: black;
+    color: #ec2f2f;
 }
 
 .help:hover {
-    color: black;
+    color: #ec2f2f;
     text-decoration: underline;
     cursor: pointer;
+}
+
+.price{
+    padding-top: 10px;
+}
+
+.caption{
+    padding-bottom: 0;
 }
 
 
