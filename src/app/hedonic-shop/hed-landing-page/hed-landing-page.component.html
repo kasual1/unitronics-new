@@ -39,7 +39,8 @@
             <div class="col-md-3 col-sm-3 col-xs-12">
               <div id="logo">
                 <a routerLink="/{{basePath}}">
-                  <img src="assets/images/happy-wrist-logo-full.png" title="Electronics Shoppe" alt="Electronics Shoppe" class="img-responsive img-center">
+                  <img src="assets/images/happy-wrist-logo-full.png" title="Electronics Shoppe" alt="Electronics Shoppe"
+                    class="img-responsive img-center">
                 </a>
               </div>
             </div>
@@ -125,18 +126,6 @@
               </ul>
             </li>
             <li dropdown>
-              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Sport</a>
-              <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
-                <li>
-                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 0, size:10, q: 'Fitness'}">Fitness
-                    Tracker</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 0, size:10, q: 'Sport'}">Others</a>
-                </li>
-              </ul>
-            </li>
-            <li dropdown>
               <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Freizeit</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
@@ -163,10 +152,16 @@
                     Orange</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 0, size:10, q: 'Daniel Wellington'}">Daniel Wellington</a>
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 0, size:10, q: 'Daniel Wellington'}">Daniel
+                    Wellington</a>
                 </li>
               </ul>
             </li>
+
+            <li dropdown>
+              <a class="clickable" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Andere'}">Andere</a>
+            </li>
+
 
           </ul>
         </div>
@@ -176,7 +171,9 @@
     </nav>
   </div>
   <!-- MAIN CONTENT -->
-  <router-outlet></router-outlet>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
   <!--<app-hed-recommended-products></app-hed-recommended-products>-->
 </div>
 <!-- Footer Section Starts -->

@@ -32,18 +32,17 @@ export class ExpRegularProductsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getProducts(0, 15, this.category);
+    this.getProducts();
   }
 
-  getProducts(pageIndex, pageSize, category) {
-    this.dataService.readProducts(pageIndex * pageSize, pageSize, category)
-      .subscribe(
-        data => {
-          this.products = data.products;
-          console.log(this.products);
-          this.loading = false;
-        }
-      );
+  getProducts() {
+    this.dataService.getRandomProducts().subscribe(
+      (data: any) => {
+        data.pop();
+        this.products = data;
+        console.log(this.products);
+        this.loading = false;
+      });
   }
 
   onItemClicked(product: any) {

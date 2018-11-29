@@ -1,9 +1,11 @@
 <h2 class="product-head text-uppercase">{{titleFirst}}
   <strong>{{titleBold}}</strong>
+  <!--
   <div class="controls pull-right hidden-xs">
     <a class="left glyphicon glyphicon-chevron-left" (click)="previous()"></a>
     <a class="right glyphicon glyphicon-chevron-right" (click)="next()"></a>
   </div>
+  -->
 </h2>
 <div *ngIf="loading" class="spinner">
   <div class="bounce1"></div>
@@ -20,8 +22,8 @@
           </div>
           <div class="caption">
             <div class="starRating">
-              <rating *ngIf="product.ShowReviews" [(ngModel)]="product.StarRating" class="center-block" [max]="5" [readonly]="true" [customTemplate]="t"
-                style="color: #ffce31;font-size: 30px; margin-top: 15px; margin-bottom: 5px;"></rating>
+              <rating *ngIf="product.ShowReviews" [(ngModel)]="product.StarRating" class="center-block" [max]="5"
+                [readonly]="true" [customTemplate]="t" style="color: #ffce31;font-size: 30px; margin-top: 15px; margin-bottom: 5px;"></rating>
             </div>
             <div class="price">
               <span class="price-new">{{product.LowestNewPriceFormatted}}</span>

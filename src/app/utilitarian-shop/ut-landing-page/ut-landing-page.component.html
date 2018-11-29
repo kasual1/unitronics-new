@@ -99,7 +99,7 @@
               </ul>
             </li>
             <li dropdown>
-              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Pen & Pencil</a>
+              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Stifte & Füller</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
                   <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Kugelschreiber'}">
@@ -121,6 +121,11 @@
                     Buntstifte
                   </a>
                 </li>
+                <li>
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Textmarker'}">
+                    Textmarker
+                  </a>
+                </li>
               </ul>
             </li>
             <li dropdown>
@@ -134,16 +139,6 @@
                 <li>
                   <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Texas Instruments'}">
                     Texas Instruments
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Helect'}">
-                    Helect
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Genie'}">
-                    Genie
                   </a>
                 </li>
               </ul>
@@ -168,10 +163,6 @@
                 </li>
               </ul>
             </li>
-            <li dropdown>
-              <a class="clickable" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, q: 'Neu'}">Neu</a>
-            </li>
-
           </ul>
         </div>
         <!-- Navbar Cat collapse Ends -->
@@ -180,7 +171,10 @@
     </nav>
   </div>
   <!-- MAIN CONTENT -->
-  <router-outlet></router-outlet>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+
 
 </div>
 <!-- Footer Section Starts -->

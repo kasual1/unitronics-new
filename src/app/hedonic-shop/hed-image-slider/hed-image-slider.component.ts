@@ -15,7 +15,7 @@ import { RecommenderExperiment } from '../../app-experiments/recommender-experim
 export class HedImageSliderComponent implements OnInit {
 
   @ViewChild(SlickComponent) slickComponent: SlickComponent;
-  slideConfig = { "slidesToShow": 1, "slidesToScroll": 1, "dots": true, "infinite": true, "autoplay": true, "autoplaySpeed": 3000 };
+  slideConfig = { "slidesToShow": 1, "slidesToScroll": 1, "dots": false, "infinite": true, "autoplay": true, "autoplaySpeed": 3000 };
   basePath: string;
   productList =
     [

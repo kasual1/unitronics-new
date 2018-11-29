@@ -42,8 +42,11 @@
     <!-- Primary Content Starts -->
     <div class="col-md-9">
       <!-- Main Heading Starts -->
-      <h2 class="main-heading2 page-title">
+      <h2 *ngIf="searchTerm && !category" class="main-heading2 page-title">
         {{totalResults}} Ergebnisse für: {{searchTerm}}
+      </h2>
+      <h2 *ngIf="category" class="main-heading2 page-title">
+        {{totalResults}} Ergebnisse für: {{category}}
       </h2>
       <!-- Main Heading Ends -->
       <!-- Product Filter Starts -->

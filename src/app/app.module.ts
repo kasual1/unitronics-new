@@ -20,6 +20,7 @@ import { FinalSurveyModule } from './app-final-survey/final-survey.module';
 import { NextShopModalComponent } from './next-shop-modal/next-shop-modal.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { IntroductionModule } from './app-introduction/introduction.module';
+import { MetricsModule } from './app-metrics/metrics.module';
 import { HelpModalComponent } from './help-modal/help-modal.component';
 import { CartLimitModalComponent } from './cart-limit-modal/cart-limit-modal.component';
 
@@ -40,6 +41,7 @@ import { CartLimitModalComponent } from './cart-limit-modal/cart-limit-modal.com
     CredModule,
     CredSurveyModule,
     IntroductionModule,
+    MetricsModule,
     InitialSurveyModule,
     FinalSurveyModule,
     AppRoutingModule,

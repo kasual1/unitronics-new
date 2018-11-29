@@ -4,7 +4,7 @@
   </div>
   <div class="col-md-2">
     <button type="button" class="btn btn-next pull-right next" (click)="onNextClicked()">
-     Weiter
+      Weiter
     </button>
   </div>
 </div>
@@ -39,7 +39,8 @@
             <div class="col-md-3 col-sm-3 col-xs-12">
               <div id="logo">
                 <a routerLink="/{{basePath}}">
-                  <img src="assets/images/7k-backpacks-logo-full.png" title="Champ Nutrition" alt="Champ Nutrition" class="img-responsive img-center">
+                  <img src="assets/images/7k-backpacks-logo-full.png" title="Champ Nutrition" alt="Champ Nutrition"
+                    class="img-responsive img-center">
                 </a>
               </div>
             </div>
@@ -74,7 +75,7 @@
         <div class="collapse navbar-collapse navbar-cat-collapse">
           <ul class="nav navbar-nav">
             <li dropdown>
-              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Hiking</a>
+              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Wandern</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
                   <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Osprey'}">Osprey</a>
@@ -89,7 +90,7 @@
               </ul>
             </li>
             <li dropdown>
-              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Work</a>
+              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Arbeit</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
                   <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Laptop'}">Laptop
@@ -97,36 +98,34 @@
                 </li>
                 <li>
                   <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: '22 Liters (Work)'}">23
-                    Liters</a>
+                    Liter</a>
                 </li>
                 <li>
                   <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: '25plus Liters (Work)'}">>
-                    25 Liters Workout
+                    25 Liter
                   </a>
                 </li>
               </ul>
             </li>
             <li dropdown>
-              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Travel</a>
+              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Reisen</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
-                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Men (Travel)'}">Men</a>
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Men (Travel)'}">Männer</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Woman (Travel)'}">Woman</a>
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Woman (Travel)'}">Frauen</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: '25 less Liter (Travel)'}"><
-                      25 Liters</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: '25plus Liters (Travel)'}">>
-                    25 Liters</a>
+                  <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: '25 less Liter (Travel)'}">
+                    < 25 Liter</a> </li> <li>
+                      <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: '25plus Liters (Travel)'}">>
+                        25 Liter</a>
                 </li>
               </ul>
             </li>
             <li dropdown>
-              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Trending</a>
+              <a href id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">Casual</a>
               <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
                 <li>
                   <a class="dropdown-item" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Herschel'}">
@@ -151,7 +150,7 @@
               </ul>
             </li>
             <li dropdown>
-              <a class="clickable" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'New'}">Neu</a>
+              <a class="clickable" routerLink="/{{basePath}}/results" [queryParams]="{index: 1, size:10, c: 'Andere'}">Andere</a>
             </li>
 
           </ul>
@@ -162,8 +161,11 @@
     </nav>
   </div>
   <!-- MAIN CONTENT -->
-  <router-outlet></router-outlet>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
 </div>
+
 <!-- Footer Section Starts -->
 <footer id="footer-area">
   <!-- Footer Links Starts -->
