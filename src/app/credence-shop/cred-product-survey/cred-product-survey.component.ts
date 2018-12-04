@@ -139,13 +139,17 @@ export class CredProductSurveyComponent implements OnInit {
     this.cartId = this.cartService.getCartId();
     if (this.cartId != '') {
       console.log("Add to existing cart")
-      this.addToCart(this.cartId, this.product);
+      this.addToCart(this.cartId, this.product, () => {
+        this.loggerService.log('submit + add to cart', this.router.url, this.source, this.product.Id, answers).subscribe((result: any) => {
+        });
+      });
     } else {
       console.log("Create new cart");
-      this.createCart(this.product);
+      this.createCart(this.product, () => {
+        this.loggerService.log('submit + add to cart', this.router.url, this.source, this.product.Id, answers).subscribe((result: any) => {
+        });
+      });
     }
-    this.loggerService.log('submit + add to cart', this.router.url, this.source, this.product.Id, answers).subscribe((result: any) => {
-    });
   }
 
   onSubmitOnly() {
@@ -170,15 +174,18 @@ export class CredProductSurveyComponent implements OnInit {
     this.cartId = this.cartService.getCartId();
     if (this.cartId != '') {
       console.log("Add to existing cart")
-      this.addToCart(this.cartId, this.product);
+      this.addToCart(this.cartId, this.product, () => {
+        this.loggerService.log('add to cart', this.router.url, this.source, this.product.Id).subscribe((result: any) => {
+        });
+      });
     } else {
       console.log("Create new cart");
-      this.createCart(this.product);
+      this.createCart(this.product, () => {
+        this.loggerService.log('add to cart', this.router.url, this.source, this.product.Id).subscribe((result: any) => {
+        });
+      });
     }
-    this.loggerService.log('add to cart', this.router.url, this.source, this.product.Id).subscribe((result: any) => {
-    });
   }
-
 
   onNextShopClicked() {
     const initialState = {
@@ -200,7 +207,7 @@ export class CredProductSurveyComponent implements OnInit {
   }
 
 
-  private createCart(product: any) {
+  private createCart(product: any, callback) {
     if (product.LowestNewPriceRaw < 10000) {
       let userId = this.authService.getUser();
       if (userId != null) {
@@ -209,6 +216,7 @@ export class CredProductSurveyComponent implements OnInit {
             data => {
               this.cookieService.set(global.CRED_CART_ID, data.Id)
               this.cartService.updateCart(data);
+              callback();
             });
       }
     } else {
@@ -218,7 +226,7 @@ export class CredProductSurveyComponent implements OnInit {
     }
   }
 
-  private addToCart(cartId, product: any) {
+  private addToCart(cartId, product: any, callback) {
     // Check if budget limit will be exceeded
     this.dataService.getCart(cartId).subscribe((data: any) => {
       console.log('ADDED TO CART CHECK: ', data, product);
@@ -229,6 +237,7 @@ export class CredProductSurveyComponent implements OnInit {
           .subscribe(
             (data: any) => {
               this.cartService.updateCart(data);
+              callback();
             },
             (error: any) => {
               switch (error.status) {
