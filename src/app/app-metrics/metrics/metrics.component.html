@@ -6,6 +6,7 @@
         <div class="col-md-4">
           <div class="panel panel-default">
             <div class="panel-body">
+              <small class="text-muted">*Normalized</small>
               <p><b>Revenue per Shop:</b></p>
               <p>Hedonic: {{revenuePerShopTypeHedonic}}</p>
               <p>Experienced: {{revenuePerShopTypeExperienced}}</p>
@@ -18,6 +19,7 @@
         <div class="col-md-4">
           <div class="panel panel-default">
             <div class="panel-body">
+              <small class="text-muted">*Normalized</small>
               <p><b>Revenue per Treatment:</b></p>
               <p>None: {{revenuePerTreatementNone}}</p>
               <p>Random: {{revenuePerTreatementRandom}}</p>
@@ -30,11 +32,12 @@
         <div class="col-md-4">
           <div class="panel panel-default">
             <div class="panel-body">
+              <small class="text-muted">*Normalized</small>
               <p><b># Products per Shop:</b></p>
-              <p>Hedonic: {{productsPerShopHedonic}}</p>
-              <p>Experienced: {{productsPerShopExperienced}}</p>
-              <p>Utilitarian: {{productsPerShopUtilitarian}}</p>
-              <p>Searched Goods: {{productsPerShopSearch}}</p>
+              <p>Hedonic: {{productsPerShopHedonic | number}}</p>
+              <p>Experienced: {{productsPerShopExperienced | number}}</p>
+              <p>Utilitarian: {{productsPerShopUtilitarian | number}}</p>
+              <p>Searched Goods: {{productsPerShopSearch | number}}</p>
             </div>
           </div>
         </div>
