@@ -17,13 +17,15 @@ export class UtLandingPageComponent implements OnInit {
   constructor(
     private modalService: BsModalService,
     private authService: AuthService
-  ) { 
+  ) {
     this.basePath = environment.basePathUt;
     this.isProduction = environment.production;
   }
 
-  ngOnInit(){
-    this.authService.shopArray.splice(this.authService.shopArray.indexOf(this.basePath), 1);
+  ngOnInit() {
+    if (this.authService.shopArray) {
+      this.authService.shopArray.splice(this.authService.shopArray.indexOf(this.basePath), 1);
+    }
   }
 
   onNextClicked() {
@@ -31,6 +33,6 @@ export class UtLandingPageComponent implements OnInit {
       navigateTo: environment.basePathCred,
       basePath: this.basePath
     }
-    this.modalRef = this.modalService.show(NextShopModalComponent,{initialState});
+    this.modalRef = this.modalService.show(NextShopModalComponent, { initialState });
   }
 }

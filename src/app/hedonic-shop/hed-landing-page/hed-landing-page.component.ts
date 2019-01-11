@@ -25,7 +25,9 @@ export class HedLandingPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.shopArray.splice(this.authService.shopArray.indexOf(this.basePath), 1);
+    if (this.authService.shopArray) {
+      this.authService.shopArray.splice(this.authService.shopArray.indexOf(this.basePath), 1);
+    }
   }
 
   onNextClicked() {

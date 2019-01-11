@@ -21,10 +21,12 @@ export class ExpLandingPageComponent implements OnInit {
   ) {
     this.basePath = environment.basePathExp;
     this.isProduction = environment.production;
-   }
+  }
 
-  ngOnInit(){
-    this.authService.shopArray.splice(this.authService.shopArray.indexOf(this.basePath), 1);
+  ngOnInit() {
+    if (this.authService.shopArray) {
+      this.authService.shopArray.splice(this.authService.shopArray.indexOf(this.basePath), 1);
+    }
   }
 
   onNextClicked() {
@@ -32,7 +34,7 @@ export class ExpLandingPageComponent implements OnInit {
       navigateTo: environment.basePathUt,
       basePath: this.basePath
     }
-    this.modalRef = this.modalService.show(NextShopModalComponent,{initialState});
+    this.modalRef = this.modalService.show(NextShopModalComponent, { initialState });
   }
 
 }
