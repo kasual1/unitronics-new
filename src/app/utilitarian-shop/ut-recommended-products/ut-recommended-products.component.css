@@ -6,44 +6,42 @@ h4 {
     text-align: center;
 }
 
-
-img{
+img {
     display: block;
     margin: auto;
 }
 
-.controls>a{
+.controls>a {
     text-decoration: none;
 }
 
-
-.left{
+.left {
     cursor: pointer;
 }
 
-.right{
+.right {
     cursor: pointer;
 }
 
-.random{
+.random {
     background-color: aquamarine;
     padding: 10px;
     font-size: 1.4em;
 }
 
-.colabFilter{
-    background-color:blueviolet;
+.colabFilter {
+    background-color: blueviolet;
     padding: 10px;
     font-size: 1.4em;
     color: white;
 }
 
-.salesRank{
+.salesRank {
     background-color: violet;
     padding: 10px;
     font-size: 1.4em;
 }
 
-.caption{
+.caption {
     text-align: center;
 }

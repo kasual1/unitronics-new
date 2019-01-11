@@ -13,8 +13,7 @@ export class AuthService {
   shopArray: string[];
 
   constructor
-    (private cookieService: CookieService,
-    private authService: AuthService
+    (private cookieService: CookieService
     ) {
     let user = this.cookieService.get(global.USER);
     if (user == null || user == '') {

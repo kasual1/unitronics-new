@@ -41,6 +41,7 @@
     <!-- Sidebar Ends -->
     <!-- Primary Content Starts -->
     <div class="col-md-9">
+      <app-hed-recommended-products></app-hed-recommended-products>
       <!-- Main Heading Starts -->
       <h2 *ngIf="searchTerm && !category" class="main-heading2 page-title">
         {{totalResults}} Ergebnisse für: {{searchTerm}}
@@ -68,8 +69,8 @@
                 <a class="clickable" (click)="onItemClicked(product)">{{product.Title}}</a>
               </h4>
               <div>
-                <rating *ngIf="product.ShowReviews" [(ngModel)]="product.StarRating" class="center-block" [max]="5" [readonly]="true" [customTemplate]="t"
-                  style="color: #ffce31;font-size: 30px; margin-top: 15px; margin-bottom: 5px;"></rating>
+                <rating *ngIf="product.ShowReviews" [(ngModel)]="product.StarRating" class="center-block" [max]="5"
+                  [readonly]="true" [customTemplate]="t" style="color: #ffce31;font-size: 30px; margin-top: 15px; margin-bottom: 5px;"></rating>
               </div>
               <div class="price">
                 <span class="price-new">{{product.LowestNewPriceFormatted}}</span>
@@ -100,7 +101,7 @@
         <!-- Pagination Ends -->
         <!-- Results Starts -->
         <div class="col-sm-6 results">
-           {{totalPages}} Seite(n) insgesamt
+          {{totalPages}} Seite(n) insgesamt
         </div>
         <!-- Results Ends -->
       </div>

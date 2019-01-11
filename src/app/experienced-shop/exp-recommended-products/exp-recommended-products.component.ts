@@ -42,7 +42,7 @@ export class ExpRecommendedProductsComponent implements OnInit {
   ngOnInit() {
     let user = this.authService.getUser();
     let experiment = new RecommenderExperiment({ userId: user });
-    this.recommenderType = experiment.get('recommenderType');
+    this.recommenderType = experiment.get('recommenderType')[2];
     switch (this.recommenderType) {
       case 'none':
         this.showRecommendations = false;

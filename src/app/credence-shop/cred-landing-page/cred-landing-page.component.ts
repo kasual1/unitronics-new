@@ -10,7 +10,7 @@ import { AuthService } from '../../auth.service';
   styleUrls: ['./cred-landing-page.component.css']
 })
 export class CredLandingPageComponent implements OnInit {
-  
+
   modalRef: BsModalRef;
   basePath: string;
   isProduction: boolean;
@@ -21,10 +21,12 @@ export class CredLandingPageComponent implements OnInit {
   ) {
     this.basePath = environment.basePathCred;
     this.isProduction = environment.production;
-   }
+  }
 
-  ngOnInit(){
-    this.authService.shopArray.splice(this.authService.shopArray.indexOf(this.basePath), 1);
+  ngOnInit() {
+    if (this.authService.shopArray) {
+      this.authService.shopArray.splice(this.authService.shopArray.indexOf(this.basePath), 1);
+    }
   }
 
   onNextClicked() {
@@ -32,6 +34,6 @@ export class CredLandingPageComponent implements OnInit {
       navigateTo: this.authService.getRandomShop(),
       basePath: this.basePath
     }
-    this.modalRef = this.modalService.show(NextShopModalComponent,{initialState});
+    this.modalRef = this.modalService.show(NextShopModalComponent, { initialState });
   }
 }

@@ -29,12 +29,12 @@ export class RecommenderExperiment extends (planout.Experiment as { new(): any; 
   }
 
   assign(params, args) {
-    params.set('recommenderType', new planout.Ops.Random.UniformChoice(
+    params.set('recommenderType', new planout.Ops.Random.Sample(
       {
         choices: [
-          'none',
-          'random',
-          'salesRank',
+          'colabFilter',
+          'colabFilter',
+          'colabFilter',
           'colabFilter'
         ],
         'unit': this.inputs.userId

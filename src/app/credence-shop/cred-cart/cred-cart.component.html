@@ -8,8 +8,8 @@
       aria-controls="dropdown-basic">
       <i id="cart-icon" class="fa fa-shopping-cart"></i>
       <strong>Einkaufswagen</strong>
-      <span *ngIf="cart && cart.CartItems.length == 1" id="cart-total">{{cart.CartItems.length}} Produkt</span>
-      <span *ngIf="cart && cart.CartItems.length != 1" id="cart-total">{{cart.CartItems.length}} Produkte</span>
+      <span *ngIf="cart && cart.CartItems && cart.CartItems.length == 1" id="cart-total">{{cart.CartItems.length}} Produkt</span>
+      <span *ngIf="cart && cart.CartItems && cart.CartItems.length != 1" id="cart-total">{{cart.CartItems.length}} Produkte</span>
       <i class="fa fa-angle-down"></i>
     </button>
     <ul id="dropdown-basic" *ngIf="cart" class="dropdown-menu pull-right">

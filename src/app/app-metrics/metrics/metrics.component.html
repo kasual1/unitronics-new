@@ -1,48 +1,34 @@
 <div class="container">
-  <div class="col-sm-8 col-sm-offset-2 survey-panel">
-    <div class="panel-body">
-      <h3>Key Metrics</h3>
-      <div class="row" style="padding-top: 20px;">
-        <div class="col-md-4">
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <small class="text-muted">*Normalized</small>
-              <p><b>Revenue per Shop:</b></p>
-              <p>Hedonic: {{revenuePerShopTypeHedonic}}</p>
-              <p>Experienced: {{revenuePerShopTypeExperienced}}</p>
-              <p>Utilitarian: {{revenuePerShopTypeUtilitarian}}</p>
-              <p>Searched Goods: {{revenuePerShopTypeSearch}}</p>
-            </div>
+  <div class="panel-body">
+    <h3>Key Metrics</h3>
+    <div class="row" style="padding-top: 20px;">
+
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <small class="text-muted">*Normalized</small>
+            <p><b>Revenue per Treatment:</b></p>
+            <p>None: {{revenuePerTreatementNone}}</p>
+            <p>Random: {{revenuePerTreatementRandom}}</p>
+            <p>SalesRank: {{revenuePerTreatementSalesRank}}</p>
+            <p>ColabFilter: {{revenuePerTreatementColabFilter}}</p>
           </div>
         </div>
+      </div>
 
-        <div class="col-md-4">
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <small class="text-muted">*Normalized</small>
-              <p><b>Revenue per Treatment:</b></p>
-              <p>None: {{revenuePerTreatementNone}}</p>
-              <p>Random: {{revenuePerTreatementRandom}}</p>
-              <p>SalesRank: {{revenuePerTreatementSalesRank}}</p>
-              <p>ColabFilter: {{revenuePerTreatementColabFilter}}</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <small class="text-muted">*Normalized</small>
-              <p><b># Products per Shop:</b></p>
-              <p>Hedonic: {{productsPerShopHedonic | number}}</p>
-              <p>Experienced: {{productsPerShopExperienced | number}}</p>
-              <p>Utilitarian: {{productsPerShopUtilitarian | number}}</p>
-              <p>Searched Goods: {{productsPerShopSearch | number}}</p>
-            </div>
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <small class="text-muted">*Normalized</small>
+            <p><b># Products per Treatment:</b></p>
+            <p>None: {{productsPerTreatmentNone | number}}</p>
+            <p>Random: {{productsPerTreatmentRandom | number}}</p>
+            <p>SalesRank: {{productsPerTreatmentSalesRank | number}}</p>
+            <p>ColabFilter: {{productsPerTreatmentColabFilter | number}}</p>
           </div>
         </div>
       </div>
     </div>
-
   </div>
+
 </div>

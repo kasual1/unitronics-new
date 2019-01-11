@@ -41,6 +41,22 @@ export class MetricsDataService {
     return this.http.get(this.baseUrl + '/number_of_products_bought', options);
   }
 
+  getNumberOfProductsPerTreatment(treatment: string): Observable<any> {
+    let params = new HttpParams();
+    let options = null;
+
+    params = params.append('treatment', treatment);
+
+    options =
+      {
+        params: params,
+        responseType: 'json'
+      }
+
+    return this.http.get(this.baseUrl + '/products_per_treatment', options);
+  }
+
+
 
   getRevenuePerTreatment(treatment: string): Observable<any> {
     let params = new HttpParams();

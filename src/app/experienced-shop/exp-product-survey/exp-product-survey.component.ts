@@ -98,15 +98,15 @@ export class ExpProductSurveyComponent implements OnInit {
             }
           });
       }
-      this.userSurvey.reset({ likelihood: 0, attractive: '', like: '' });
-      this.cartId = this.cartService.getCartId();
-      this.dataService.getCart(this.cartId).subscribe(
-        (data: any) => {
-          let cart = data;
-          this.productInCart = this.cotainsItem(cart);
-        }
-      );
     });
+    this.userSurvey.reset({ likelihood: 0, attractive: '', like: '' });
+    this.cartId = this.cartService.getCartId();
+    this.dataService.getCart(this.cartId).subscribe(
+      (data: any) => {
+        let cart = data;
+        this.productInCart = this.cotainsItem(cart);
+      }
+    );
 
     this.cartService.onCartChanged.subscribe(
       () => {

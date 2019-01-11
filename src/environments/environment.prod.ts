@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
+  production: false,
   apiUrl: 'http://demoshop.uni-koeln.de/api/index.php',
   basePathHed: 'happy-watch',
   basePathExp: 'ex-libris',

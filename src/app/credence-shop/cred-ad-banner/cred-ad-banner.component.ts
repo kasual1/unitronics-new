@@ -23,7 +23,7 @@ export class CredAdBannerComponent implements OnInit {
   ngOnInit() {
     let user = this.authService.getUser();
     let experiment = new RecommenderExperiment({ userId: user });
-    this.recommenderType = experiment.get('recommenderType');
+    this.recommenderType = experiment.get('recommenderType')[3];
     if(this.recommenderType == 'none'){
       this.showBanner = false;
     }

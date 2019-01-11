@@ -5,6 +5,7 @@ import { environment } from '../environments/environment';
 import { AuthService } from './auth.service';
 import { RecommenderExperiment } from './app-experiments/recommender-experiment';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,7 +23,22 @@ export class LoggerService {
   }
 
   log(eventType: string, url: string, source?: string, productId?: number, surveyData?: any): Observable<any> {
-    this.experiment = new RecommenderExperiment({ userId: this.authService.getUser() });
+    this.experiment = null;
+    if (url.includes(environment.basePathUt)) {
+      this.experiment = new RecommenderExperiment({ userId: this.authService.getUser() }).get('recommenderType')[0];
+    }
+
+    if (url.includes(environment.basePathHed)) {
+      this.experiment = new RecommenderExperiment({ userId: this.authService.getUser() }).get('recommenderType')[1];
+    }
+
+    if (url.includes(environment.basePathExp)) {
+      this.experiment = new RecommenderExperiment({ userId: this.authService.getUser() }).get('recommenderType')[2];
+    }
+
+    if (url.includes(environment.basePathCred)) {
+      this.experiment = new RecommenderExperiment({ userId: this.authService.getUser() }).get('recommenderType')[3];
+    }
     switch (source) {
       case 'r':
         source = 'recommender';
@@ -43,7 +59,7 @@ export class LoggerService {
         source = null;
         break;
     }
-    
+
     let logEvent = null;
     if (surveyData != null) {
       logEvent = {
@@ -52,7 +68,7 @@ export class LoggerService {
         Url: url,
         Event: eventType,
         Source: source,
-        Treatment: this.experiment.get('recommenderType'),
+        Treatment: this.experiment,
         Shop: url.split('/')[1],
         ProductId: productId,
         Attractiveness: surveyData.attractiveness,
@@ -60,13 +76,13 @@ export class LoggerService {
         Likelihood: surveyData.likelihood
       };
     } else {
-      logEvent =  {
+      logEvent = {
         SessionId: this.authService.getUser(),
         Timestamp: Date.now(),
         Url: url,
         Event: eventType,
         Source: source,
-        Treatment: this.experiment.get('recommenderType'),
+        Treatment: this.experiment,
         Shop: url.split('/')[1],
         ProductId: productId,
         Attractiveness: null,

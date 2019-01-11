@@ -48,7 +48,7 @@ export class CredCartComponent implements OnInit {
   }
 
   onItemClicked(product: any) {
-    this.router.navigate(['/' + this.basePath + '/detail/' + product.Id], { queryParams: {src: 'c'}});
+    this.router.navigate(['/' + this.basePath + '/detail/' + product.Id], { queryParams: { src: 'c' } });
   }
 
   getCart(cartId) {
@@ -71,15 +71,17 @@ export class CredCartComponent implements OnInit {
     });
   }
 
-  onHelpClicked(){
+  onHelpClicked() {
     this.modalRef = this.modalService.show(HelpModalComponent);
   }
 
   private calculateTotalAmount() {
     let totalAmount = 0;
     if (this.cart != null) {
-      for (let item of this.cart.CartItems) {
-        totalAmount += item.Product.LowestNewPriceRaw * item.Quantity;
+      if (this.cart.CartItems) {
+        for (let item of this.cart.CartItems) {
+          totalAmount += item.Product.LowestNewPriceRaw * item.Quantity;
+        }
       }
     }
     if (totalAmount == 0) {

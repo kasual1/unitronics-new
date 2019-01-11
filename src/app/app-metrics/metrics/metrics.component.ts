@@ -14,21 +14,15 @@ registerLocaleData(localeDe);
 })
 export class MetricsComponent implements OnInit {
 
-  revenuePerShopTypeHedonic: string = '0,00 €';
-  revenuePerShopTypeUtilitarian: string = '0,00 €';
-  revenuePerShopTypeExperienced: string = '0,00 €';
-  revenuePerShopTypeSearch: string = '0,00 €';
-
   revenuePerTreatementNone: string = '0,00 €';
   revenuePerTreatementRandom: string = '0,00 €';
   revenuePerTreatementSalesRank: string = '0,00 €';
   revenuePerTreatementColabFilter: string = '0,00 €';
 
-  productsPerShopHedonic: number = 0;
-  productsPerShopUtilitarian: number = 0;
-  productsPerShopExperienced: number = 0;
-  productsPerShopSearch: number = 0;
-
+  productsPerTreatmentNone: number = 0;
+  productsPerTreatmentRandom: number = 0;
+  productsPerTreatmentSalesRank: number = 0;
+  productsPerTreatmentColabFilter: number = 0;
 
 
   constructor(private metricsDataService: MetricsDataService) { }
@@ -37,26 +31,10 @@ export class MetricsComponent implements OnInit {
     this.queryData();
     setInterval(() => {
       this.queryData();
-    }, 20 * 1000);
+    }, 120 * 1000);
   }
 
   private queryData() {
-    this.metricsDataService.getRevenuePerShopType('hedonic').subscribe((revenue) => {
-      this.revenuePerShopTypeHedonic = formatCurrency(revenue / 100, 'de', '€');
-    });
-
-    this.metricsDataService.getRevenuePerShopType('utilitarian').subscribe((revenue) => {
-      this.revenuePerShopTypeUtilitarian = formatCurrency(revenue / 100, 'de', '€');;
-    });
-
-    this.metricsDataService.getRevenuePerShopType('experienced').subscribe((revenue) => {
-      this.revenuePerShopTypeExperienced = formatCurrency(revenue / 100, 'de', '€');;
-    });
-
-    this.metricsDataService.getRevenuePerShopType('credence').subscribe((revenue) => {
-      this.revenuePerShopTypeSearch = formatCurrency(revenue / 100, 'de', '€');;
-    });
-
 
     this.metricsDataService.getRevenuePerTreatment('none').subscribe((revenue) => {
       this.revenuePerTreatementNone = formatCurrency(revenue / 100, 'de', '€');;
@@ -74,22 +52,22 @@ export class MetricsComponent implements OnInit {
       this.revenuePerTreatementColabFilter = formatCurrency(revenue / 100, 'de', '€');;
     });
 
-    // No. of Products per Shop
 
-    this.metricsDataService.getNumberOfProductsBoughtPerShopType('hedonic').subscribe((amount) => {
-      this.productsPerShopHedonic = amount;
+    // No. of products per treatment
+    this.metricsDataService.getNumberOfProductsPerTreatment('none').subscribe((amount) => {
+      this.productsPerTreatmentNone = amount;
     });
 
-    this.metricsDataService.getNumberOfProductsBoughtPerShopType('utilitarian').subscribe((amount) => {
-      this.productsPerShopUtilitarian = amount;
+    this.metricsDataService.getNumberOfProductsPerTreatment('random').subscribe((amount) => {
+      this.productsPerTreatmentRandom = amount;
     });
 
-    this.metricsDataService.getNumberOfProductsBoughtPerShopType('experienced').subscribe((amount) => {
-      this.productsPerShopExperienced = amount;
+    this.metricsDataService.getNumberOfProductsPerTreatment('salesRank').subscribe((amount) => {
+      this.productsPerTreatmentSalesRank = amount;
     });
 
-    this.metricsDataService.getNumberOfProductsBoughtPerShopType('credence').subscribe((amount) => {
-      this.productsPerShopSearch = amount;
+    this.metricsDataService.getNumberOfProductsPerTreatment('colabFilter').subscribe((amount) => {
+      this.productsPerTreatmentColabFilter = amount;
     });
   }
 
