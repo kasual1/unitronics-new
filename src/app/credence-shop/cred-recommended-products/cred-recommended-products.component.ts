@@ -17,7 +17,7 @@ export class CredRecommendedProductsComponent implements OnInit {
   @ViewChild(SlickComponent) slickComponent: SlickComponent;
   userId: string;
   cartId: string;
-  recommendedProducts;
+  recommendations;
   loading: boolean = true;
   showRecommendations: boolean = true;
   recommenderType: string;
@@ -68,8 +68,7 @@ export class CredRecommendedProductsComponent implements OnInit {
   getRandomRecommendedProducts() {
     this.dataService.getRecommendedProducts(null, 'random').subscribe(
       data => {
-        this.recommendedProducts = data;
-        console.log(this.recommendedProducts);
+        this.recommendations = data;
         this.loading = false;
       });
   }
@@ -77,8 +76,7 @@ export class CredRecommendedProductsComponent implements OnInit {
   getSalesRankRecommendedProducts() {
     this.dataService.getRecommendedProducts(null, 'salesRank').subscribe(
       data => {
-        this.recommendedProducts = data;
-        console.log(this.recommendedProducts);
+        this.recommendations = data;
         this.loading = false;
       });
   }
@@ -86,8 +84,7 @@ export class CredRecommendedProductsComponent implements OnInit {
   getColabFilterRecommendedProducts(userId: string) {
     this.dataService.getRecommendedProducts(userId, 'colabFilter').subscribe(
       data => {
-        this.recommendedProducts = data;
-        console.log(this.recommendedProducts);
+        this.recommendations = data;
         this.loading = false;
       });
   }
