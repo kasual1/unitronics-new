@@ -100,7 +100,6 @@ export class CredProductSurveyComponent implements OnInit, OnDestroy{
               console.log('survey NOT Found!');
               this.surveyAlreadyTaken = false;
               this.isLoading = false;
-
             }
           });
         this.userSurvey.reset({ likelihood: 0, attractive: '', like: '' });
@@ -204,7 +203,7 @@ export class CredProductSurveyComponent implements OnInit, OnDestroy{
 
   onNextShopClicked() {
     const initialState = {
-      navigateTo: 'final-survey'
+      basePath: this.basePath
     }
     this.modalRef = this.modalService.show(NextShopModalComponent, { initialState });
   }

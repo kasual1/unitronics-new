@@ -21,17 +21,12 @@ export class HedDetailPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private dataService: HedDataService,
-    private router: Router,
-    private loggerService: LoggerService
   ) {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.basePath = environment.basePathHed;
-        this.route.params.subscribe(params => {
-          this.id = params['id'];
-          this.getProduct();
-        });
-      }
+
+    this.basePath = environment.basePathHed;
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
+      this.getProduct();
     });
   }
 

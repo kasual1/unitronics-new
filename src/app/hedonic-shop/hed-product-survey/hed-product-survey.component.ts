@@ -1,17 +1,16 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { HedDataService } from '../hed-data.service';
-import { CookieService } from 'ngx-cookie-service';
-import { HedCartService } from '../hed-cart.service';
 import { global } from '../../../variables/global';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { HedDataService } from '../hed-data.service';
+import { HedCartService } from '../hed-cart.service';
+import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '../../auth.service';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { NextShopModalComponent } from '../../next-shop-modal/next-shop-modal.component';
-import { CartLimitModalComponent } from '../../cart-limit-modal/cart-limit-modal.component';
-
-import { LoggerService } from '../../logger.service';
 import { environment } from '../../../environments/environment';
+import { LoggerService } from '../../logger.service';
+import { CartLimitModalComponent } from '../../cart-limit-modal/cart-limit-modal.component';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -34,7 +33,6 @@ export class HedProductSurveyComponent implements OnInit, OnDestroy {
   cartChangeSubscription: Subscription;
   surveySubscription: Subscription;
   routerSubscription: Subscription;
-  loggerSubscription: Subscription;
 
   userSurvey = new FormGroup(
     {
@@ -55,7 +53,6 @@ export class HedProductSurveyComponent implements OnInit, OnDestroy {
     private loggerService: LoggerService
   ) {
     this.basePath = environment.basePathHed;
-
     this.route.queryParams.subscribe((params: any) => {
       this.source = params['src'];
     });
@@ -102,10 +99,8 @@ export class HedProductSurveyComponent implements OnInit, OnDestroy {
               console.log('survey NOT Found!');
               this.surveyAlreadyTaken = false;
               this.isLoading = false;
-
             }
           });
-
         this.userSurvey.reset({ likelihood: 0, attractive: '', like: '' });
         this.cartId = this.cartService.getCartId();
         this.cartSubscription = this.dataService.getCart(this.cartId).subscribe(
@@ -135,7 +130,6 @@ export class HedProductSurveyComponent implements OnInit, OnDestroy {
     this.cartChangeSubscription.unsubscribe();
     this.surveySubscription.unsubscribe();
     this.routerSubscription.unsubscribe();
-    this.loggerSubscription.unsubscribe();
   }
 
   onSubmitAddToCart() {
@@ -148,7 +142,7 @@ export class HedProductSurveyComponent implements OnInit, OnDestroy {
       like: this.userSurvey.value.like,
       addedToCart: true
     }
-    this.surveySubscription = this.dataService.createSurveyResults(this.authService.getUser(), this.product.Id, answers).subscribe(
+    this.dataService.createSurveyResults(this.authService.getUser(), this.product.Id, answers).subscribe(
       (data: any) => {
         console.log('Survey answered! (added to cart)');
         this.surveyAlreadyTaken = true;
@@ -158,13 +152,13 @@ export class HedProductSurveyComponent implements OnInit, OnDestroy {
     if (this.cartId != '') {
       console.log("Add to existing cart")
       this.addToCart(this.cartId, this.product, () => {
-        this.loggerSubscription = this.loggerService.log('submit + add to cart', this.router.url, this.source, this.product.Id, answers).subscribe((result: any) => {
+        this.loggerService.log('submit + add to cart', this.router.url, this.source, this.product.Id, answers).subscribe((result: any) => {
         });
       });
     } else {
       console.log("Create new cart");
       this.createCart(this.product, () => {
-        this.loggerSubscription = this.loggerService.log('submit + add to cart', this.router.url, this.source, this.product.Id, answers).subscribe((result: any) => {
+        this.loggerService.log('submit + add to cart', this.router.url, this.source, this.product.Id, answers).subscribe((result: any) => {
         });
       });
     }
@@ -179,13 +173,13 @@ export class HedProductSurveyComponent implements OnInit, OnDestroy {
       like: this.userSurvey.value.like,
       addedToCart: false
     }
-    this.surveySubscription = this.dataService.createSurveyResults(this.authService.getUser(), this.product.Id, answers).subscribe(
+    this.dataService.createSurveyResults(this.authService.getUser(), this.product.Id, answers).subscribe(
       (data: any) => {
         console.log('Survey answered! (added to cart)');
         this.surveyAlreadyTaken = true;
       }
     );
-    this.loggerSubscription = this.loggerService.log('submit', this.router.url, this.source, this.product.Id, answers).subscribe((result: any) => {
+    this.loggerService.log('submit', this.router.url, this.source, this.product.Id, answers).subscribe((result: any) => {
     });
   }
 
@@ -194,13 +188,13 @@ export class HedProductSurveyComponent implements OnInit, OnDestroy {
     if (this.cartId != '') {
       console.log("Add to existing cart")
       this.addToCart(this.cartId, this.product, () => {
-        this.loggerSubscription  = this.loggerService.log('add to cart', this.router.url, this.source, this.product.Id).subscribe((result: any) => {
+        this.loggerService.log('add to cart', this.router.url, this.source, this.product.Id).subscribe((result: any) => {
         });
       });
     } else {
       console.log("Create new cart");
       this.createCart(this.product, () => {
-        this.loggerSubscription = this.loggerService.log('add to cart', this.router.url, this.source, this.product.Id).subscribe((result: any) => {
+        this.loggerService.log('add to cart', this.router.url, this.source, this.product.Id).subscribe((result: any) => {
         });
       });
     }
@@ -209,7 +203,7 @@ export class HedProductSurveyComponent implements OnInit, OnDestroy {
 
   onNextShopClicked() {
     const initialState = {
-      navigateTo: environment.basePathExp
+      basePath: this.basePath
     }
     this.modalRef = this.modalService.show(NextShopModalComponent, { initialState });
   }

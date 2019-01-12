@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd, NavigationStart } from '@angular/router';
+import { Router, NavigationEnd} from '@angular/router';
 import { AuthService } from './auth.service';
 import { RecommenderExperiment } from './app-experiments/recommender-experiment';
 import { LoggerService } from './logger.service';
 import { global } from '../variables/global';
-import { LocationChangeEvent, Location } from '@angular/common';
+import { Location } from '@angular/common';
 
 
 @Component({

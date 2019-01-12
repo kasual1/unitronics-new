@@ -30,7 +30,6 @@ export class UtLandingPageComponent implements OnInit {
 
   onNextClicked() {
     const initialState = {
-      navigateTo: environment.basePathCred,
       basePath: this.basePath
     }
     this.modalRef = this.modalService.show(NextShopModalComponent, { initialState });
