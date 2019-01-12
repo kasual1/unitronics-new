@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HedDataService } from '../hed-data.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -12,13 +12,14 @@ import { CartLimitModalComponent } from '../../cart-limit-modal/cart-limit-modal
 
 import { LoggerService } from '../../logger.service';
 import { environment } from '../../../environments/environment';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-hed-product-survey',
   templateUrl: './hed-product-survey.component.html',
   styleUrls: ['./hed-product-survey.component.css']
 })
-export class HedProductSurveyComponent implements OnInit {
+export class HedProductSurveyComponent implements OnInit, OnDestroy {
   cartId: string;
   closeBtnName: string;
   @Input() product: any;
@@ -28,6 +29,12 @@ export class HedProductSurveyComponent implements OnInit {
   modalRef: BsModalRef;
   basePath: string;
   source: string = null;
+
+  cartSubscription: Subscription;
+  cartChangeSubscription: Subscription;
+  surveySubscription: Subscription;
+  routerSubscription: Subscription;
+  loggerSubscription: Subscription;
 
   userSurvey = new FormGroup(
     {
@@ -57,14 +64,14 @@ export class HedProductSurveyComponent implements OnInit {
   ngOnInit() {
     this.cartId = this.cartService.getCartId();
     let userId = this.authService.getUser();
-    this.dataService.getCart(this.cartId).subscribe(
+    this.cartSubscription = this.dataService.getCart(this.cartId).subscribe(
       (data: any) => {
         let cart = data;
         this.productInCart = this.cotainsItem(cart);
       }
     );
 
-    this.dataService.getSurveyResults(userId, this.product.Id).subscribe(
+    this.surveySubscription = this.dataService.getSurveyResults(userId, this.product.Id).subscribe(
       (data: any) => {
         console.log('survey Found!');
         this.surveyAlreadyTaken = true;
@@ -79,12 +86,12 @@ export class HedProductSurveyComponent implements OnInit {
       }
     );
 
-    this.router.events.subscribe(event => {
+    this.routerSubscription = this.router.events.subscribe(event => {
       this.isLoading = true;
       let user = this.authService.getUser();
       if (event instanceof NavigationEnd) {
         console.log('ROUTE CHANGED');
-        this.dataService.getSurveyResults(userId, this.route.snapshot.params.id).subscribe(
+        this.surveySubscription = this.dataService.getSurveyResults(userId, this.route.snapshot.params.id).subscribe(
           (data: any) => {
             console.log('survey Found!');
             this.surveyAlreadyTaken = true;
@@ -98,21 +105,22 @@ export class HedProductSurveyComponent implements OnInit {
 
             }
           });
+
+        this.userSurvey.reset({ likelihood: 0, attractive: '', like: '' });
+        this.cartId = this.cartService.getCartId();
+        this.cartSubscription = this.dataService.getCart(this.cartId).subscribe(
+          (data: any) => {
+            let cart = data;
+            this.productInCart = this.cotainsItem(cart);
+          }
+        );
       }
-      this.userSurvey.reset({ likelihood: 0, attractive: '', like: '' });
-      this.cartId = this.cartService.getCartId();
-      this.dataService.getCart(this.cartId).subscribe(
-        (data: any) => {
-          let cart = data;
-          this.productInCart = this.cotainsItem(cart);
-        }
-      );
     });
 
-    this.cartService.onCartChanged.subscribe(
+    this.cartChangeSubscription = this.cartService.onCartChanged.subscribe(
       () => {
         this.cartId = this.cartService.getCartId();
-        this.dataService.getCart(this.cartId).subscribe(
+        this.cartSubscription = this.dataService.getCart(this.cartId).subscribe(
           (data: any) => {
             let cart = data;
             this.productInCart = this.cotainsItem(cart);
@@ -120,6 +128,14 @@ export class HedProductSurveyComponent implements OnInit {
         );
       }
     );
+  }
+
+  ngOnDestroy(): void {
+    this.cartSubscription.unsubscribe();
+    this.cartChangeSubscription.unsubscribe();
+    this.surveySubscription.unsubscribe();
+    this.routerSubscription.unsubscribe();
+    this.loggerSubscription.unsubscribe();
   }
 
   onSubmitAddToCart() {
@@ -132,7 +148,7 @@ export class HedProductSurveyComponent implements OnInit {
       like: this.userSurvey.value.like,
       addedToCart: true
     }
-    this.dataService.createSurveyResults(this.authService.getUser(), this.product.Id, answers).subscribe(
+    this.surveySubscription = this.dataService.createSurveyResults(this.authService.getUser(), this.product.Id, answers).subscribe(
       (data: any) => {
         console.log('Survey answered! (added to cart)');
         this.surveyAlreadyTaken = true;
@@ -142,13 +158,13 @@ export class HedProductSurveyComponent implements OnInit {
     if (this.cartId != '') {
       console.log("Add to existing cart")
       this.addToCart(this.cartId, this.product, () => {
-        this.loggerService.log('submit + add to cart', this.router.url, this.source, this.product.Id, answers).subscribe((result: any) => {
+        this.loggerSubscription = this.loggerService.log('submit + add to cart', this.router.url, this.source, this.product.Id, answers).subscribe((result: any) => {
         });
       });
     } else {
       console.log("Create new cart");
       this.createCart(this.product, () => {
-        this.loggerService.log('submit + add to cart', this.router.url, this.source, this.product.Id, answers).subscribe((result: any) => {
+        this.loggerSubscription = this.loggerService.log('submit + add to cart', this.router.url, this.source, this.product.Id, answers).subscribe((result: any) => {
         });
       });
     }
@@ -163,13 +179,13 @@ export class HedProductSurveyComponent implements OnInit {
       like: this.userSurvey.value.like,
       addedToCart: false
     }
-    this.dataService.createSurveyResults(this.authService.getUser(), this.product.Id, answers).subscribe(
+    this.surveySubscription = this.dataService.createSurveyResults(this.authService.getUser(), this.product.Id, answers).subscribe(
       (data: any) => {
         console.log('Survey answered! (added to cart)');
         this.surveyAlreadyTaken = true;
       }
     );
-    this.loggerService.log('submit', this.router.url, this.source, this.product.Id, answers).subscribe((result: any) => {
+    this.loggerSubscription = this.loggerService.log('submit', this.router.url, this.source, this.product.Id, answers).subscribe((result: any) => {
     });
   }
 
@@ -178,13 +194,13 @@ export class HedProductSurveyComponent implements OnInit {
     if (this.cartId != '') {
       console.log("Add to existing cart")
       this.addToCart(this.cartId, this.product, () => {
-        this.loggerService.log('add to cart', this.router.url, this.source, this.product.Id).subscribe((result: any) => {
+        this.loggerSubscription  = this.loggerService.log('add to cart', this.router.url, this.source, this.product.Id).subscribe((result: any) => {
         });
       });
     } else {
       console.log("Create new cart");
       this.createCart(this.product, () => {
-        this.loggerService.log('add to cart', this.router.url, this.source, this.product.Id).subscribe((result: any) => {
+        this.loggerSubscription = this.loggerService.log('add to cart', this.router.url, this.source, this.product.Id).subscribe((result: any) => {
         });
       });
     }
@@ -213,7 +229,7 @@ export class HedProductSurveyComponent implements OnInit {
     if (product.LowestNewPriceRaw < 10000) {
       let userId = this.authService.getUser();
       if (userId != null) {
-        this.dataService.createCart(product, 1, userId)
+        this.cartSubscription = this.dataService.createCart(product, 1, userId)
           .subscribe(
             data => {
               this.cookieService.set(global.HED_CART_ID, data.Id)
@@ -235,7 +251,7 @@ export class HedProductSurveyComponent implements OnInit {
       if ((this.calculateCartValue(data) + product.LowestNewPriceRaw) < 10000) {
         console.log("Add to existing cart")
         // Add to existing cart
-        this.dataService.addToCart(cartId, product, 1)
+        this.cartSubscription = this.dataService.addToCart(cartId, product, 1)
           .subscribe(
             (data: any) => {
               this.cartService.updateCart(data);

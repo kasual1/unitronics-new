@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { ExpDataService } from '../exp-data.service';
@@ -11,6 +11,7 @@ import { NextShopModalComponent } from '../../next-shop-modal/next-shop-modal.co
 import { environment } from '../../../environments/environment';
 import { LoggerService } from '../../logger.service';
 import { CartLimitModalComponent } from '../../cart-limit-modal/cart-limit-modal.component';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -18,7 +19,7 @@ import { CartLimitModalComponent } from '../../cart-limit-modal/cart-limit-modal
   templateUrl: './exp-product-survey.component.html',
   styleUrls: ['./exp-product-survey.component.css']
 })
-export class ExpProductSurveyComponent implements OnInit {
+export class ExpProductSurveyComponent implements OnInit, OnDestroy {
   cartId: string;
   closeBtnName: string;
   @Input() product: any;
@@ -28,6 +29,11 @@ export class ExpProductSurveyComponent implements OnInit {
   modalRef: BsModalRef;
   basePath: string;
   source: string = null;
+
+  cartSubscription: Subscription;
+  cartChangeSubscription: Subscription;
+  surveySubscription: Subscription;
+  routerSubscription: Subscription;
 
   userSurvey = new FormGroup(
     {
@@ -56,14 +62,14 @@ export class ExpProductSurveyComponent implements OnInit {
   ngOnInit() {
     this.cartId = this.cartService.getCartId();
     let userId = this.authService.getUser();
-    this.dataService.getCart(this.cartId).subscribe(
+    this.cartSubscription = this.dataService.getCart(this.cartId).subscribe(
       (data: any) => {
         let cart = data;
         this.productInCart = this.cotainsItem(cart);
       }
     );
 
-    this.dataService.getSurveyResults(userId, this.product.Id).subscribe(
+    this.surveySubscription = this.dataService.getSurveyResults(userId, this.product.Id).subscribe(
       (data: any) => {
         console.log('survey Found!');
         this.surveyAlreadyTaken = true;
@@ -78,12 +84,12 @@ export class ExpProductSurveyComponent implements OnInit {
       }
     );
 
-    this.router.events.subscribe(event => {
+    this.routerSubscription = this.router.events.subscribe(event => {
       this.isLoading = true;
       let user = this.authService.getUser();
       if (event instanceof NavigationEnd) {
         console.log('ROUTE CHANGED');
-        this.dataService.getSurveyResults(userId, this.route.snapshot.params.id).subscribe(
+        this.surveySubscription = this.dataService.getSurveyResults(userId, this.route.snapshot.params.id).subscribe(
           (data: any) => {
             console.log('survey Found!');
             this.surveyAlreadyTaken = true;
@@ -97,21 +103,21 @@ export class ExpProductSurveyComponent implements OnInit {
 
             }
           });
+        this.userSurvey.reset({ likelihood: 0, attractive: '', like: '' });
+        this.cartId = this.cartService.getCartId();
+        this.cartSubscription = this.dataService.getCart(this.cartId).subscribe(
+          (data: any) => {
+            let cart = data;
+            this.productInCart = this.cotainsItem(cart);
+          }
+        );
       }
     });
-    this.userSurvey.reset({ likelihood: 0, attractive: '', like: '' });
-    this.cartId = this.cartService.getCartId();
-    this.dataService.getCart(this.cartId).subscribe(
-      (data: any) => {
-        let cart = data;
-        this.productInCart = this.cotainsItem(cart);
-      }
-    );
 
-    this.cartService.onCartChanged.subscribe(
+    this.cartChangeSubscription = this.cartService.onCartChanged.subscribe(
       () => {
         this.cartId = this.cartService.getCartId();
-        this.dataService.getCart(this.cartId).subscribe(
+        this.cartSubscription = this.dataService.getCart(this.cartId).subscribe(
           (data: any) => {
             let cart = data;
             this.productInCart = this.cotainsItem(cart);
@@ -119,6 +125,13 @@ export class ExpProductSurveyComponent implements OnInit {
         );
       }
     );
+  }
+
+  ngOnDestroy(): void {
+    this.cartSubscription.unsubscribe();
+    this.cartChangeSubscription.unsubscribe();
+    this.surveySubscription.unsubscribe();
+    this.routerSubscription.unsubscribe();
   }
 
   onSubmitAddToCart() {
