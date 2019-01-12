@@ -18,7 +18,7 @@ export class HedRecommendedProductsComponent implements OnInit {
   @ViewChild(SlickComponent) slickComponent: SlickComponent;
   userId: string;
   cartId: string;
-  recommendedProducts;
+  recommendations;
   loading: boolean = true;
   showRecommendations: boolean = true;
   recommenderType: string;
@@ -63,8 +63,7 @@ export class HedRecommendedProductsComponent implements OnInit {
   getRandomRecommendedProducts() {
     this.dataService.getRecommendedProducts(null, 'random').subscribe(
       data => {
-        this.recommendedProducts = data;
-        console.log(this.recommendedProducts);
+        this.recommendations = data;
         this.loading = false;
       });
   }
@@ -72,8 +71,7 @@ export class HedRecommendedProductsComponent implements OnInit {
   getSalesRankRecommendedProducts() {
     this.dataService.getRecommendedProducts(null, 'salesRank').subscribe(
       data => {
-        this.recommendedProducts = data;
-        console.log(this.recommendedProducts);
+        this.recommendations = data;
         this.loading = false;
       });
   }
@@ -81,8 +79,7 @@ export class HedRecommendedProductsComponent implements OnInit {
   getColabFilterRecommendedProducts(userId: string) {
     this.dataService.getRecommendedProducts(userId, 'colabFilter').subscribe(
       data => {
-        this.recommendedProducts = data;
-        console.log(this.recommendedProducts);
+        this.recommendations = data;
         this.loading = false;
       });
   }
