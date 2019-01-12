@@ -18,7 +18,7 @@ export class ExpRecommendedProductsComponent implements OnInit {
   @ViewChild(SlickComponent) slickComponent: SlickComponent;
   userId: string;
   cartId: string;
-  recommendedProducts;
+  recommendations;
   loading: boolean = true;
   showRecommendations: boolean = true;
   recommenderType: string;
@@ -32,7 +32,6 @@ export class ExpRecommendedProductsComponent implements OnInit {
   constructor(
     private dataService: ExpDataService,
     private authService: AuthService,
-    private loggerService: LoggerService,
     private router: Router
   ) {
     this.basePath = environment.basePathExp;
@@ -66,8 +65,7 @@ export class ExpRecommendedProductsComponent implements OnInit {
   getRandomRecommendedProducts() {
     this.dataService.getRecommendedProducts(null, 'random').subscribe(
       data => {
-        this.recommendedProducts = data;
-        console.log(this.recommendedProducts);
+        this.recommendations = data;
         this.loading = false;
       });
   }
@@ -75,8 +73,7 @@ export class ExpRecommendedProductsComponent implements OnInit {
   getSalesRankRecommendedProducts() {
     this.dataService.getRecommendedProducts(null, 'salesRank').subscribe(
       data => {
-        this.recommendedProducts = data;
-        console.log(this.recommendedProducts);
+        this.recommendations = data;
         this.loading = false;
       });
   }
@@ -84,8 +81,7 @@ export class ExpRecommendedProductsComponent implements OnInit {
   getColabFilterRecommendedProducts(userId: string) {
     this.dataService.getRecommendedProducts(userId, 'colabFilter').subscribe(
       data => {
-        this.recommendedProducts = data;
-        console.log(this.recommendedProducts);
+        this.recommendations = data;
         this.loading = false;
       });
   }
