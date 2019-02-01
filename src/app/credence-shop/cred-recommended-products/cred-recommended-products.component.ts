@@ -23,8 +23,9 @@ export class CredRecommendedProductsComponent implements OnInit {
   recommenderType: string;
   basePath: string;
   isProduction: boolean;
+  currentSlide: number = 0;
 
-  slideConfig = { "slidesToShow": 3, "slidesToScroll": 1, "dots": false, "infinite": false, "autoplay": false };
+  slideConfig = { "slidesToShow": 5, "slidesToScroll": 1, "dots": false, "infinite": false, "autoplay": false, "draggable": false };
   zone: any;
   $instance: any;
 
@@ -32,7 +33,6 @@ export class CredRecommendedProductsComponent implements OnInit {
   constructor(
     private dataService: CredDataService,
     private authService: AuthService,
-    private loggerService: LoggerService,
     private router: Router
   ) {
     this.basePath = environment.basePathCred;
@@ -61,7 +61,7 @@ export class CredRecommendedProductsComponent implements OnInit {
   }
 
   onItemClicked(product: any) {
-    this.router.navigate(['/' + environment.basePathCred + '/detail/' + product.Id], { queryParams: {src: 'r'}});
+    this.router.navigate(['/' + environment.basePathCred + '/detail/' + product.Id], { queryParams: { src: 'r' } });
 
   }
 
@@ -91,10 +91,17 @@ export class CredRecommendedProductsComponent implements OnInit {
 
   next() {
     this.slickComponent.slickNext();
+    console.log(SlickComponent);
   }
 
   previous() {
     this.slickComponent.slickPrev();
+    console.log(SlickComponent);
+  }
+
+  afterChange(e) {
+    this.currentSlide = e.currentSlide;
+    console.log(this.currentSlide);
   }
 
 }
