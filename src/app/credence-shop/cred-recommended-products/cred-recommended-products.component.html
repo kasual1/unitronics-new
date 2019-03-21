@@ -8,14 +8,13 @@
   </div>
   -->
   </h2>
-  <p *ngIf="!isProduction" [class]="recommenderType">Used algorithm: <strong>{{recommenderType}}</strong></p>
   <div *ngIf="loading" class="spinner">
     <div class="bounce1"></div>
     <div class="bounce2"></div>
     <div class="bounce3"></div>
   </div>
   <div *ngIf="!loading" class="row">
-    <div class="wrapper">
+    <div class="wrapper left-align-slick">
       <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig" (afterChange)="afterChange($event)">
         <div ngxSlickItem *ngFor="let recommendation of recommendations" style="margin: 0 10px;">
           <div class="col-item">
@@ -41,10 +40,10 @@
           </div>
         </div>
       </ngx-slick>
-      <div class="controls-left" [class.hide]="currentSlide==0">
+      <div class="controls-left" [class.hide]="currentSlide==0 || numberOfRecommendations != 7">
         <a class="left glyphicon glyphicon-chevron-left" (click)="previous()"></a>
       </div>
-      <div class="controls-right" [class.hide]="currentSlide==2">
+      <div class="controls-right" [class.hide]="currentSlide==3 || numberOfRecommendations != 7">
         <a class="right glyphicon glyphicon-chevron-right" (click)="next()"></a>
       </div>
     </div>

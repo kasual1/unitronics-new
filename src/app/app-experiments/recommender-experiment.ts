@@ -2,6 +2,7 @@ import * as planout from "planout";
 
 export class RecommenderExperiment extends (planout.Experiment as { new(): any; }) {
 
+  
   constructor(
     inputs,
   ) {
@@ -29,13 +30,14 @@ export class RecommenderExperiment extends (planout.Experiment as { new(): any; 
   }
 
   assign(params, args) {
+    var options = [0, 1, 5];
     params.set('recommenderType', new planout.Ops.Random.Sample(
       {
         choices: [
-          'colabFilter',
-          'colabFilter',
-          'colabFilter',
-          'colabFilter'
+          0,
+          1,
+          5,
+          options[Math.floor(Math.random()*options.length)]
         ],
         'unit': this.inputs.userId
       }));

@@ -1,6 +1,6 @@
 export const environment = {
-  production: false,
-  apiUrl: 'http://demoshop.uni-koeln.de/api/index.php',
+  production: true,
+  apiUrl: 'https://demoshop.uni-koeln.de/api/index.php',
   basePathHed: 'happy-watch',
   basePathExp: 'ex-libris',
   basePathUt: 'uni-shop',

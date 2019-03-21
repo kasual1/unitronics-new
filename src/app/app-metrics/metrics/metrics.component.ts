@@ -36,39 +36,33 @@ export class MetricsComponent implements OnInit {
 
   private queryData() {
 
-    this.metricsDataService.getRevenuePerTreatment('none').subscribe((revenue) => {
+    this.metricsDataService.getRevenuePerTreatment('0').subscribe((revenue) => {
       this.revenuePerTreatementNone = formatCurrency(revenue / 100, 'de', '€');;
     });
 
-    this.metricsDataService.getRevenuePerTreatment('random').subscribe((revenue) => {
+    this.metricsDataService.getRevenuePerTreatment('1').subscribe((revenue) => {
       this.revenuePerTreatementRandom = formatCurrency(revenue / 100, 'de', '€');;
     });
 
-    this.metricsDataService.getRevenuePerTreatment('salesRank').subscribe((revenue) => {
+    this.metricsDataService.getRevenuePerTreatment('5').subscribe((revenue) => {
       this.revenuePerTreatementSalesRank = formatCurrency(revenue / 100, 'de', '€');;
     });
 
-    this.metricsDataService.getRevenuePerTreatment('colabFilter').subscribe((revenue) => {
-      this.revenuePerTreatementColabFilter = formatCurrency(revenue / 100, 'de', '€');;
-    });
 
 
     // No. of products per treatment
-    this.metricsDataService.getNumberOfProductsPerTreatment('none').subscribe((amount) => {
+    this.metricsDataService.getNumberOfProductsPerTreatment('0').subscribe((amount) => {
       this.productsPerTreatmentNone = amount;
     });
 
-    this.metricsDataService.getNumberOfProductsPerTreatment('random').subscribe((amount) => {
+    this.metricsDataService.getNumberOfProductsPerTreatment('1').subscribe((amount) => {
       this.productsPerTreatmentRandom = amount;
     });
 
-    this.metricsDataService.getNumberOfProductsPerTreatment('salesRank').subscribe((amount) => {
+    this.metricsDataService.getNumberOfProductsPerTreatment('5').subscribe((amount) => {
       this.productsPerTreatmentSalesRank = amount;
     });
 
-    this.metricsDataService.getNumberOfProductsPerTreatment('colabFilter').subscribe((amount) => {
-      this.productsPerTreatmentColabFilter = amount;
-    });
   }
 
 }

@@ -4,7 +4,6 @@ import { AuthService } from '../../auth.service';
 import { SlickComponent } from 'ngx-slick';
 import { RecommenderExperiment } from '../../app-experiments/recommender-experiment';
 import { environment } from '../../../environments/environment';
-import { LoggerService } from '../../logger.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,11 +20,12 @@ export class ExpRecommendedProductsComponent implements OnInit {
   recommendations;
   loading: boolean = true;
   showRecommendations: boolean = true;
-  recommenderType: string;
+  numberOfRecommendations: number;
   basePath: string;
   isProduction: boolean;
+  currentSlide: number = 0;
 
-  slideConfig = { "slidesToShow": 3, "slidesToScroll": 1, "dots": false, "infinite": false, "autoplay": false };
+  slideConfig = { "slidesToShow": 5, "slidesToScroll": 1, "dots": false, "infinite": false, "autoplay": false, "draggable": false };
   zone: any;
   $instance: any;
 
@@ -41,25 +41,18 @@ export class ExpRecommendedProductsComponent implements OnInit {
   ngOnInit() {
     let user = this.authService.getUser();
     let experiment = new RecommenderExperiment({ userId: user });
-    this.recommenderType = experiment.get('recommenderType')[2];
-    switch (this.recommenderType) {
-      case 'none':
-        this.showRecommendations = false;
-        break;
-      case 'random':
-        this.getRandomRecommendedProducts();
-        break;
-      case 'salesRank':
-        this.getSalesRankRecommendedProducts();
-        break;
-      case 'colabFilter':
-        this.getColabFilterRecommendedProducts(user);
-        break;
+    this.numberOfRecommendations = experiment.get('recommenderType')[2];
+    if (this.numberOfRecommendations != 0) {
+      this.slideConfig = { "slidesToShow": (this.numberOfRecommendations != 7 ? this.numberOfRecommendations : 4), "slidesToScroll": 1, "dots": false, "infinite": false, "autoplay": false, "draggable": false };
+      this.getColabFilterRecommendedProducts(user);
+    } else {
+      this.showRecommendations = false;
+      this.loading = false;
     }
   }
 
   onItemClicked(product: any) {
-    this.router.navigate(['/' + environment.basePathExp + '/detail/' + product.Id], { queryParams: {src: 'r'}});
+    this.router.navigate(['/' + environment.basePathExp + '/detail/' + product.Id], { queryParams: { src: 'r' } });
   }
 
   getRandomRecommendedProducts() {
@@ -81,7 +74,7 @@ export class ExpRecommendedProductsComponent implements OnInit {
   getColabFilterRecommendedProducts(userId: string) {
     this.dataService.getRecommendedProducts(userId, 'colabFilter').subscribe(
       data => {
-        this.recommendations = data;
+        this.recommendations = data.slice(0, this.numberOfRecommendations);
         this.loading = false;
       });
   }
@@ -92,6 +85,10 @@ export class ExpRecommendedProductsComponent implements OnInit {
 
   previous() {
     this.slickComponent.slickPrev();
+  }
+
+  afterChange(e) {
+    this.currentSlide = e.currentSlide;
   }
 
 }

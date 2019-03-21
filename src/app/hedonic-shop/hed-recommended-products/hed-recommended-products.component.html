@@ -1,44 +1,46 @@
 <div *ngIf="showRecommendations">
   <h2 class="product-head text-uppercase">Unsere Top
     <strong>Empfehlungen</strong>
-    <!--
-  <div class="controls pull-right hidden-xs">
-    <a class="left glyphicon glyphicon-chevron-left" (click)="previous()"></a>
-    <a class="right glyphicon glyphicon-chevron-right" (click)="next()"></a>
-  </div>
-  -->
   </h2>
-  <p *ngIf="!isProduction" [class]="recommenderType">Used algorithm: <strong>{{recommenderType}}</strong></p>
   <div *ngIf="loading" class="spinner">
     <div class="bounce1"></div>
     <div class="bounce2"></div>
     <div class="bounce3"></div>
   </div>
   <div *ngIf="!loading" class="row">
-    <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig">
-      <div ngxSlickItem *ngFor="let recommendation of recommendations" style="margin: 0 10px;">
-        <div class="col-item">
-          <div class="product-col alt" style="height: 265px;">
-            <div class="image" style="height: 150px;">
-              <a class="clickable" (click)="onItemClicked(recommendation.Product)"><img src="{{recommendation.Product.MediumImageUrl}}" alt="product-item" class="img-responsive center-block"></a>
-            </div>
-            <div class="caption">
-              <div class="starRating">
-                <rating *ngIf="recommendation.Product.ShowReviews" [(ngModel)]="recommendation.Product.StarRating" class="center-block" [max]="5" [readonly]="true"
-                   [customTemplate]="t" style="color: #ffce31;font-size: 30px; margin-top: 15px; margin-bottom: 5px;"></rating>
+      <div class="wrapper">
+          <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig" (afterChange)="afterChange($event)">
+            <div ngxSlickItem *ngFor="let recommendation of recommendations" style="margin: 0 10px;">
+              <div class="col-item">
+                <div class="product-col alt" style="height: 265px;">
+                  <div class="image" style="height: 150px;">
+                    <a class="clickable" (click)="onItemClicked(recommendation.Product)"><img src="{{recommendation.Product.MediumImageUrl}}"
+                        alt="product-item" class="img-responsive center-block"></a>
+                  </div>
+                  <div class="caption">
+                    <div class="starRating">
+                      <rating *ngIf="recommendation.Product.ShowReviews" [(ngModel)]="recommendation.Product.StarRating"
+                        class="center-block" [max]="5" [readonly]="true" [customTemplate]="t" style="color: #ffce31;font-size: 30px; margin-top: 15px; margin-bottom: 5px;"></rating>
+                    </div>
+                    <div class="price">
+                      <span class="price-new">{{recommendation.Product.LowestNewPriceFormatted}}</span>
+                      <span class="price-old">{{recommendation.Product.ListPriceFormatted}}</span>
+                    </div>
+                    <h4>
+                      <a class="title clickable" (click)="onItemClicked(recommendation.Product)">{{recommendation.Product.Title}}</a>
+                    </h4>
+                  </div>
+                </div>
               </div>
-              <div class="price">
-                <span class="price-new">{{recommendation.Product.LowestNewPriceFormatted}}</span>
-                <span class="price-old">{{recommendation.Product.ListPriceFormatted}}</span>
-              </div>
-              <h4>
-                <a class="clickable" (click)="onItemClicked(recommendation.Product)">{{recommendation.Product.Title}}</a>
-              </h4>
             </div>
+          </ngx-slick>
+          <div class="controls-left" [class.hide]="currentSlide==0 || numberOfRecommendations != 7">
+            <a class="left glyphicon glyphicon-chevron-left" (click)="previous()"></a>
+          </div>
+          <div class="controls-right" [class.hide]="currentSlide==2 || numberOfRecommendations != 7">
+            <a class="right glyphicon glyphicon-chevron-right" (click)="next()"></a>
           </div>
         </div>
-      </div>
-    </ngx-slick>
   </div>
 </div>
 
